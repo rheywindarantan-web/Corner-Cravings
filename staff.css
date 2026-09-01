@@ -72,15 +72,12 @@ button:active,
   width: 40px;
   height: 40px;
   border-radius: 50%;
-  background: var(--staff-primary);
-  color: #fff;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: 14px;
+  object-fit: cover;
+  display: block;
   flex-shrink: 0;
+  background: var(--staff-primary);
+  border: 2px solid rgba(255, 255, 255, 0.9);
+  box-shadow: 0 8px 18px rgba(139, 31, 6, 0.15);
 }
 
 .staff-brand__name {
