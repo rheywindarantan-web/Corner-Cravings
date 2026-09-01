@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile · Corner Cravings Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <style>
+    .profile-card { background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 28px; max-width: 760px; }
+    .profile-header { display: flex; align-items: center; gap: 20px; margin-bottom: 24px; }
+    .avatar { width: 72px; height: 72px; border-radius: 50%; background: var(--color-primary); color: #fff; display: grid; place-items: center; font-size: 28px; font-weight: 700; }
+    .profile-meta { flex: 1; }
+    .profile-meta h2 { margin: 0 0 4px; font-size: 28px; }
+    .profile-meta p { margin: 0; color: var(--color-text-body); }
+    .profile-meta .profile-field { display: block; width: 100%; margin-top: 8px; }
+    .info-grid { display: grid; grid-template-columns: repeat(2, minmax(200px, 1fr)); gap: 16px; }
+    .info-item { background: #fffaf8; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 16px; }
+    .info-item span { display: block; font-size: 12px; text-transform: uppercase; letter-spacing: .06em; color: var(--color-text-body); margin-bottom: 8px; }
+    .info-item strong { font-size: 15px; color: var(--color-text-dark); }
+    .form-field { width: 100%; padding: 10px 12px; border: 1px solid var(--color-border-light); border-radius: 10px; font: inherit; color: var(--color-text-dark); background: #fff; }
+    .form-field:disabled { background: #f6f6f6; color: #6b7280; cursor: not-allowed; }
+    .profile-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; }
+    .btn-ghost { background: #fff; border: 1px solid var(--color-border-light); border-radius: 10px; padding: 10px 16px; font-weight: 600; cursor: pointer; }
+  </style>
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <img class="sidebar__brand-logo" src="logo.svg" alt="Corner Cravings logo" />
+        <div>
+          <p class="sidebar__brand-name">Corner<br />Cravings</p>
+          <p class="sidebar__brand-sub">Admin Panel</p>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Primary">
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-1.5 9h-13z"/><path d="M4 4L3 2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
+        <a class="nav-item" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
+        <a class="nav-item is-active" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <button class="btn-logout" type="button" onclick="window.location.href='login.html'"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Logout</span></button>
+      </div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <h2 class="topbar__title">Corner Cravings Admin</h2>
+        <div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" placeholder="Search..." aria-label="Search" /></div>
+        <div class="topbar__actions"><button class="icon-btn" type="button" aria-label="Settings" data-action="notify"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.72 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg></button></div>
+      </header>
+
+      <main class="page-content">
+        <div class="page-header">
+          <div><h1 class="page-header__title">Profile</h1><p class="page-header__subtitle">Team and account information.</p></div>
+          <button class="btn-solid-sm" id="admin-profile-toggle" type="button">Edit Profile</button>
+        </div>
+
+        <section class="profile-card">
+          <form id="admin-profile-form" novalidate>
+            <div class="profile-header">
+              <div class="avatar" id="admin-profile-avatar">AS</div>
+              <div class="profile-meta">
+                <h2 id="admin-profile-name-display">Alex Santos</h2>
+                <p id="admin-profile-role-display">Operations Manager</p>
+                <input class="form-field profile-field" id="admin-profile-name" name="name" type="text" value="Alex Santos" disabled />
+                <input class="form-field profile-field" id="admin-profile-role" name="role" type="text" value="Operations Manager" disabled />
+              </div>
+            </div>
+
+            <div class="info-grid">
+              <div class="info-item"><span>Email</span><strong id="admin-profile-email-display">alex@cornercravings.com</strong><input class="form-field" id="admin-profile-email" name="email" type="email" value="alex@cornercravings.com" disabled /></div>
+              <div class="info-item"><span>Role</span><strong id="admin-profile-role-readonly">Admin</strong><input class="form-field" id="admin-profile-access-role" name="access-role" type="text" value="Admin" disabled /></div>
+              <div class="info-item"><span>Department</span><strong id="admin-profile-department-display">Bakery Operations</strong><input class="form-field" id="admin-profile-department" name="department" type="text" value="Bakery Operations" disabled /></div>
+              <div class="info-item"><span>Shift</span><strong id="admin-profile-shift-display">08:00 - 17:00</strong><input class="form-field" id="admin-profile-shift" name="shift" type="text" value="08:00 - 17:00" disabled /></div>
+            </div>
+
+            <div class="profile-actions">
+              <button class="btn-ghost" id="admin-profile-cancel" type="button" style="display:none;">Cancel</button>
+              <button class="btn-solid-sm" id="admin-profile-save" type="submit">Save Changes</button>
+            </div>
+          </form>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+</body>
+</html>

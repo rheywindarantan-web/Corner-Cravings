@@ -1,0 +1,95 @@
+/* ==========================================================================
+   Corner Cravings — Design Tokens
+   Extracted from Figma (colors, typography, spacing, radii, shadows)
+   ========================================================================== */
+
+:root {
+  /* Brand colors */
+  --color-primary: #ef6c1f;          /* Buttons, active states */
+  --color-primary-hover: #d95e15;
+  --color-primary-soft: #f8b290;     /* Disabled / soft button state */
+
+  /* Text colors */
+  --color-text-heading: #59332a;     /* Dark warm brown for headings/labels */
+  --color-text-body: #7a6b66;        /* Secondary paragraph text */
+  --color-text-placeholder: #ab9d98;
+  --color-text-dark: #2b2b2b;
+
+  /* Surfaces */
+  --color-bg-page: #ffffff;
+  --color-bg-page-tint: #fff8f6;     /* Soft pink page background */
+  --color-bg-card: #ffffff;
+  --color-bg-card-tint: #f6f3f2;     /* Cream card background (login) */
+  --color-bg-input: #f6f3f2;
+  --color-bg-input-filled: #e7dcda;
+
+  /* Borders */
+  --color-border: #e1bfb3;
+  --color-border-light: #ecdedb;
+
+  /* Feedback */
+  --color-success: #2fa84f;
+  --color-danger: #e0403a;
+  --color-warning: #f2a93a;
+
+  /* Typography */
+  --font-heading: 'Poppins', 'Segoe UI', sans-serif;
+  --font-serif: 'Georgia', 'Playfair Display', serif;
+  --font-body: 'Inter', 'Segoe UI', sans-serif;
+
+  --fs-xs: 12px;
+  --fs-sm: 13px;
+  --fs-base: 14px;
+  --fs-md: 16px;
+  --fs-lg: 20px;
+  --fs-xl: 24px;
+
+  /* Spacing */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 40px;
+
+  /* Radii */
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Shadows */
+  --shadow-card: 0 20px 45px rgba(89, 51, 42, 0.08);
+  --shadow-btn: 0 8px 16px rgba(239, 108, 31, 0.25);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: var(--font-body);
+  color: var(--color-text-dark);
+  -webkit-font-smoothing: antialiased;
+}
+
+img, svg {
+  display: block;
+  max-width: 100%;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+}

@@ -1,0 +1,344 @@
+/* ==========================================================================
+   Dashboard shell — Sidebar + Topbar layout shared across admin pages
+   ========================================================================== */
+
+.app-shell {
+  display: flex;
+  min-height: 100vh;
+  background: #fdf9f8;
+}
+
+/* ---------- Sidebar ---------- */
+.sidebar {
+  width: 264px;
+  flex-shrink: 0;
+  background: #f7f3f2;
+  border-right: 1px solid var(--color-border-light);
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  position: sticky;
+  top: 0;
+}
+
+.sidebar__brand {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: var(--space-5) var(--space-5) var(--space-4);
+}
+
+.sidebar__brand-logo {
+  width: 44px;
+  height: 44px;
+  flex-shrink: 0;
+}
+
+.sidebar__brand-name {
+  font-family: var(--font-heading);
+  font-size: 17px;
+  font-weight: 700;
+  line-height: 1.15;
+  color: var(--color-text-dark);
+  margin: 0;
+}
+
+.sidebar__brand-sub {
+  font-size: 10.5px;
+  font-weight: 600;
+  letter-spacing: 0.03em;
+  color: var(--color-text-body);
+  margin: 1px 0 0;
+  text-transform: uppercase;
+}
+
+.sidebar__nav {
+  flex: 1;
+  padding: var(--space-3) var(--space-3);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+  padding: 11px var(--space-4);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-body);
+  font-size: var(--fs-base);
+  font-weight: 500;
+  position: relative;
+  border-left: 3px solid transparent;
+  transition: background-color 0.15s ease, color 0.15s ease;
+}
+
+.nav-item svg {
+  flex-shrink: 0;
+  opacity: 0.8;
+}
+
+.nav-item:hover {
+  background: #efe6e3;
+  color: var(--color-text-heading);
+}
+
+.nav-item.is-active {
+  background: #fdf1ec;
+  color: var(--color-primary);
+  font-weight: 600;
+  border-left-color: var(--color-primary);
+}
+
+.nav-item.is-active svg {
+  opacity: 1;
+}
+
+.nav-item--sub {
+  margin-left: var(--space-5);
+  font-size: var(--fs-sm);
+  padding: 9px var(--space-4);
+}
+
+.sidebar__footer {
+  padding: var(--space-3);
+}
+
+.btn-logout {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  width: 100%;
+  height: 46px;
+  background: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: var(--fs-base);
+  font-weight: 600;
+}
+
+.btn-logout:hover {
+  background: var(--color-primary-hover);
+}
+
+/* ---------- Topbar ---------- */
+.main {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-5);
+  padding: var(--space-4) var(--space-6);
+  background: #fdf9f8;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.topbar__title {
+  font-family: var(--font-heading);
+  font-size: var(--fs-md);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  white-space: nowrap;
+  margin: 0;
+}
+
+.topbar__search {
+  flex: 1;
+  max-width: 520px;
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.topbar__search svg {
+  position: absolute;
+  left: 14px;
+  color: var(--color-text-body);
+  opacity: 0.7;
+}
+
+.topbar__search input {
+  width: 100%;
+  height: 38px;
+  border: none;
+  border-radius: var(--radius-pill);
+  background: #e6e2e1;
+  padding: 0 var(--space-4) 0 40px;
+  font-size: var(--fs-sm);
+  color: var(--color-text-dark);
+  outline: none;
+}
+
+.topbar__search input::placeholder {
+  color: #9c908c;
+}
+
+.topbar__actions {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  margin-left: auto;
+}
+
+.icon-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: none;
+  background: transparent;
+  color: var(--color-text-heading);
+}
+
+.icon-btn:hover {
+  background: #efe6e3;
+}
+
+.user-chip {
+  display: flex;
+  align-items: center;
+  gap: var(--space-2);
+}
+
+.user-chip__avatar {
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  background: var(--color-primary);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+.user-chip__meta {
+  line-height: 1.2;
+}
+
+.user-chip__name {
+  font-size: var(--fs-sm);
+  font-weight: 600;
+  color: var(--color-text-dark);
+  display: block;
+}
+
+.user-chip__role {
+  font-size: 11px;
+  color: var(--color-text-body);
+  display: block;
+}
+
+/* ---------- Page content ---------- */
+.page-content {
+  flex: 1;
+  padding: var(--space-6);
+}
+
+.page-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: var(--space-4);
+  margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+}
+
+.page-header__title {
+  font-family: var(--font-heading);
+  font-size: 30px;
+  font-weight: 700;
+  color: var(--color-text-dark);
+  margin: 0 0 4px;
+}
+
+.page-header__subtitle {
+  font-size: var(--fs-base);
+  color: var(--color-text-body);
+  margin: 0;
+}
+
+.page-header__actions {
+  display: flex;
+  gap: var(--space-3);
+}
+
+.btn-outline {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 42px;
+  padding: 0 var(--space-4);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  background: #fdf9f8;
+  color: var(--color-text-heading);
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.btn-outline:hover {
+  background: #f3e9e6;
+}
+
+.btn-solid-sm {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  height: 42px;
+  padding: 0 var(--space-4);
+  border: none;
+  border-radius: var(--radius-sm);
+  background: var(--color-primary);
+  color: #fff;
+  font-size: var(--fs-sm);
+  font-weight: 600;
+}
+
+.btn-solid-sm:hover {
+  background: var(--color-primary-hover);
+}
+
+/* Responsive */
+@media (max-width: 960px) {
+  .sidebar {
+    width: 76px;
+  }
+  .sidebar__brand-name,
+  .sidebar__brand-sub,
+  .nav-item span,
+  .btn-logout span {
+    display: none;
+  }
+  .sidebar__brand {
+    justify-content: center;
+    padding: var(--space-4) var(--space-2);
+  }
+  .nav-item {
+    justify-content: center;
+    padding: 11px;
+  }
+  .topbar__title {
+    display: none;
+  }
+}
+
+@media (max-width: 640px) {
+  .page-content {
+    padding: var(--space-4);
+  }
+  .topbar {
+    padding: var(--space-3) var(--space-4);
+  }
+}

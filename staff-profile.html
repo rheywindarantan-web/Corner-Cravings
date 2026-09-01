@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Profile · Staff Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="staff.css" />
+  <style>
+    .profile-grid {
+      display: grid;
+      grid-template-columns: 280px 1fr;
+      gap: var(--space-5);
+      align-items: start;
+    }
+    .profile-card {
+      background: var(--staff-bg-card);
+      border: 1px solid var(--staff-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      text-align: center;
+    }
+    .profile-card__avatar {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin: 0 auto var(--space-3);
+      display: block;
+    }
+    .profile-card__name {
+      font-size: var(--fs-lg);
+      font-weight: 700;
+      color: var(--staff-text-heading);
+      margin: 0 0 2px;
+    }
+    .profile-card__role {
+      font-size: var(--fs-sm);
+      color: var(--staff-text-body);
+      margin: 0 0 var(--space-4);
+    }
+    .profile-meta-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+      text-align: left;
+    }
+    .profile-meta-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--fs-sm);
+      color: var(--staff-text-heading);
+    }
+    .profile-meta-item svg { color: var(--staff-primary); flex-shrink: 0; }
+
+    .info-panel {
+      background: var(--staff-bg-card);
+      border: 1px solid var(--staff-border);
+      border-radius: var(--radius-md);
+      padding: var(--space-5);
+      margin-bottom: var(--space-5);
+    }
+    .info-panel__title {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      font-size: var(--fs-md);
+      font-weight: 700;
+      color: var(--staff-text-heading);
+      margin: 0 0 var(--space-4);
+    }
+    .info-panel__title svg { color: var(--staff-primary); }
+    .info-fields {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-3);
+    }
+    .info-field {
+      background: #fdf3ee;
+      border-radius: var(--radius-sm);
+      padding: var(--space-3) var(--space-4);
+    }
+    .info-field--full { grid-column: 1 / -1; display: flex; gap: var(--space-3); }
+    .info-field--full .info-field-icon {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      background: #ece1dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--staff-text-heading);
+      flex-shrink: 0;
+    }
+    .info-field-label {
+      font-size: 12px;
+      color: var(--staff-text-body);
+      margin: 0 0 2px;
+    }
+    .info-field-value {
+      font-size: var(--fs-base);
+      font-weight: 600;
+      color: var(--staff-text-heading);
+      margin: 0;
+    }
+    .profile-form-field {
+      width: 100%;
+      border: 1px solid var(--staff-border);
+      border-radius: 10px;
+      padding: 10px 12px;
+      font: inherit;
+      color: var(--staff-text-heading);
+      background: #fff;
+      box-sizing: border-box;
+    }
+    .profile-form-field:disabled {
+      background: #f7f1ee;
+      color: var(--staff-text-body);
+      cursor: not-allowed;
+    }
+    .profile-form-actions {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 20px;
+    }
+    .profile-form-cancel {
+      background: #fff;
+      border: 1px solid var(--staff-border);
+      color: var(--staff-text-heading);
+      border-radius: 10px;
+      padding: 10px 16px;
+      font-weight: 600;
+      cursor: pointer;
+      display: none;
+    }
+    @media (max-width: 800px) {
+      .profile-grid { grid-template-columns: 1fr; }
+      .info-fields { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="staff-shell">
+
+    <!-- ============== SIDEBAR ============== -->
+    <aside class="staff-sidebar">
+      <div class="staff-brand">
+        <div class="staff-brand__mark">CC</div>
+        <div>
+          <p class="staff-brand__name">Staff Portal</p>
+          <p class="staff-brand__sub">Modern Bistro</p>
+        </div>
+      </div>
+
+      <nav class="staff-nav" aria-label="Primary">
+        <a class="staff-nav-item" href="staff-orders.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="18" rx="2"/><path d="M9 2v4M15 2v4"/><path d="M9 14l2 2 4-4"/></svg>
+          <span>Upcoming Orders</span>
+        </a>
+        <a class="staff-nav-item" href="staff-history.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/><path d="M12 7v5l4 2"/></svg>
+          <span>Order History</span>
+        </a>
+        <a class="staff-nav-item is-active" href="staff-profile.html">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <span>Profile</span>
+        </a>
+      </nav>
+
+      <div class="staff-sidebar__footer">
+        <button class="btn-clockout" type="button" data-logout-target="staff-login.html">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg>
+          <span>Clock Out</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ============== MAIN ============== -->
+    <div class="staff-main">
+      <header class="staff-topbar">
+        <div>
+          <h1 class="staff-topbar__title">Employee Profile</h1>
+        </div>
+        <button class="staff-btn-solid" id="staff-profile-toggle" type="button">Edit Profile</button>
+      </header>
+
+      <main class="staff-content">
+        <form id="staff-profile-form" novalidate>
+          <div class="profile-grid">
+            <div class="profile-card">
+              <img id="staff-profile-avatar" class="profile-card__avatar" src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80" alt="Jane Doe" />
+              <h2 id="staff-profile-name-display" class="profile-card__name">Jane Doe</h2>
+              <p id="staff-profile-role-display" class="profile-card__role">Senior Barista</p>
+              <div class="profile-meta-list">
+                <div class="profile-meta-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"/></svg>
+                  <span id="staff-profile-id">ID: EMP-0492</span>
+                </div>
+                <div class="profile-meta-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+                  <span id="staff-profile-joined">Joined: Mar 2022</span>
+                </div>
+                <div class="profile-meta-item">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
+                  <span id="staff-profile-status">Full-Time</span>
+                </div>
+              </div>
+            </div>
+
+            <div>
+              <div class="info-panel">
+                <h3 class="info-panel__title">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="16" x2="12" y2="12"/><line x1="12" y1="8" x2="12.01" y2="8"/></svg>
+                  Basic Information
+                </h3>
+                <div class="info-fields">
+                  <div class="info-field">
+                    <p class="info-field-label">Full Name</p>
+                    <input id="staff-profile-name" class="profile-form-field" type="text" value="Jane Emily Doe" disabled />
+                  </div>
+                  <div class="info-field">
+                    <p class="info-field-label">Date of Birth</p>
+                    <input id="staff-profile-dob" class="profile-form-field" type="text" value="Oct 15, 1995" disabled />
+                  </div>
+                  <div class="info-field">
+                    <p class="info-field-label">Department</p>
+                    <input id="staff-profile-department" class="profile-form-field" type="text" value="Front of House" disabled />
+                  </div>
+                  <div class="info-field">
+                    <p class="info-field-label">Direct Manager</p>
+                    <input id="staff-profile-manager" class="profile-form-field" type="text" value="Michael Scott" disabled />
+                  </div>
+                </div>
+              </div>
+
+              <div class="info-panel">
+                <h3 class="info-panel__title">
+                  <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><circle cx="9" cy="10" r="2"/><path d="M15 8h4M15 12h4M5 18c1-2 3-3 4-3s3 1 4 3"/></svg>
+                  Contact Data
+                </h3>
+                <div class="info-fields">
+                  <div class="info-field info-field--full">
+                    <span class="info-field-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
+                    </span>
+                    <div style="width:100%;">
+                      <p class="info-field-label">Email Address</p>
+                      <input id="staff-profile-email" class="profile-form-field" type="email" value="jane.doe@cornercravings.com" disabled />
+                    </div>
+                  </div>
+                  <div class="info-field info-field--full">
+                    <span class="info-field-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
+                    </span>
+                    <div style="width:100%;">
+                      <p class="info-field-label">Phone Number</p>
+                      <input id="staff-profile-phone" class="profile-form-field" type="tel" value="(555) 123-4567" disabled />
+                    </div>
+                  </div>
+                  <div class="info-field info-field--full">
+                    <span class="info-field-icon">
+                      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg>
+                    </span>
+                    <div style="width:100%;">
+                      <p class="info-field-label">Home Address</p>
+                      <textarea id="staff-profile-address" class="profile-form-field" rows="3" disabled>123 Cafe Lane, Apt 4B
+Seattle, WA 98101</textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="profile-form-actions">
+                <button class="profile-form-cancel" id="staff-profile-cancel" type="button">Cancel</button>
+                <button class="staff-btn-solid" id="staff-profile-save" type="submit">Save Changes</button>
+              </div>
+            </div>
+          </div>
+        </form>
+      </main>
+    </div>
+  </div>
+</body>
+  <script src="auth.js"></script>

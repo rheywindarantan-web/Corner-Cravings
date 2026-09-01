@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Log In · Corner Cravings Admin</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="auth.css" />
+</head>
+<body>
+  <main class="auth-page auth-page--white">
+    <section class="auth-card auth-card--login" aria-labelledby="login-title">
+
+      <div class="auth-brand">
+        <img class="auth-brand__logo" src="logo.svg" alt="Corner Cravings logo" />
+        <h1 class="auth-brand__name" id="login-title">Corner Cravings</h1>
+        <p class="auth-brand__subtitle">Admin Portal</p>
+      </div>
+
+      <div class="role-toggle" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom: var(--space-5);">
+        <button type="button" class="role-toggle__button is-active" data-role-target="login.html" style="height: 42px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-primary); color: #fff; font-weight: 600; cursor: pointer;">Admin</button>
+        <button type="button" class="role-toggle__button" data-role-target="staff-login.html" style="height: 42px; border: 1px solid var(--color-border); border-radius: 10px; background: #fff; color: var(--color-text-dark); font-weight: 600; cursor: pointer;">Employee</button>
+      </div>
+
+      <form id="login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Gmail Account</label>
+          <div class="input-field">
+            <span class="input-field__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+            </span>
+            <input
+              class="input-field__control"
+              type="text"
+              id="email"
+              name="email"
+              placeholder="yourname@gmail.com"
+              autocomplete="username"
+              required
+            />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-row">
+            <label class="form-label" for="password" style="margin-bottom:0;">Password</label>
+            <a class="form-link" href="forgot-password.html">Forgot password?</a>
+          </div>
+          <div class="input-field">
+            <span class="input-field__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+            </span>
+            <input
+              class="input-field__control"
+              type="password"
+              id="password"
+              name="password"
+              placeholder="••••••••"
+              autocomplete="current-password"
+              required
+            />
+            <button type="button" class="input-field__toggle" data-toggle-target="password" aria-label="Show password">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17.94 17.94A10.94 10.94 0 0 1 12 20c-7 0-11-8-11-8a21.62 21.62 0 0 1 5.06-6.06M9.9 4.24A10.94 10.94 0 0 1 12 4c7 0 11 8 11 8a21.6 21.6 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/><line x1="1" y1="1" x2="23" y2="23"/></svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="form-group" style="margin-bottom: 0;">
+          <label style="display:flex; align-items:center; gap:8px; font-size: var(--fs-sm); color: var(--color-text-body);">
+            <input type="checkbox" id="remember-admin" name="remember-admin" style="width: 16px; height: 16px; accent-color: var(--color-primary);" />
+            Remember me
+          </label>
+        </div>
+
+        <button type="submit" class="btn btn-primary" style="margin-top: var(--space-5);">Log In</button>
+        <a href="signup.html" class="btn btn-secondary" style="margin-top: var(--space-3);">Sign Up</a>
+      </form>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+</body>
+</html>

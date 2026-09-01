@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Employee Login · Corner Cravings Staff Portal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="auth.css" />
+  <link rel="stylesheet" href="staff.css" />
+  <style>
+    .auth-page--staff { background: #f8f3ef; }
+    .auth-card--staff { background: #fffaf7; border: 1px solid #f2d7c8; box-shadow: 0 20px 45px rgba(130, 92, 67, 0.10); }
+    .auth-card--staff .input-field__control { background: #fff8f4; border-color: #f3d8ca; }
+    .auth-card--staff .btn-primary { background: var(--color-primary); box-shadow: none; }
+    .auth-card--staff .btn-primary:hover { background: var(--color-primary-hover); }
+    .auth-card--staff .form-link { color: var(--color-primary); }
+    .role-toggle__button {
+      transition: all 0.2s ease;
+    }
+    .role-toggle__button.is-active {
+      box-shadow: 0 0 0 3px rgba(239, 108, 31, 0.12);
+    }
+    .staff-checkbox-row {
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      margin-bottom: var(--space-5);
+    }
+    .staff-checkbox-row input {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--staff-primary);
+    }
+    .staff-checkbox-row label {
+      font-size: var(--fs-sm);
+      color: var(--color-text-body);
+    }
+    .staff-footnote {
+      text-align: center;
+      font-size: 12px;
+      color: var(--color-text-body);
+      margin-top: var(--space-4);
+    }
+  </style>
+</head>
+<body>
+  <main class="auth-page auth-page--staff">
+    <section class="auth-card auth-card--staff" aria-labelledby="staff-login-title">
+
+      <div class="auth-brand">
+        <img class="auth-brand__logo" src="logo.svg" alt="Corner Cravings logo" />
+        <h1 class="auth-brand__name" id="staff-login-title">Corner Cravings</h1>
+        <p class="auth-brand__subtitle">Employee Portal Login</p>
+      </div>
+
+      <div class="role-toggle" style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom: var(--space-5);">
+        <button type="button" class="role-toggle__button" data-role-target="login.html" style="height: 42px; border: 1px solid var(--color-border); border-radius: 10px; background: #fff; color: var(--color-text-dark); font-weight: 600; cursor: pointer;">Admin</button>
+        <button type="button" class="role-toggle__button is-active" data-role-target="staff-login.html" style="height: 42px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-primary); color: #fff; font-weight: 600; cursor: pointer;">Employee</button>
+      </div>
+
+      <form id="staff-login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="email">Email Address</label>
+          <div class="input-field">
+            <span class="input-field__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 6 10 7 10-7"/></svg>
+            </span>
+            <input class="input-field__control" type="email" id="email" name="email" placeholder="employee@cornercravings.com" autocomplete="username" required />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="form-label-row">
+            <label class="form-label" for="token" style="margin-bottom:0;">Access Token</label>
+            <a class="form-link" href="#">Forgot token?</a>
+          </div>
+          <div class="input-field">
+            <span class="input-field__icon" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="7.5" cy="15.5" r="5.5"/><path d="m21 2-9.6 9.6M15.5 7.5 18 10l3-3-2.5-2.5"/></svg>
+            </span>
+            <input class="input-field__control" type="password" id="token" name="token" placeholder="Enter your secure token" autocomplete="off" required />
+          </div>
+        </div>
+
+        <div class="staff-checkbox-row">
+          <input type="checkbox" id="remember" name="remember" />
+          <label for="remember">Remember me for 30 days</label>
+        </div>
+
+        <button type="submit" class="btn btn-primary">
+          Authenticate
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+        </button>
+        <a href="staff-signup.html" class="btn btn-secondary" style="margin-top: var(--space-3);">Sign Up</a>
+        <a href="login.html" class="btn btn-secondary" style="margin-top: var(--space-3);">Switch to Admin</a>
+      </form>
+
+      <p class="staff-footnote">Secure Employee Access. Authorized personnel only.</p>
+    </section>
+  </main>
+
+  <script src="auth.js"></script>
+</body>
+</html>
