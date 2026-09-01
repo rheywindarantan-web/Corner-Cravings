@@ -1,0 +1,16 @@
+<svg width="72" height="72" viewBox="0 0 72 72" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Corner Cravings icon">
+  <defs>
+    <linearGradient id="ringGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#f2a93a" />
+      <stop offset="55%" stop-color="#c0392b" />
+      <stop offset="100%" stop-color="#8b2e22" />
+    </linearGradient>
+  </defs>
+  <circle cx="36" cy="36" r="35" fill="url(#ringGradient)" />
+  <circle cx="36" cy="36" r="27" fill="#1c1c1c" />
+  <text x="36" y="44" text-anchor="middle" font-family="Georgia, serif" font-weight="700" font-size="22" fill="#ffffff">CC</text>
+  <path id="arcTop" d="M 12 26 A 26 26 0 0 1 60 26" fill="none" />
+  <text font-family="Georgia, serif" font-size="7" fill="#ffffff" font-style="italic">
+    <textPath href="#arcTop" startOffset="50%" text-anchor="middle">Corner Cravings</textPath>
+  </text>
+</svg>
