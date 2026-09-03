@@ -71,13 +71,9 @@ button:active,
 .staff-brand__mark {
   width: 40px;
   height: 40px;
-  border-radius: 50%;
-  object-fit: cover;
+  object-fit: contain;
   display: block;
   flex-shrink: 0;
-  background: var(--staff-primary);
-  border: 2px solid rgba(255, 255, 255, 0.9);
-  box-shadow: 0 8px 18px rgba(139, 31, 6, 0.15);
 }
 
 .staff-brand__name {

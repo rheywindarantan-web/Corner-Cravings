@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Review Order · Corner Cravings</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="customer.css" />
+  <script src="customer.js" defer></script>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Customer Header -->
+  <header class="customer-header" role="banner">
+    <div class="container">
+      <a href="customer-home.html" class="brand" aria-label="Corner Cravings Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" />
+        <div>
+          <div class="brand__name">Corner Cravings</div>
+          <div class="brand__tag">CRAVE. EAT. SATISFIED</div>
+        </div>
+      </a>
+
+      <nav class="customer-nav" aria-label="Customer Navigation">
+        <ul class="customer-nav__links">
+          <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
+          <li><a href="customer-menu.html" class="customer-nav__link">Menu</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+        </ul>
+      </nav>
+
+      <div class="customer-header__actions">
+        <a href="customer-cart.html" class="btn-icon header-cart-btn" aria-label="View Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </a>
+
+        <button type="button" class="btn-icon" data-action="profile" aria-label="Customer Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <button type="button" class="nav-toggle-btn" id="customer-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="customer-mobile-menu" id="customer-mobile-menu">
+      <ul class="customer-mobile-menu__links">
+        <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
+        <li><a href="customer-menu.html" class="customer-mobile-menu__link">Menu</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="customer-cart.html" class="customer-mobile-menu__link is-active">Cart</a></li>
+        <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
+        <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="container">
+
+      <a href="customer-menu.html" class="back-link">&larr; Continue Shopping</a>
+
+      <header class="page-header">
+        <span class="eyebrow">Checkout Step 1 of 3</span>
+        <h1 class="page-title">Review Order</h1>
+        <p class="page-subtitle">Verify your selected cravings, delivery option, and order totals below.</p>
+      </header>
+
+      <!-- Checkout Navigation Stepper -->
+      <nav class="checkout-stepper" aria-label="Checkout Progress">
+        <div class="checkout-step is-active" aria-current="step">
+          <span class="checkout-step__num">1</span>
+          <span class="checkout-step__label">Order Review</span>
+        </div>
+        <span class="checkout-step__divider"></span>
+        <div class="checkout-step">
+          <span class="checkout-step__num">2</span>
+          <span class="checkout-step__label">Delivery</span>
+        </div>
+        <span class="checkout-step__divider"></span>
+        <div class="checkout-step">
+          <span class="checkout-step__num">3</span>
+          <span class="checkout-step__label">Payment</span>
+        </div>
+      </nav>
+
+      <div id="cart-content-area">
+        <!-- Rendered dynamically -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Shared Customer Footer -->
+  <footer class="customer-footer" role="contentinfo">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">
+            Your neighborhood stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Company</h4>
+          <ul class="customer-footer__links">
+            <li><a href="customer-home.html" class="customer-footer__link">About Us</a></li>
+            <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
+            <li><a href="index.html#visit" class="customer-footer__link">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Support</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html#visit" class="customer-footer__link">Contact</a></li>
+            <li><a href="index.html" class="customer-footer__link">Back to Landing</a></li>
+            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="customer-footer__bottom">
+        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
+        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var area = document.getElementById('cart-content-area');
+
+      function renderCart() {
+        if (!area || !window.CornerCravings) return;
+        var cart = window.CornerCravings.getCart();
+
+        if (cart.length === 0) {
+          area.innerHTML = '<div class="empty-state">' +
+            '<div class="empty-state__icon" aria-hidden="true">' +
+              '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                '<circle cx="9" cy="21" r="1"></circle>' +
+                '<circle cx="20" cy="21" r="1"></circle>' +
+                '<path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>' +
+              '</svg>' +
+            '</div>' +
+            '<h2>Your Cart is Empty</h2>' +
+            '<p>You have not added any cravings yet. Explore our delicious menu to get started!</p>' +
+            '<a href="customer-menu.html" class="btn btn-primary">Browse Menu</a>' +
+          '</div>';
+          return;
+        }
+
+        var delivery = window.CornerCravings.getDeliveryDetails();
+        var currentMethod = delivery.method || 'standard';
+        var totals = window.CornerCravings.calculateCartTotals(currentMethod);
+
+        // Build item rows
+        var itemsHtml = '';
+        for (var i = 0; i < cart.length; i++) {
+          var item = cart[i];
+          var opts = [];
+          if (item.size) opts.push('Size: ' + item.size);
+          if (item.addons && item.addons.length > 0) {
+            opts.push('Add-ons: ' + item.addons.map(function(x){ return x.name; }).join(', '));
+          }
+          var metaText = opts.join(' · ');
+
+          itemsHtml += '<div class="cart-item-row" data-key="' + item.optionKey + '">' +
+            '<div class="cart-item__thumb">' +
+              '<picture>' +
+                '<source srcset="' + item.imageWebp + '" type="image/webp" />' +
+                '<img src="' + item.imageJpg + '" alt="' + item.name + '" />' +
+              '</picture>' +
+            '</div>' +
+
+            '<div>' +
+              '<h3 class="cart-item__name">' + item.name + '</h3>' +
+              (metaText ? '<div class="cart-item__meta">' + metaText + '</div>' : '') +
+              '<div class="cart-item__price">' + window.CornerCravings.formatPeso(item.unitPrice) + ' each</div>' +
+            '</div>' +
+
+            '<div class="cart-item__actions">' +
+              '<div class="qty-stepper">' +
+                '<button type="button" class="qty-btn" data-action="dec" aria-label="Decrease quantity">&minus;</button>' +
+                '<span class="qty-value">' + item.quantity + '</span>' +
+                '<button type="button" class="qty-btn" data-action="inc" aria-label="Increase quantity">&plus;</button>' +
+              '</div>' +
+              '<button type="button" class="cart-item__remove" data-action="del" aria-label="Remove item">' +
+                '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+                  '<line x1="18" y1="6" x2="6" y2="18"></line>' +
+                  '<line x1="6" y1="6" x2="18" y2="18"></line>' +
+                '</svg>' +
+              '</button>' +
+            '</div>' +
+          '</div>';
+        }
+
+        // Delivery address summary
+        var addressText = delivery.address ? (delivery.address + ', ' + delivery.area) : 'Store Walk-in / Delivery address not set yet';
+
+        var html = '<div class="checkout-grid">' +
+          '<div>' +
+            '<div class="cart-items-card">' +
+              '<div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:14px;">' +
+                '<h2 style="font-size:18px; font-weight:700; margin:0;">Your Items (' + totals.itemCount + ')</h2>' +
+                '<a href="customer-menu.html" style="font-family:var(--font-heading); font-size:13px; font-weight:600; color:var(--cust-primary); text-decoration:none;">+ Add more items</a>' +
+              '</div>' +
+              itemsHtml +
+            '</div>' +
+
+            '<!-- Delivery Method Selection -->' +
+            '<div class="cart-items-card">' +
+              '<h2 style="font-size:18px; font-weight:700; margin:0 0 6px;">Delivery Method</h2>' +
+              '<p style="font-size:13px; color:var(--cust-muted); margin:0;">Select how you want to receive your order.</p>' +
+
+              '<div class="delivery-options-grid" id="delivery-methods">' +
+                '<div class="delivery-opt-card ' + (currentMethod === 'standard' ? 'is-active' : '') + '" data-method="standard">' +
+                  '<div class="delivery-opt-card__title">Standard Delivery</div>' +
+                  '<div class="delivery-opt-card__fee">₱49.00</div>' +
+                  '<div class="delivery-opt-card__sub">Estimated 35-45 mins</div>' +
+                '</div>' +
+
+                '<div class="delivery-opt-card ' + (currentMethod === 'priority' ? 'is-active' : '') + '" data-method="priority">' +
+                  '<div class="delivery-opt-card__title">Priority Delivery</div>' +
+                  '<div class="delivery-opt-card__fee">₱79.00</div>' +
+                  '<div class="delivery-opt-card__sub">Estimated 20-30 mins</div>' +
+                '</div>' +
+
+                '<div class="delivery-opt-card ' + (currentMethod === 'pickup' ? 'is-active' : '') + '" data-method="pickup">' +
+                  '<div class="delivery-opt-card__title">Store Pickup</div>' +
+                  '<div class="delivery-opt-card__fee">Free</div>' +
+                  '<div class="delivery-opt-card__sub">Pick up at Pasong Putik</div>' +
+                '</div>' +
+              '</div>' +
+            '</div>' +
+
+            '<!-- Destination Address Quick Card -->' +
+            '<div class="cart-items-card">' +
+              '<div style="display:flex; justify-content:space-between; align-items:center;">' +
+                '<div>' +
+                  '<h2 style="font-size:16px; font-weight:700; margin:0 0 4px;">Delivery Destination</h2>' +
+                  '<p style="font-size:13px; color:var(--cust-body); margin:0;">' + addressText + '</p>' +
+                '</div>' +
+                '<a href="customer-delivery.html" class="btn btn-secondary btn-sm">Edit Details</a>' +
+              '</div>' +
+            '</div>' +
+          '</div>' +
+
+          '<!-- Order Summary Sticky Column -->' +
+          '<div>' +
+            '<div class="order-summary-card">' +
+              '<h2 class="summary-title">Order Summary</h2>' +
+
+              '<div class="promo-input-group">' +
+                '<input type="text" class="form-input" id="promo-code" placeholder="Promo code" aria-label="Promo code" />' +
+                '<button type="button" class="btn btn-secondary btn-sm" id="btn-apply-promo">Apply</button>' +
+              '</div>' +
+
+              '<div class="summary-rows">' +
+                '<div class="summary-row">' +
+                  '<span>Subtotal (' + totals.itemCount + ' items)</span>' +
+                  '<span class="summary-val">' + window.CornerCravings.formatPeso(totals.subtotal) + '</span>' +
+                '</div>' +
+                '<div class="summary-row">' +
+                  '<span>Delivery Fee</span>' +
+                  '<span class="summary-val">' + (totals.deliveryFee > 0 ? window.CornerCravings.formatPeso(totals.deliveryFee) : 'FREE') + '</span>' +
+                '</div>' +
+                '<div class="summary-row summary-row--total">' +
+                  '<span>Total</span>' +
+                  '<span class="summary-val">' + window.CornerCravings.formatPeso(totals.total) + '</span>' +
+                '</div>' +
+              '</div>' +
+
+              '<a href="customer-delivery.html" class="btn btn-primary btn-block">Proceed to Checkout &rarr;</a>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+
+        area.innerHTML = html;
+
+        // Attach listeners for steppers and removal
+        var rows = area.querySelectorAll('.cart-item-row');
+        rows.forEach(function (row) {
+          var key = row.getAttribute('data-key');
+          var incBtn = row.querySelector('[data-action="inc"]');
+          var decBtn = row.querySelector('[data-action="dec"]');
+          var delBtn = row.querySelector('[data-action="del"]');
+
+          var currentItem = cart.find(function(x){ return x.optionKey === key; });
+          if (!currentItem) return;
+
+          if (incBtn) {
+            incBtn.addEventListener('click', function () {
+              window.CornerCravings.updateItemQuantity(key, currentItem.quantity + 1);
+              renderCart();
+            });
+          }
+          if (decBtn) {
+            decBtn.addEventListener('click', function () {
+              window.CornerCravings.updateItemQuantity(key, currentItem.quantity - 1);
+              renderCart();
+            });
+          }
+          if (delBtn) {
+            delBtn.addEventListener('click', function () {
+              window.CornerCravings.removeItemFromCart(key);
+              renderCart();
+            });
+          }
+        });
+
+        // Delivery option selector
+        var methodCards = area.querySelectorAll('.delivery-opt-card');
+        methodCards.forEach(function (card) {
+          card.addEventListener('click', function () {
+            var m = this.getAttribute('data-method');
+            window.CornerCravings.setDeliveryMethod(m);
+            renderCart();
+          });
+        });
+
+        // Promo button notice
+        var promoBtn = document.getElementById('btn-apply-promo');
+        if (promoBtn) {
+          promoBtn.addEventListener('click', function () {
+            window.CornerCravings.showToast('Promo codes are not active in this demo prototype.');
+          });
+        }
+      }
+
+      renderCart();
+    });
+  </script>
+</body>
+</html>

@@ -4,16 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Create Account · Corner Cravings Admin</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="auth.css" />
 </head>
 <body>
+  <!-- Shared Portal Header -->
+  <header class="customer-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="brand" aria-label="Corner Cravings Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="38" height="38" />
+        <div class="brand__text">
+          <span class="brand__name">Corner Cravings</span>
+          <span class="brand__tag">CRAVE. EAT. SATISFIED</span>
+        </div>
+      </a>
+
+      <div class="customer-header__actions">
+        <a href="index.html" class="header-back-link" aria-label="Back to website">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>Back to Website</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
   <main class="auth-page auth-page--white">
     <section class="auth-card auth-card--login" aria-labelledby="signup-title">
       <div class="auth-brand">
-        <img class="auth-brand__logo" src="logo.svg" alt="Corner Cravings logo" />
+        <img class="auth-brand__logo" src="Logo.png" alt="Corner Cravings logo" width="72" height="72" />
         <h1 class="auth-brand__name" id="signup-title">Corner Cravings</h1>
         <p class="auth-brand__subtitle">Create Admin Account</p>
       </div>
@@ -70,6 +91,46 @@
       </form>
     </section>
   </main>
+
+  <!-- Shared Portal Footer -->
+  <footer class="customer-footer" role="contentinfo">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">
+            Your neighborhood food stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Navigation</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html" class="customer-footer__link">Public Home</a></li>
+            <li><a href="customer-login.html" class="customer-footer__link">Customer Sign In</a></li>
+            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Support &amp; Location</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html#visit" class="customer-footer__link">Pasong Putik Store</a></li>
+            <li><a href="index.html#reviews" class="customer-footer__link">Customer Reviews</a></li>
+            <li><a href="https://www.facebook.com/share/1LJfeS9R3v/" target="_blank" rel="noopener noreferrer" class="customer-footer__link">Facebook Page</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="customer-footer__bottom">
+        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
+        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
+      </div>
+    </div>
+  </footer>
 
   <script src="auth.js"></script>
 </body>
