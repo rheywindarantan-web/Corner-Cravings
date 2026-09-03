@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Delivery Location · Corner Cravings</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="customer.css" />
+  <script src="customer.js" defer></script>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Customer Header -->
+  <header class="customer-header" role="banner">
+    <div class="container">
+      <a href="customer-home.html" class="brand" aria-label="Corner Cravings Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" />
+        <div>
+          <div class="brand__name">Corner Cravings</div>
+          <div class="brand__tag">CRAVE. EAT. SATISFIED</div>
+        </div>
+      </a>
+
+      <nav class="customer-nav" aria-label="Customer Navigation">
+        <ul class="customer-nav__links">
+          <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
+          <li><a href="customer-menu.html" class="customer-nav__link">Menu</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+        </ul>
+      </nav>
+
+      <div class="customer-header__actions">
+        <a href="customer-cart.html" class="btn-icon header-cart-btn" aria-label="View Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </a>
+
+        <button type="button" class="btn-icon" data-action="profile" aria-label="Customer Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <button type="button" class="nav-toggle-btn" id="customer-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="customer-mobile-menu" id="customer-mobile-menu">
+      <ul class="customer-mobile-menu__links">
+        <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
+        <li><a href="customer-menu.html" class="customer-mobile-menu__link">Menu</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
+        <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
+        <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="container">
+
+      <a href="customer-cart.html" class="back-link">&larr; Back to Order Review</a>
+
+      <header class="page-header">
+        <span class="eyebrow">Checkout Step 2 of 3</span>
+        <h1 class="page-title">Delivery Details</h1>
+        <p class="page-subtitle">Provide your delivery location and contact number for order fulfillment.</p>
+      </header>
+
+      <!-- Checkout Navigation Stepper -->
+      <nav class="checkout-stepper" aria-label="Checkout Progress">
+        <a href="customer-cart.html" class="checkout-step is-complete" aria-label="Back to Order Review">
+          <span class="checkout-step__num">&#10003;</span>
+          <span class="checkout-step__label">Order Review</span>
+        </a>
+        <span class="checkout-step__divider"></span>
+        <div class="checkout-step is-active" aria-current="step">
+          <span class="checkout-step__num">2</span>
+          <span class="checkout-step__label">Delivery</span>
+        </div>
+        <span class="checkout-step__divider"></span>
+        <div class="checkout-step">
+          <span class="checkout-step__num">3</span>
+          <span class="checkout-step__label">Payment</span>
+        </div>
+      </nav>
+
+      <div class="checkout-grid">
+        <!-- Left Column: Form & Map Panel -->
+        <div>
+          <!-- Static Accessible Map Visual Panel matching Figma -->
+          <div class="delivery-map-panel">
+            <div class="delivery-map-graphic">
+              <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <div style="font-family: var(--font-heading); font-weight: 700; color: var(--cust-dark);">
+                Store Hub: Corner Cravings Pasong Putik
+              </div>
+              <div class="delivery-map-address">
+                Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City
+              </div>
+            </div>
+            <p style="font-size: 12.5px; color: var(--cust-muted); margin: 0;">
+              * Map preview placeholder. Deliveries are prepared fresh and dispatched from our Pasong Putik store.
+            </p>
+          </div>
+
+          <!-- Delivery Form Card -->
+          <div class="cart-items-card">
+            <h2 style="font-size: 18px; font-weight: 700; margin: 0 0 18px;">Recipient &amp; Location Information</h2>
+
+            <form id="delivery-details-form" novalidate>
+              <div class="form-group">
+                <label class="form-label" for="del-name">Recipient / Contact Person</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="del-name"
+                  name="recipient_name"
+                  placeholder="e.g. Maria Santos"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="del-phone">Philippine Contact Number</label>
+                <input
+                  class="form-input"
+                  type="tel"
+                  id="del-phone"
+                  name="contact_phone"
+                  placeholder="e.g. 0917-123-4567"
+                  required
+                />
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="del-area">Barangay / Service Area</label>
+                <select class="form-select" id="del-area" name="area" required>
+                  <option value="Pasong Putik, Quezon City" selected>Brgy. Pasong Putik, Quezon City</option>
+                  <option value="Greater Lagro, Quezon City">Greater Lagro, Quezon City</option>
+                  <option value="Fairview, Quezon City">Fairview, Quezon City</option>
+                  <option value="Novaliches, Quezon City">Novaliches, Quezon City</option>
+                  <option value="North Caloocan">North Caloocan</option>
+                </select>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="del-address">Complete Street Address (House / Bldg / Unit / Street)</label>
+                <textarea
+                  class="form-textarea"
+                  id="del-address"
+                  name="address"
+                  placeholder="e.g. Blk 14 Lot 8, Dahlia St., Villa Verde..."
+                  required
+                  rows="2"
+                ></textarea>
+              </div>
+
+              <div class="form-group">
+                <label class="form-label" for="del-landmark">Landmark / Delivery Notes (Optional)</label>
+                <input
+                  class="form-input"
+                  type="text"
+                  id="del-landmark"
+                  name="landmark"
+                  placeholder="e.g. Near blue gate across grocery store"
+                />
+              </div>
+
+              <button type="submit" class="btn btn-primary btn-block" style="margin-top: 12px;">
+                Save and Continue to Payment &rarr;
+              </button>
+            </form>
+          </div>
+        </div>
+
+        <!-- Right Column: Sticky Summary -->
+        <div>
+          <div class="order-summary-card" id="delivery-summary-card">
+            <!-- Rendered dynamically -->
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Shared Customer Footer -->
+  <footer class="customer-footer" role="contentinfo">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">
+            Your neighborhood stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Company</h4>
+          <ul class="customer-footer__links">
+            <li><a href="customer-home.html" class="customer-footer__link">About Us</a></li>
+            <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
+            <li><a href="index.html#visit" class="customer-footer__link">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Support</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html#visit" class="customer-footer__link">Contact</a></li>
+            <li><a href="index.html" class="customer-footer__link">Back to Landing</a></li>
+            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="customer-footer__bottom">
+        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
+        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('delivery-details-form');
+      var summaryCard = document.getElementById('delivery-summary-card');
+
+      if (!window.CornerCravings) return;
+
+      var cart = window.CornerCravings.getCart();
+      if (cart.length === 0) {
+        window.location.href = 'customer-cart.html';
+        return;
+      }
+
+      var existingDelivery = window.CornerCravings.getDeliveryDetails();
+      var session = window.CornerCravings.getCustomerSession();
+
+      // Pre-fill if known
+      var nameInput = document.getElementById('del-name');
+      var phoneInput = document.getElementById('del-phone');
+      var areaInput = document.getElementById('del-area');
+      var addrInput = document.getElementById('del-address');
+      var lmarkInput = document.getElementById('del-landmark');
+
+      if (existingDelivery) {
+        if (existingDelivery.recipientName) nameInput.value = existingDelivery.recipientName;
+        else if (session && session.name) nameInput.value = session.name;
+
+        if (existingDelivery.contactNumber) phoneInput.value = existingDelivery.contactNumber;
+        if (existingDelivery.area) areaInput.value = existingDelivery.area;
+        if (existingDelivery.address) addrInput.value = existingDelivery.address;
+        if (existingDelivery.landmark) lmarkInput.value = existingDelivery.landmark;
+      } else if (session && session.name) {
+        nameInput.value = session.name;
+      }
+
+      // Render order totals
+      var totals = window.CornerCravings.calculateCartTotals(existingDelivery.method);
+      if (summaryCard) {
+        summaryCard.innerHTML = '<h2 class="summary-title">Order Summary</h2>' +
+          '<div class="summary-rows">' +
+            '<div class="summary-row">' +
+              '<span>Subtotal (' + totals.itemCount + ' items)</span>' +
+              '<span class="summary-val">' + window.CornerCravings.formatPeso(totals.subtotal) + '</span>' +
+            '</div>' +
+            '<div class="summary-row">' +
+              '<span>Delivery Fee (' + totals.deliveryMethod + ')</span>' +
+              '<span class="summary-val">' + (totals.deliveryFee > 0 ? window.CornerCravings.formatPeso(totals.deliveryFee) : 'FREE') + '</span>' +
+            '</div>' +
+            '<div class="summary-row summary-row--total">' +
+              '<span>Total</span>' +
+              '<span class="summary-val">' + window.CornerCravings.formatPeso(totals.total) + '</span>' +
+            '</div>' +
+          '</div>' +
+          '<p style="font-size:12px; color:var(--cust-muted); margin:0;">' +
+            'Step 2 of 3: Provide your address to proceed to payment method selection.' +
+          '</p>';
+      }
+
+      // Handle submit
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var name = nameInput.value.trim();
+          var phone = phoneInput.value.trim();
+          var area = areaInput.value.trim();
+          var addr = addrInput.value.trim();
+          var landmark = lmarkInput.value.trim();
+
+          if (!name || !phone || !addr) {
+            window.CornerCravings.showToast('Please fill out all required delivery fields.');
+            return;
+          }
+
+          var details = window.CornerCravings.getDeliveryDetails();
+          details.recipientName = name;
+          details.contactNumber = phone;
+          details.area = area;
+          details.address = addr;
+          details.landmark = landmark;
+
+          window.CornerCravings.saveDeliveryDetails(details);
+          window.location.href = 'customer-payment.html';
+        });
+      }
+    });
+  </script>
+</body>
+</html>

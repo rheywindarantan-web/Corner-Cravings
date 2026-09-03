@@ -1,118 +1,610 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Corner Cravings</title>
-  <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-  <style>
-    :root {
-      --bg: #f9f5f2;
-      --card: #fffdfc;
-      --primary: #a63f2f;
-      --primary-dark: #7d2c22;
-      --text: #2b2b2b;
-      --muted: #6e5d59;
-      --border: #eadfd8;
-    }
+  <title>Corner Cravings · Street Food, Rice Meals &amp; Drinks</title>
+  <meta name="description"
+    content="Satisfying street-food favorites, hearty rice meals, pasta, and refreshing drinks—tea, coffee, and frappes—in Brgy. Pasong Putik, Quezon City. CRAVE. EAT. SATISFIED." />
+  <link rel="icon" type="image/png" href="Logo.png" />
 
-    * { box-sizing: border-box; }
+  <!-- Typography: Inter for body, Poppins for headings -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
 
-    body {
-      margin: 0;
-      min-height: 100vh;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, #f9f2ee, #fff);
-      font-family: Inter, "Segoe UI", sans-serif;
-      color: var(--text);
-    }
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="landing.css" />
 
-    .wrap {
-      width: min(760px, 90vw);
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 24px;
-      box-shadow: 0 20px 60px rgba(61, 38, 27, 0.08);
-      padding: 48px 32px;
-      text-align: center;
-    }
-
-    .logo {
-      width: 64px;
-      height: 64px;
-      margin: 0 auto 16px;
-      display: grid;
-      place-items: center;
-      border-radius: 18px;
-      background: var(--primary);
-      color: #fff;
-      font-weight: 700;
-      font-size: 24px;
-    }
-
-    h1 {
-      margin: 0 0 10px;
-      font-size: clamp(2rem, 4vw, 3rem);
-    }
-
-    p {
-      margin: 0 auto 30px;
-      max-width: 560px;
-      color: var(--muted);
-      line-height: 1.6;
-    }
-
-    .actions {
-      display: flex;
-      justify-content: center;
-      gap: 16px;
-      flex-wrap: wrap;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      min-width: 180px;
-      height: 48px;
-      border-radius: 12px;
-      text-decoration: none;
-      font-weight: 700;
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: #fff;
-      box-shadow: 0 10px 18px rgba(166, 63, 47, 0.2);
-    }
-
-    .btn-primary:hover {
-      background: var(--primary-dark);
-    }
-
-    .btn-secondary {
-      background: #fff;
-      border: 1px solid var(--border);
-      color: var(--text);
-    }
-
-    .btn-secondary:hover {
-      background: #f9f0ed;
-    }
-  </style>
+  <!-- Minimal progressive behavior -->
+  <script src="landing.js" defer></script>
 </head>
-<body>
-  <main class="wrap">
-    <img class="logo" src="logo.svg" alt="Corner Cravings logo" />
-    <h1>Corner Cravings</h1>
-    <p>Welcome to the admin and staff portal. Choose the login area you want to access.</p>
 
-    <div class="actions">
-      <a href="login.html" class="btn btn-primary">Admin Portal</a>
-      <a href="staff-login.html" class="btn btn-secondary">Employee Portal</a>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- =========================================================================
+       Header & Sticky Navigation
+       ========================================================================= -->
+  <header class="site-header" role="banner">
+    <div class="container">
+      <a href="#home" class="brand" aria-label="Corner Cravings - Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" />
+        <div class="brand__text">
+          <span class="brand__name">Corner Cravings</span>
+          <span class="brand__tag">CRAVE. EAT. SATISFIED</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation -->
+      <nav class="nav-desktop" aria-label="Primary Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" class="nav-link">Home</a></li>
+          <li><a href="#menu" class="nav-link">Menu</a></li>
+          <li><a href="#order" class="nav-link">How to Order</a></li>
+          <li><a href="#reviews" class="nav-link">Reviews</a></li>
+          <li><a href="#visit" class="nav-link">Visit Us</a></li>
+        </ul>
+
+        <div class="nav-actions">
+          <a href="customer-login.html" class="btn btn-primary btn-sm">Order Online</a>
+        </div>
+      </nav>
+
+      <!-- Mobile Menu Toggle Button -->
+      <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false"
+        aria-controls="mobile-menu">
+        <svg class="icon-open" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+        <svg class="icon-close" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"
+          stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
     </div>
+
+    <!-- Mobile Navigation Drawer -->
+    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+      <ul class="mobile-menu__links">
+        <li><a href="#home" class="mobile-menu__link">Home</a></li>
+        <li><a href="#menu" class="mobile-menu__link">Menu</a></li>
+        <li><a href="#order" class="mobile-menu__link">How to Order</a></li>
+        <li><a href="#reviews" class="mobile-menu__link">Reviews</a></li>
+        <li><a href="#visit" class="mobile-menu__link">Visit Us</a></li>
+      </ul>
+
+      <div class="mobile-menu__actions">
+        <a href="customer-login.html" class="btn btn-primary">Order Online</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- =========================================================================
+       Main Content Landmark
+       ========================================================================= -->
+  <main id="main-content">
+
+    <!-- =======================================================================
+         Hero Section
+         ======================================================================= -->
+    <section id="home" class="hero" aria-labelledby="hero-title">
+      <div class="container">
+        <div class="hero__grid">
+
+          <div class="hero__content">
+            <span class="eyebrow">Your neighborhood food stop</span>
+            <h1 class="hero__title" id="hero-title">One corner. Every craving.</h1>
+            <p class="hero__text">
+              From street-food favorites and satisfying rice meals to pasta, tea, coffee, and frappes—Corner Cravings
+              has something for every kind of craving.
+            </p>
+
+            <div class="hero__actions">
+              <a href="#menu" class="btn btn-primary">View Menu</a>
+              <a href="customer-login.html" class="btn btn-secondary" id="hero-order-now-btn">Order Now</a>
+            </div>
+
+            <div class="hero__meta">
+              <span class="hero__meta-dot" aria-hidden="true"></span>
+              <span>Order online for convenient delivery or visit our Pasong Putik store.</span>
+            </div>
+          </div>
+
+          <div class="hero__media">
+            <!-- TODO: Replace temporary visual placeholder with owner-approved food photos once supplied -->
+            <img src="Gemini_Generated_Image_5x72fw5x72fw5x72-removebg-preview.png"
+              alt="Corner Cravings food and drink selection"
+              class="hero__image" width="500" height="500" fetchpriority="high" />
+
+            <div class="hero__badge">
+              <div class="hero__badge-icon" aria-hidden="true">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round">
+                  <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                  <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                  <line x1="6" y1="1" x2="6" y2="4"></line>
+                  <line x1="10" y1="1" x2="10" y2="4"></line>
+                  <line x1="14" y1="1" x2="14" y2="4"></line>
+                </svg>
+              </div>
+              <div>
+                <p class="hero__badge-title">Street Food · Meals · Drinks</p>
+                <p class="hero__badge-sub">CRAVE. EAT. SATISFIED</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Values Strip
+         ======================================================================= -->
+    <section class="values-strip" aria-label="Why visit Corner Cravings">
+      <div class="container">
+        <div class="values-strip__grid">
+
+          <div class="value-item">
+            <div class="value-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <circle cx="12" cy="12" r="9"></circle>
+                <path d="M12 7v5l3 3"></path>
+              </svg>
+            </div>
+            <div class="value-item__body">
+              <h3 class="value-item__title">Everyday Comfort Food</h3>
+              <p class="value-item__desc">Satisfying street-food favorites, hearty rice meals, and savory pasta plates.
+              </p>
+            </div>
+          </div>
+
+          <div class="value-item">
+            <div class="value-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M18 8h1a4 4 0 0 1 0 8h-1"></path>
+                <path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"></path>
+                <line x1="6" y1="1" x2="6" y2="4"></line>
+                <line x1="10" y1="1" x2="10" y2="4"></line>
+                <line x1="14" y1="1" x2="14" y2="4"></line>
+              </svg>
+            </div>
+            <div class="value-item__body">
+              <h3 class="value-item__title">Refreshing Drinks</h3>
+              <p class="value-item__desc">Brewed coffee, cool iced teas, and rich blended frappes made to refresh.</p>
+            </div>
+          </div>
+
+          <div class="value-item">
+            <div class="value-item__icon" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                stroke-linejoin="round">
+                <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+                <polyline points="9 22 9 12 15 12 15 22"></polyline>
+              </svg>
+            </div>
+            <div class="value-item__body">
+              <h3 class="value-item__title">Neighborhood Warmth</h3>
+              <p class="value-item__desc">Friendly service, walk-in convenience, and dedicated order care every day.</p>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Menu Preview Section
+         ======================================================================= -->
+    <section id="menu" class="menu-preview" aria-labelledby="menu-title">
+      <div class="container">
+        <header class="menu-preview__header">
+          <span class="eyebrow">Our Menu Offerings</span>
+          <h2 class="section-title" id="menu-title">Made for every kind of craving</h2>
+          <p class="section-subtitle">
+            Explore our four core categories crafted for quick bites, hearty lunches, afternoon snacks, and refreshing
+            drink breaks.
+          </p>
+        </header>
+
+        <!-- Section-level honest notice -->
+        <div class="menu-notice">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="12" cy="12" r="10"></circle>
+            <line x1="12" y1="8" x2="12" y2="12"></line>
+            <line x1="12" y1="16" x2="12.01" y2="16"></line>
+          </svg>
+          <span>The complete menu, prices, and official food photos will be added after confirmation with the
+            owner.</span>
+        </div>
+
+        <div class="menu-category-grid">
+
+          <!-- Category 1: Street Food -->
+          <article class="category-card" aria-label="Street Food Category">
+            <div class="category-card__media">
+              <!-- TODO: Replace temporary visual placeholder with owner-approved street food photo once supplied -->
+              <picture>
+                <source srcset="assets/images/sourdough-loaf.webp" type="image/webp" />
+                <img src="assets/images/sourdough-loaf.jpg"
+                  alt="Bread loaf on slate board shown as temporary visual placeholder" class="category-card__img"
+                  width="800" height="597" loading="lazy" />
+              </picture>
+              <span class="category-card__badge">Street Food</span>
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Street Food</h3>
+              <p class="category-card__desc">
+                Crisp, savory favorites and quick neighborhood snacks prepared hot and flavorful for quick bites,
+                afternoon treats, and sharing.
+              </p>
+              <div class="category-card__footer">
+                <span class="category-card__footer-dot" aria-hidden="true"></span>
+                <span>Quick Bites · Savory Snacks</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Category 2: Rice Meals -->
+          <article class="category-card" aria-label="Rice Meals Category">
+            <div class="category-card__media">
+              <!-- TODO: Replace temporary visual placeholder with owner-approved rice meal photo once supplied -->
+              <picture>
+                <source srcset="assets/images/bakery-story.webp" type="image/webp" />
+                <img src="assets/images/bakery-story.jpg" alt="Kitchen workspace shown as temporary visual placeholder"
+                  class="category-card__img" width="800" height="532" loading="lazy" />
+              </picture>
+              <span class="category-card__badge">Rice Meals</span>
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Rice Meals</h3>
+              <p class="category-card__desc">
+                Hearty, comforting rice plates paired with flavorful savory mains designed to satisfy big appetites for
+                everyday lunch or dinner.
+              </p>
+              <div class="category-card__footer">
+                <span class="category-card__footer-dot" aria-hidden="true"></span>
+                <span>Filling Portions · Everyday Comfort</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Category 3: Pasta -->
+          <article class="category-card" aria-label="Pasta Category">
+            <div class="category-card__media">
+              <!-- TODO: Replace temporary visual placeholder with owner-approved pasta photo once supplied -->
+              <picture>
+                <source srcset="assets/images/almond-croissant.webp" type="image/webp" />
+                <img src="assets/images/almond-croissant.jpg"
+                  alt="Pastry on plate shown as temporary visual placeholder" class="category-card__img" width="800"
+                  height="597" loading="lazy" />
+              </picture>
+              <span class="category-card__badge">Pasta</span>
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Pasta</h3>
+              <p class="category-card__desc">
+                Classic, comforting pasta dishes cooked for satisfying cravings, perfect for quick meal breaks,
+                afternoon snacks, or casual dinners.
+              </p>
+              <div class="category-card__footer">
+                <span class="category-card__footer-dot" aria-hidden="true"></span>
+                <span>Savory Sauces · Fresh Servings</span>
+              </div>
+            </div>
+          </article>
+
+          <!-- Category 4: Drinks -->
+          <article class="category-card" aria-label="Drinks Category">
+            <div class="category-card__media">
+              <!-- TODO: Replace temporary visual placeholder with owner-approved drink photos once supplied -->
+              <picture>
+                <source srcset="assets/images/dark-roast-coffee.webp" type="image/webp" />
+                <img src="assets/images/dark-roast-coffee.jpg" alt="Cup of coffee shown as temporary visual placeholder"
+                  class="category-card__img" width="800" height="600" loading="lazy" />
+              </picture>
+              <span class="category-card__badge">Drinks</span>
+            </div>
+            <div class="category-card__body">
+              <h3 class="category-card__title">Tea, Coffee &amp; Frappes</h3>
+              <p class="category-card__desc">
+                Cool refreshing teas, bold hot and iced coffee brews, and sweet blended frappes crafted to be the ideal
+                companion to every meal.
+              </p>
+              <div class="category-card__footer">
+                <span class="category-card__footer-dot" aria-hidden="true"></span>
+                <span>Tea · Coffee · Blended Frappes</span>
+              </div>
+            </div>
+          </article>
+
+        </div>
+
+        <div style="text-align: center; margin-top: 36px;">
+          <a href="customer-login.html" class="btn btn-primary">Browse Full Menu &amp; Order Online &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         How to Order Section
+         ======================================================================= -->
+    <section id="order" class="order-section" aria-labelledby="order-title">
+      <div class="container">
+
+        <header class="order-section__header">
+          <span class="eyebrow">Convenient Ordering</span>
+          <h2 class="section-title" id="order-title">How to order from Corner Cravings</h2>
+          <p class="section-subtitle">
+            We've made ordering smoother and faster. Browse our menu, customize items, and checkout for delivery or
+            pickup.
+          </p>
+        </header>
+
+        <!-- 4-Step Process Grid -->
+        <div class="order-steps">
+          <div class="step-card">
+            <div class="step-card__num" aria-hidden="true">1</div>
+            <h3 class="step-card__title">Browse Menu</h3>
+            <p class="step-card__desc">Explore our street food, rice meals, pasta, and drink offerings.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card__num" aria-hidden="true">2</div>
+            <h3 class="step-card__title">Customize &amp; Cart</h3>
+            <p class="step-card__desc">Choose sizes, select extra add-ons, and adjust quantities.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card__num" aria-hidden="true">3</div>
+            <h3 class="step-card__title">Set Delivery</h3>
+            <p class="step-card__desc">Provide your location address and contact details.</p>
+          </div>
+
+          <div class="step-card">
+            <div class="step-card__num" aria-hidden="true">4</div>
+            <h3 class="step-card__title">Confirm &amp; Enjoy</h3>
+            <p class="step-card__desc">Check out with Cash on Delivery or store pickup and enjoy your food!</p>
+          </div>
+        </div>
+
+        <!-- Customer Ordering Callout Card -->
+        <div class="inquiry-card" style="text-align: center;">
+          <span class="eyebrow" style="color: var(--color-primary);">Fast &amp; Convenient</span>
+          <h3 class="inquiry-card__title" style="font-size: 24px; margin-bottom: 12px;">Ready to order your cravings?
+          </h3>
+          <p class="inquiry-card__sub" style="max-width: 580px; margin: 0 auto 28px; line-height: 1.6;">
+            Experience our seamless online ordering system. Browse items, customize options, and receive fresh food
+            right at your door or for store pickup.
+          </p>
+          <div style="display: flex; justify-content: center;">
+            <a href="customer-login.html" class="btn btn-primary">Browse Menu &amp; Order Now</a>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Social Media Connection Section
+         ======================================================================= -->
+    <section class="social-section" aria-labelledby="social-title">
+      <div class="container">
+        <div class="social-card">
+          <div>
+            <span class="eyebrow" style="color: var(--color-primary-soft);">Stay Connected</span>
+            <h2 class="social-card__title" id="social-title">Connect with Corner Cravings online</h2>
+            <p class="social-card__desc">
+              Follow our official Facebook page for menu announcements, business updates, and the latest from Corner
+              Cravings.
+            </p>
+          </div>
+
+          <div class="social-badges">
+            <a class="social-badge-item social-badge-item--link" href="https://www.facebook.com/share/1LJfeS9R3v/"
+              target="_blank" rel="noopener noreferrer"
+              aria-label="Open the official Corner Cravings Facebook page in a new tab">
+              <span class="social-badge-label">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                  stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                  <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path>
+                </svg>
+                Facebook Page
+              </span>
+              <span class="social-badge-tag">Visit page &rarr;</span>
+            </a>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Customer Reviews Section
+         ======================================================================= -->
+    <section id="reviews" class="reviews-section" aria-labelledby="reviews-title">
+      <div class="container">
+        <header class="reviews-section__header">
+          <span class="eyebrow">Community Feedback</span>
+          <h2 class="section-title" id="reviews-title">Customer Reviews</h2>
+          <p class="section-subtitle">
+            We value the thoughts and feedback of every guest who visits our corner.
+          </p>
+        </header>
+
+        <p class="reviews-demo-note">Sample review layout — replace with verified customer feedback before publishing.
+        </p>
+        <div class="reviews-grid">
+          <article class="review-card">
+            <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="review-card__quote">“The food arrived warm and satisfying. Ordering was simple, and the
+              team was friendly throughout.”</blockquote>
+            <div class="review-card__customer"><span class="review-card__avatar" aria-hidden="true">SC</span>
+              <div>
+                <p class="review-card__name">Sample Customer</p>
+                <p class="review-card__meta">Mockup review</p>
+              </div>
+            </div>
+          </article>
+          <article class="review-card">
+            <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="review-card__quote">“A convenient neighborhood stop when I’m craving a filling rice meal
+              and a refreshing drink.”</blockquote>
+            <div class="review-card__customer"><span class="review-card__avatar" aria-hidden="true">SC</span>
+              <div>
+                <p class="review-card__name">Sample Customer</p>
+                <p class="review-card__meta">Mockup review</p>
+              </div>
+            </div>
+          </article>
+          <article class="review-card">
+            <div class="review-card__stars" aria-label="5 out of 5 stars">★★★★★</div>
+            <blockquote class="review-card__quote">“There are plenty of choices for different cravings, and the
+              welcoming service makes me want to visit again.”</blockquote>
+            <div class="review-card__customer"><span class="review-card__avatar" aria-hidden="true">SC</span>
+              <div>
+                <p class="review-card__name">Sample Customer</p>
+                <p class="review-card__meta">Mockup review</p>
+              </div>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- =======================================================================
+         Visit & Location Section
+         ======================================================================= -->
+    <section id="visit" class="visit-section" aria-labelledby="visit-title">
+      <div class="container">
+        <div class="visit-card">
+
+          <div class="visit-info">
+            <span class="visit-info__location-badge">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              Pasong Putik, Quezon City
+            </span>
+
+            <h2 class="section-title" id="visit-title">Visit our Pasong Putik corner</h2>
+
+            <p class="visit-info__address">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path>
+                <circle cx="12" cy="10" r="3"></circle>
+              </svg>
+              <span>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</span>
+            </p>
+
+            <p class="visit-info__desc">
+              Whether you are craving afternoon street food, a hearty lunch rice meal, savory pasta, or a cold frappe,
+              our doors are open. Walk-in orders are always welcome!
+            </p>
+
+            <div class="visit-info__hours">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <circle cx="12" cy="12" r="10"></circle>
+                <polyline points="12 6 12 12 16 14"></polyline>
+              </svg>
+              <span>Business hours will be posted soon</span>
+            </div>
+
+            <div class="location-map">
+              <iframe
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3858.481486779151!2d121.06342687433353!3d14.741882273603615!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3397b15d103f64fb%3A0x6e79323a9a7da713!2sCorner%20Cravings!5e0!3m2!1sen!2sph!4v1788424551232!5m2!1sen!2sph"
+                title="Corner Cravings location on Google Maps" width="400" height="300" style="border:0;"
+                allowfullscreen="" loading="lazy" referrerpolicy="strict-origin-when-cross-origin"></iframe>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
   </main>
+
+  <!-- =========================================================================
+       Footer
+       ========================================================================= -->
+  <footer class="site-footer" role="contentinfo">
+    <div class="container">
+      <div class="footer__grid">
+
+        <div class="footer__brand">
+          <a href="#home" class="footer__brand-head" aria-label="Corner Cravings - Home">
+
+            <div>
+              <span class="footer__brand-name">Corner Cravings</span>
+              <span class="footer__brand-tag">CRAVE. EAT. SATISFIED</span>
+            </div>
+          </a>
+          <p class="footer__brand-sub">
+            Your friendly neighborhood stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong
+            Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Customer Navigation</h4>
+          <ul class="footer__links">
+            <li><a href="#menu" class="footer__link">Menu</a></li>
+            <li><a href="customer-login.html" class="footer__link">Customer Login</a></li>
+            <li><a href="#order" class="footer__link">How to Order</a></li>
+            <li><a href="#visit" class="footer__link">Visit Us</a></li>
+          </ul>
+        </div>
+
+        <div class="footer__col">
+          <h4 class="footer__col-title">Team Access</h4>
+          <ul class="footer__links">
+            <li><a href="login.html" class="footer__link">Admin Portal</a></li>
+            <li><a href="staff-login.html" class="footer__link">Employee Portal</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer__bottom">
+        <p class="footer__copy">
+          &copy; <span id="current-year">2026</span> Corner Cravings. All rights reserved.
+        </p>
+        <div class="footer__meta-links">
+          <span class="footer__meta-link">Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</span>
+          <span class="footer__meta-link">&middot;</span>
+          <a class="footer__meta-link" href="https://www.facebook.com/share/1LJfeS9R3v/" target="_blank"
+            rel="noopener noreferrer">Facebook</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Floating Back to Top Button for improved long-page navigation -->
+  <button type="button" class="back-to-top" id="back-to-top" aria-label="Back to top">
+    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"
+      stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+      <polyline points="18 15 12 9 6 15"></polyline>
+    </svg>
+  </button>
+
 </body>
+
 </html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Confirmation · Corner Cravings</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="customer.css" />
+  <script src="customer.js" defer></script>
+</head>
+<body class="customer-confirmation-page">
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Customer Header -->
+  <header class="customer-header" role="banner">
+    <div class="container">
+      <a href="customer-home.html" class="brand" aria-label="Corner Cravings Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" />
+        <div>
+          <div class="brand__name">Corner Cravings</div>
+          <div class="brand__tag">CRAVE. EAT. SATISFIED</div>
+        </div>
+      </a>
+
+      <nav class="customer-nav" aria-label="Customer Navigation">
+        <ul class="customer-nav__links">
+          <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
+          <li><a href="customer-menu.html" class="customer-nav__link">Menu</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+        </ul>
+      </nav>
+
+      <div class="customer-header__actions">
+        <a href="customer-cart.html" class="btn-icon header-cart-btn" aria-label="View Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </a>
+
+        <button type="button" class="btn-icon" data-action="profile" aria-label="Customer Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <button type="button" class="nav-toggle-btn" id="customer-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="customer-mobile-menu" id="customer-mobile-menu">
+      <ul class="customer-mobile-menu__links">
+        <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
+        <li><a href="customer-menu.html" class="customer-mobile-menu__link">Menu</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
+        <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
+        <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="container">
+      <div id="confirmation-container">
+        <!-- Rendered dynamically -->
+      </div>
+    </div>
+  </main>
+
+  <!-- Shared Customer Footer -->
+  <footer class="customer-footer" role="contentinfo">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">
+            Your neighborhood stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Company</h4>
+          <ul class="customer-footer__links">
+            <li><a href="customer-home.html" class="customer-footer__link">About Us</a></li>
+            <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
+            <li><a href="index.html#visit" class="customer-footer__link">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Support</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html#visit" class="customer-footer__link">Contact</a></li>
+            <li><a href="index.html" class="customer-footer__link">Back to Landing</a></li>
+            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="customer-footer__bottom">
+        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
+        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var container = document.getElementById('confirmation-container');
+      if (!container || !window.CornerCravings) return;
+
+      var order = window.CornerCravings.getLastOrder();
+
+      if (!order || !order.items || order.items.length === 0) {
+        container.innerHTML = '<div class="empty-state" style="max-width:560px; margin:0 auto;">' +
+          '<div class="empty-state__icon" aria-hidden="true">' +
+            '<svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' +
+              '<circle cx="12" cy="12" r="10"></circle>' +
+              '<line x1="12" y1="8" x2="12" y2="12"></line>' +
+              '<line x1="12" y1="16" x2="12.01" y2="16"></line>' +
+            '</svg>' +
+          '</div>' +
+          '<h2>No Recent Order Found</h2>' +
+          '<p>You have not placed an order in this session yet. Explore our menu to place your first order!</p>' +
+          '<a href="customer-menu.html" class="btn btn-primary">Browse Menu</a>' +
+        '</div>';
+        return;
+      }
+
+      // Build itemized list
+      var itemsHtml = '';
+      for (var i = 0; i < order.items.length; i++) {
+        var it = order.items[i];
+        var optStr = '';
+        if (it.size) optStr += ' (' + it.size + ')';
+        if (it.addons && it.addons.length > 0) {
+          optStr += ' + ' + it.addons.map(function(x){ return x.name; }).join(', ');
+        }
+        itemsHtml += '<div class="receipt-item">' +
+          '<div>' +
+            '<strong>' + it.quantity + '&times; ' + it.name + '</strong>' +
+            (optStr ? '<div style="font-size:12px; color:var(--cust-muted);">' + optStr + '</div>' : '') +
+          '</div>' +
+          '<div>' + window.CornerCravings.formatPeso(it.unitPrice * it.quantity) + '</div>' +
+        '</div>';
+      }
+
+      var recipient = (order.delivery && order.delivery.recipientName) ? order.delivery.recipientName : 'Customer';
+      var address = (order.delivery && order.delivery.address) ? (order.delivery.address + ', ' + order.delivery.area) : 'Pasong Putik Store Pickup';
+
+      container.innerHTML = '<div class="confirmation-card">' +
+        '<div class="confirmation__check" aria-hidden="true">' +
+          '<svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">' +
+            '<polyline points="20 6 9 17 4 12"></polyline>' +
+          '</svg>' +
+        '</div>' +
+
+        '<h1 class="confirmation__title">Order Confirmed!</h1>' +
+        '<p class="confirmation__sub">' +
+          'Thank you for your order! Your request has been received by Corner Cravings.' +
+        '</p>' +
+
+        '<div class="confirmation-meta-box">' +
+          '<div>' +
+            '<div class="confirmation-meta-item__label">Order Number</div>' +
+            '<div class="confirmation-meta-item__val">' + order.orderNumber + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="confirmation-meta-item__label">Payment Method</div>' +
+            '<div class="confirmation-meta-item__val">' + order.paymentMethod + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="confirmation-meta-item__label">Recipient</div>' +
+            '<div class="confirmation-meta-item__val">' + recipient + '</div>' +
+          '</div>' +
+          '<div>' +
+            '<div class="confirmation-meta-item__label">Estimated Time</div>' +
+            '<div class="confirmation-meta-item__val">20&ndash;30 mins</div>' +
+          '</div>' +
+        '</div>' +
+
+        '<div class="confirmation-receipt">' +
+          '<div class="receipt-title">Itemized Order Summary</div>' +
+          itemsHtml +
+          '<div class="summary-rows" style="margin-top:16px; padding-top:12px; border-top:1px solid var(--cust-border-subtle);">' +
+            '<div class="summary-row">' +
+              '<span>Subtotal</span>' +
+              '<span>' + window.CornerCravings.formatPeso(order.totals.subtotal) + '</span>' +
+            '</div>' +
+            '<div class="summary-row">' +
+              '<span>Delivery Fee</span>' +
+              '<span>' + (order.totals.deliveryFee > 0 ? window.CornerCravings.formatPeso(order.totals.deliveryFee) : 'FREE') + '</span>' +
+            '</div>' +
+            '<div class="summary-row summary-row--total">' +
+              '<span>Total</span>' +
+              '<span class="summary-val">' + window.CornerCravings.formatPeso(order.totals.total) + '</span>' +
+            '</div>' +
+          '</div>' +
+        '</div>' +
+
+        '<p style="font-size:12.5px; color:var(--cust-muted); margin-bottom:24px;">' +
+          'Fulfillment Notice: Orders are prepared fresh upon receipt. You may also contact Corner Cravings via Messenger for immediate inquiries.' +
+        '</p>' +
+
+        '<div style="display:flex; gap:12px; justify-content:center; flex-wrap:wrap;">' +
+          '<a href="customer-home.html" class="btn btn-primary">Back to Home</a>' +
+          '<a href="customer-menu.html" class="btn btn-secondary">Order Again</a>' +
+        '</div>' +
+      '</div>';
+    });
+  </script>
+</body>
+</html>

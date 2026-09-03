@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Log In · Corner Cravings</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="customer.css" />
+  <script src="customer.js" defer></script>
+</head>
+
+<body class="customer-login-page">
+  <header class="customer-header" role="banner">
+    <div class="container">
+      <a href="index.html" class="brand" aria-label="Corner Cravings Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="38" height="38" />
+        <div class="brand__text">
+          <span class="brand__name">Corner Cravings</span>
+          <span class="brand__tag">CRAVE. EAT. SATISFIED</span>
+        </div>
+      </a>
+
+      <div class="customer-header__actions">
+        <a href="index.html" class="header-back-link" aria-label="Back to website">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="19" y1="12" x2="5" y2="12"></line><polyline points="12 19 5 12 12 5"></polyline></svg>
+          <span>Back to Website</span>
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main id="main-content" class="auth-page">
+    <div class="auth-card">
+      <a href="customer-home.html" aria-label="Corner Cravings Home">
+        <img class="auth-card__logo" src="Logo.png" alt="Corner Cravings logo" width="56" height="56" />
+      </a>
+      <h1 class="auth-card__brand">Corner Cravings</h1>
+      <p class="auth-card__sub">Sign in to your account</p>
+
+      <form id="customer-login-form" novalidate>
+        <div class="form-group">
+          <label class="form-label" for="login-email">Email Address</label>
+          <input class="form-input" type="email" id="login-email" name="email" placeholder="e.g. maria@example.com"
+            required autocomplete="email" />
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="login-password">Password</label>
+          <div class="form-input-wrap">
+            <input class="form-input" type="password" id="login-password" name="password" placeholder="••••••••"
+              required autocomplete="current-password" />
+            <button type="button" class="form-toggle-pw" id="toggle-password" aria-label="Toggle password visibility">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+            </button>
+          </div>
+        </div>
+
+        <div class="auth-meta-row">
+          <a href="#" class="auth-meta-link" id="forgot-pw-link"
+            title="Password reset is not available in demo prototype">Forgot Password?</a>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-block">Log In</button>
+
+        <p class="auth-switch-link">
+          Don't have an account? <a href="customer-signup.html">Create an Account</a>
+        </p>
+      </form>
+    </div>
+  </main>
+  <footer class="customer-footer" role="contentinfo">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">
+            Your neighborhood food stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Navigation</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html" class="customer-footer__link">Public Home</a></li>
+            <li><a href="customer-login.html" class="customer-footer__link">Customer Sign In</a></li>
+            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Portal</a></li>
+          </ul>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Support &amp; Location</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html#visit" class="customer-footer__link">Pasong Putik Store</a></li>
+            <li><a href="index.html#reviews" class="customer-footer__link">Customer Reviews</a></li>
+            <li><a href="https://www.facebook.com/share/1LJfeS9R3v/" target="_blank" rel="noopener noreferrer" class="customer-footer__link">Facebook Page</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="customer-footer__bottom">
+        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
+        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var form = document.getElementById('customer-login-form');
+      var toggleBtn = document.getElementById('toggle-password');
+      var pwInput = document.getElementById('login-password');
+      var forgotLink = document.getElementById('forgot-pw-link');
+
+      if (toggleBtn && pwInput) {
+        toggleBtn.addEventListener('click', function () {
+          var isPw = pwInput.getAttribute('type') === 'password';
+          pwInput.setAttribute('type', isPw ? 'text' : 'password');
+          toggleBtn.setAttribute('aria-label', isPw ? 'Hide password' : 'Show password');
+        });
+      }
+
+      if (forgotLink) {
+        forgotLink.addEventListener('click', function (e) {
+          e.preventDefault();
+          window.CornerCravings.showToast('Customer password reset is not available in this prototype.');
+        });
+      }
+
+      if (form) {
+        form.addEventListener('submit', function (e) {
+          e.preventDefault();
+          var email = document.getElementById('login-email').value.trim();
+          var pw = pwInput.value.trim();
+
+          if (!email || !pw) {
+            window.CornerCravings.showToast('Please enter your email and password.');
+            return;
+          }
+
+          // Safe prototype session persistence (no plaintext password stored)
+          window.CornerCravings.setCustomerSession({
+            email: email,
+            name: email.split('@')[0] || 'Customer'
+          });
+
+          window.CornerCravings.showToast('Welcome back! Redirecting...');
+          setTimeout(function () {
+            window.location.href = 'customer-home.html';
+          }, 600);
+        });
+      }
+    });
+  </script>
+</body>
+
+</html>

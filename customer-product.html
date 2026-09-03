@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Product Details · Corner Cravings</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="customer.css" />
+  <script src="customer.js" defer></script>
+</head>
+<body>
+
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- Shared Customer Header -->
+  <header class="customer-header" role="banner">
+    <div class="container">
+      <a href="customer-home.html" class="brand" aria-label="Corner Cravings Home">
+        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" />
+        <div>
+          <div class="brand__name">Corner Cravings</div>
+          <div class="brand__tag">CRAVE. EAT. SATISFIED</div>
+        </div>
+      </a>
+
+      <nav class="customer-nav" aria-label="Customer Navigation">
+        <ul class="customer-nav__links">
+          <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
+          <li><a href="customer-menu.html" class="customer-nav__link is-active">Menu</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+        </ul>
+      </nav>
+
+      <div class="customer-header__actions">
+        <a href="customer-cart.html" class="btn-icon header-cart-btn" aria-label="View Cart">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <circle cx="9" cy="21" r="1"></circle>
+            <circle cx="20" cy="21" r="1"></circle>
+            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+          </svg>
+          <span class="cart-badge" style="display:none;">0</span>
+        </a>
+
+        <button type="button" class="btn-icon" data-action="profile" aria-label="Customer Profile">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+            <circle cx="12" cy="7" r="4"></circle>
+          </svg>
+        </button>
+
+        <button type="button" class="nav-toggle-btn" id="customer-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <line x1="3" y1="6" x2="21" y2="6"></line>
+            <line x1="3" y1="12" x2="21" y2="12"></line>
+            <line x1="3" y1="18" x2="21" y2="18"></line>
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div class="customer-mobile-menu" id="customer-mobile-menu">
+      <ul class="customer-mobile-menu__links">
+        <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
+        <li><a href="customer-menu.html" class="customer-mobile-menu__link is-active">Menu</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
+        <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
+        <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
+      </ul>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main id="main-content" class="main-content">
+    <div class="container">
+
+      <a href="customer-menu.html" class="back-link">&larr; Back to Menu</a>
+
+      <div id="product-detail-container">
+        <!-- Rendered dynamically from customer.js -->
+      </div>
+
+    </div>
+  </main>
+
+  <!-- Shared Customer Footer -->
+  <footer class="customer-footer" role="contentinfo">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">
+            Your neighborhood stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
+          </p>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Company</h4>
+          <ul class="customer-footer__links">
+            <li><a href="customer-home.html" class="customer-footer__link">About Us</a></li>
+            <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
+            <li><a href="index.html#visit" class="customer-footer__link">Store Locator</a></li>
+          </ul>
+        </div>
+
+        <div class="customer-footer__col">
+          <h4 class="customer-footer__col-title">Support</h4>
+          <ul class="customer-footer__links">
+            <li><a href="index.html#visit" class="customer-footer__link">Contact</a></li>
+            <li><a href="index.html" class="customer-footer__link">Back to Landing</a></li>
+            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Access</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="customer-footer__bottom">
+        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
+        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      var container = document.getElementById('product-detail-container');
+      var urlParams = new URLSearchParams(window.location.search);
+      var prodId = urlParams.get('id');
+
+      if (!prodId || !window.CornerCravings) {
+        showNotFound();
+        return;
+      }
+
+      var product = window.CornerCravings.getProductById(prodId);
+      if (!product) {
+        showNotFound();
+        return;
+      }
+
+      document.title = product.name + ' · Corner Cravings';
+
+      var currentQty = 1;
+      var selectedSize = product.sizes ? product.sizes[0].id : null;
+      var selectedAddons = [];
+
+      function calculateTotal() {
+        var base = product.price;
+        if (product.sizes && selectedSize) {
+          for (var s = 0; s < product.sizes.length; s++) {
+            if (product.sizes[s].id === selectedSize) {
+              base += product.sizes[s].priceDiff;
+              break;
+            }
+          }
+        }
+        if (product.addons) {
+          for (var a = 0; a < product.addons.length; a++) {
+            if (selectedAddons.indexOf(product.addons[a].id) !== -1) {
+              base += product.addons[a].price;
+            }
+          }
+        }
+        return base * currentQty;
+      }
+
+      function renderDetails() {
+        var sizeHtml = '';
+        if (product.sizes) {
+          sizeHtml = '<div class="option-group">' +
+            '<h3 class="option-group__title">Select Size</h3>' +
+            '<div class="option-radios">';
+          for (var s = 0; s < product.sizes.length; s++) {
+            var sz = product.sizes[s];
+            var isChecked = sz.id === selectedSize ? 'checked' : '';
+            var priceLabel = sz.priceDiff > 0 ? ' (+' + window.CornerCravings.formatPeso(sz.priceDiff) + ')' : '';
+            sizeHtml += '<label class="option-radio-label">' +
+              '<input type="radio" name="product-size" value="' + sz.id + '" ' + isChecked + ' />' +
+              '<span>' + sz.name + priceLabel + '</span>' +
+            '</label>';
+          }
+          sizeHtml += '</div></div>';
+        }
+
+        var addonsHtml = '';
+        if (product.addons && product.addons.length > 0) {
+          addonsHtml = '<div class="option-group">' +
+            '<h3 class="option-group__title">Optional Add-ons</h3>' +
+            '<div class="addon-list">';
+          for (var a = 0; a < product.addons.length; a++) {
+            var ad = product.addons[a];
+            var isSelected = selectedAddons.indexOf(ad.id) !== -1 ? 'checked' : '';
+            addonsHtml += '<label class="addon-checkbox-label">' +
+              '<span>' +
+                '<input type="checkbox" name="product-addon" value="' + ad.id + '" ' + isSelected + ' style="margin-right: 10px;" />' +
+                ad.name +
+              '</span>' +
+              '<span style="font-weight: 700; color: var(--cust-primary);">+' + window.CornerCravings.formatPeso(ad.price) + '</span>' +
+            '</label>';
+          }
+          addonsHtml += '</div></div>';
+        }
+
+        var total = calculateTotal();
+
+        container.innerHTML = '<article class="product-detail-card">' +
+          '<div class="product-detail__media">' +
+            '<picture>' +
+              '<source srcset="' + product.imageWebp + '" type="image/webp" />' +
+              '<img src="' + product.imageJpg + '" alt="' + product.imageAlt + '" width="600" height="450" />' +
+            '</picture>' +
+          '</div>' +
+
+          '<div class="product-detail__content">' +
+            '<div>' +
+              '<span class="eyebrow">' + product.categoryLabel + '</span>' +
+              '<h1 class="product-detail__title">' + product.name + '</h1>' +
+              '<div class="product-detail__price">' + window.CornerCravings.formatPeso(product.price) + '</div>' +
+            '</div>' +
+
+            '<p class="product-detail__desc">' + product.description + '</p>' +
+
+            sizeHtml +
+            addonsHtml +
+
+            '<div class="product-action-row">' +
+              '<div class="qty-stepper">' +
+                '<button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity">&minus;</button>' +
+                '<span class="qty-value" id="qty-display">' + currentQty + '</span>' +
+                '<button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity">&plus;</button>' +
+              '</div>' +
+
+              '<button type="button" class="btn btn-primary" id="btn-add-to-cart" style="flex: 1;">' +
+                'Add to Cart &middot; ' + window.CornerCravings.formatPeso(total) +
+              '</button>' +
+            '</div>' +
+          '</div>' +
+        '</article>';
+
+        // Attach event listeners
+        var minusBtn = document.getElementById('qty-minus');
+        var plusBtn = document.getElementById('qty-plus');
+        var addBtn = document.getElementById('btn-add-to-cart');
+
+        if (minusBtn) {
+          minusBtn.addEventListener('click', function () {
+            if (currentQty > 1) {
+              currentQty--;
+              updateUi();
+            }
+          });
+        }
+
+        if (plusBtn) {
+          plusBtn.addEventListener('click', function () {
+            currentQty++;
+            updateUi();
+          });
+        }
+
+        var sizeInputs = container.querySelectorAll('input[name="product-size"]');
+        sizeInputs.forEach(function (input) {
+          input.addEventListener('change', function () {
+            selectedSize = this.value;
+            updateUi();
+          });
+        });
+
+        var addonInputs = container.querySelectorAll('input[name="product-addon"]');
+        addonInputs.forEach(function (input) {
+          input.addEventListener('change', function () {
+            var val = this.value;
+            if (this.checked) {
+              if (selectedAddons.indexOf(val) === -1) selectedAddons.push(val);
+            } else {
+              selectedAddons = selectedAddons.filter(function (x) { return x !== val; });
+            }
+            updateUi();
+          });
+        });
+
+        if (addBtn) {
+          addBtn.addEventListener('click', function () {
+            window.CornerCravings.addToCart(product.id, currentQty, selectedSize, selectedAddons);
+            setTimeout(function () {
+              window.location.href = 'customer-cart.html';
+            }, 400);
+          });
+        }
+      }
+
+      function updateUi() {
+        var qtyDisplay = document.getElementById('qty-display');
+        var addBtn = document.getElementById('btn-add-to-cart');
+        if (qtyDisplay) qtyDisplay.textContent = currentQty;
+        if (addBtn) {
+          var total = calculateTotal();
+          addBtn.textContent = 'Add to Cart · ' + window.CornerCravings.formatPeso(total);
+        }
+      }
+
+      function showNotFound() {
+        container.innerHTML = '<div class="empty-state">' +
+          '<h2>Product Not Found</h2>' +
+          '<p>The item you are looking for might have been moved or does not exist.</p>' +
+          '<a href="customer-menu.html" class="btn btn-primary">Browse All Menu Items</a>' +
+        '</div>';
+      }
+
+      renderDetails();
+    });
+  </script>
+</body>
+</html>
