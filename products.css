@@ -246,6 +246,17 @@
   }
 }
 
+/* The compact Admin sidebar still consumes space on small tablets. */
+@media (max-width: 760px) {
+  .product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .product-card__image {
+    aspect-ratio: 16 / 9;
+  }
+}
+
 @media (max-width: 560px) {
   .product-grid {
     grid-template-columns: 1fr;
