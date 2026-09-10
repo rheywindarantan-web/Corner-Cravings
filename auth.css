@@ -472,3 +472,103 @@ body {
     gap: 28px;
   }
 }
+
+@media (max-width: 560px) {
+  .customer-header {
+    height: 58px;
+  }
+
+  .customer-header .container,
+  .customer-footer .container {
+    padding-left: 16px;
+    padding-right: 16px;
+  }
+
+  .brand {
+    min-width: 0;
+    gap: 8px;
+  }
+
+  .brand__logo {
+    width: 34px;
+    height: 34px;
+  }
+
+  .brand__name {
+    font-size: 15px;
+    white-space: nowrap;
+  }
+
+  .brand__tag {
+    font-size: 7.5px;
+    letter-spacing: 0.055em;
+    white-space: nowrap;
+  }
+
+  .header-back-link {
+    flex: 0 0 auto;
+    padding: 8px 10px;
+    font-size: 12px;
+  }
+
+  .auth-page {
+    align-items: flex-start;
+    padding: 28px 14px 36px;
+  }
+
+  .auth-card {
+    max-width: 100%;
+    padding: 24px 18px 20px;
+    border-radius: 14px;
+  }
+
+  .auth-brand {
+    margin-bottom: 20px;
+  }
+
+  .auth-brand__logo {
+    width: 62px;
+    height: 62px;
+  }
+
+  .auth-brand__name,
+  .auth-heading__title {
+    font-size: 21px;
+  }
+
+  .form-label-row {
+    gap: 12px;
+  }
+
+  .input-field__control {
+    font-size: 16px;
+  }
+
+  .customer-footer {
+    padding: 34px 0 20px;
+  }
+
+  .customer-footer__grid {
+    gap: 24px;
+    margin-bottom: 22px;
+  }
+
+  .customer-footer__bottom {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 380px) {
+  .brand__tag {
+    display: none;
+  }
+
+  .header-back-link {
+    padding-inline: 8px;
+  }
+
+  .auth-card {
+    padding-inline: 14px;
+  }
+}

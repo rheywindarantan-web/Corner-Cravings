@@ -1590,6 +1590,11 @@ body {
     gap: 12px;
   }
 
+  .mobile-menu {
+    height: calc(100dvh - var(--header-height));
+    padding-bottom: calc(28px + env(safe-area-inset-bottom));
+  }
+
   .brand {
     min-width: 0;
     gap: 9px;
@@ -1703,6 +1708,23 @@ body {
     min-width: 0;
   }
 
+  .menu-notice {
+    align-items: flex-start;
+    border-radius: 16px;
+    padding: 12px 14px;
+    text-align: left;
+  }
+
+  .order-steps {
+    margin-bottom: 36px;
+  }
+
+  .social-card,
+  .visit-card {
+    padding: 24px 18px;
+    border-radius: 20px;
+  }
+
   .social-badge-item {
     gap: 12px;
     padding: 12px 14px;
@@ -1739,6 +1761,10 @@ body {
 
   .hero__actions {
     grid-template-columns: 1fr;
+  }
+
+  .brand__tag {
+    display: none;
   }
 }
 
