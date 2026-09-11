@@ -1,0 +1,195 @@
+.inventory-page {
+  display: grid;
+  gap: 24px;
+}
+
+.inventory-layout {
+  display: grid;
+  grid-template-columns: minmax(260px, 0.72fr) minmax(520px, 1.55fr);
+  gap: 28px;
+  align-items: start;
+}
+
+.inventory-form-card,
+.inventory-panel,
+.delivery-summary {
+  background: #fff;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-md);
+  box-shadow: 0 10px 28px rgba(89, 51, 42, 0.05);
+}
+
+.inventory-form-card { padding: 22px; }
+
+.inventory-section-title {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  margin: 0 0 20px;
+  color: var(--color-text-dark);
+  font-family: var(--font-heading);
+  font-size: 18px;
+}
+
+.inventory-section-title svg { color: var(--color-primary); }
+
+.inventory-field {
+  display: grid;
+  gap: 7px;
+  margin-bottom: 15px;
+}
+
+.inventory-field label {
+  color: var(--color-text-heading);
+  font-size: 12px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: .035em;
+}
+
+.inventory-field input,
+.inventory-field select {
+  width: 100%;
+  min-width: 0;
+  height: 43px;
+  padding: 0 12px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  background: #fffaf8;
+  color: var(--color-text-dark);
+  font: inherit;
+  outline: none;
+}
+
+.inventory-field input:focus,
+.inventory-field select:focus,
+.inventory-search input:focus,
+.inventory-filter:focus {
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px rgba(239, 108, 31, .12);
+}
+
+.inventory-submit {
+  width: 100%;
+  justify-content: center;
+  margin-top: 4px;
+}
+
+.delivery-summary {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  margin-top: 20px;
+  padding: 18px 20px;
+  background: #fff8f5;
+}
+
+.delivery-summary__label {
+  display: block;
+  margin-bottom: 4px;
+  color: var(--color-text-body);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.delivery-summary__value {
+  color: var(--color-text-dark);
+  font-family: var(--font-heading);
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.delivery-summary__icon {
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 50%;
+  color: var(--color-primary);
+  background: #fde3d8;
+}
+
+.inventory-panel { overflow: hidden; }
+
+.inventory-panel__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 18px 20px;
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.inventory-panel__title { margin: 0 0 3px; font-size: 18px; }
+.inventory-panel__subtitle { margin: 0; color: var(--color-text-body); font-size: 12px; }
+.inventory-tools { display: flex; gap: 10px; align-items: center; }
+
+.inventory-search { position: relative; display: flex; align-items: center; }
+.inventory-search svg { position: absolute; left: 11px; color: var(--color-text-body); }
+.inventory-search input {
+  width: 210px;
+  height: 36px;
+  padding: 0 12px 0 34px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.inventory-filter {
+  height: 36px;
+  padding: 0 10px;
+  border: 1px solid var(--color-border-light);
+  border-radius: var(--radius-sm);
+  background: #fff;
+  color: var(--color-text-heading);
+  font: inherit;
+  font-size: 12px;
+  outline: none;
+}
+
+.inventory-table-wrap { max-width: 100%; overflow-x: auto; -webkit-overflow-scrolling: touch; }
+.inventory-table { width: 100%; min-width: 720px; border-collapse: collapse; }
+.inventory-table th,
+.inventory-table td { padding: 13px 16px; border-bottom: 1px solid var(--color-border-light); text-align: left; font-size: 12px; }
+.inventory-table th { background: #fffaf8; color: var(--color-text-body); font-size: 10px; letter-spacing: .045em; text-transform: uppercase; white-space: nowrap; }
+.inventory-table tbody tr:last-child td { border-bottom: 0; }
+.inventory-item { display: flex; align-items: center; gap: 10px; min-width: 150px; }
+.inventory-item__icon { width: 34px; height: 34px; display: grid; place-items: center; flex: 0 0 auto; border-radius: 8px; background: #f5eeeb; color: var(--color-text-heading); }
+.inventory-item strong { display: block; color: var(--color-text-dark); }
+.inventory-item small { display: block; color: var(--color-text-body); margin-top: 2px; }
+.inventory-qty--out { color: #d13c31; font-weight: 700; }
+
+.inventory-status { display: inline-flex; align-items: center; padding: 5px 9px; border-radius: 999px; font-size: 10px; font-weight: 700; white-space: nowrap; }
+.inventory-status--verified { background: #fff0e9; color: #c84f16; border: 1px solid #f5cab6; }
+.inventory-status--pending { background: #fde5e1; color: #bd3830; }
+.inventory-status--daily { background: #fff1e5; color: #b95a16; }
+.inventory-status--spoilage { background: #fbe2df; color: #ba3930; }
+.inventory-status--transfer { background: #ebe6e3; color: #5e504b; }
+
+.inventory-panel__footer { display: flex; justify-content: space-between; gap: 12px; padding: 13px 20px; color: var(--color-text-body); font-size: 11px; }
+.inventory-empty { display: none; padding: 28px 20px; text-align: center; color: var(--color-text-body); }
+
+@media (max-width: 1120px) {
+  .inventory-layout { grid-template-columns: 1fr; }
+  .inventory-form-column { display: grid; grid-template-columns: minmax(280px, 1fr) minmax(210px, .7fr); gap: 18px; }
+  .delivery-summary { margin-top: 0; align-self: start; }
+}
+
+@media (max-width: 760px) {
+  .inventory-form-column { grid-template-columns: 1fr; }
+  .inventory-panel__header { align-items: flex-start; flex-direction: column; }
+  .inventory-tools { width: 100%; flex-wrap: wrap; }
+  .inventory-search { flex: 1 1 180px; }
+  .inventory-search input { width: 100%; }
+}
+
+@media (max-width: 480px) {
+  .inventory-form-card { padding: 18px; }
+  .inventory-tools { flex-direction: column; align-items: stretch; }
+  .inventory-search, .inventory-filter { width: 100%; }
+  .inventory-panel__footer { align-items: flex-start; flex-direction: column; }
+}

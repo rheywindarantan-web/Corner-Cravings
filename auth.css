@@ -19,6 +19,10 @@
   background: var(--color-bg-page);
 }
 
+.auth-page--portal-login {
+  background: #eee7e2;
+}
+
 .auth-card {
   width: 100%;
   max-width: 448px;
@@ -473,6 +477,35 @@ body {
   }
 }
 
+.auth-card--portal-login {
+  max-width: 438px;
+  padding: 38px 38px 34px;
+  background: #ffffff;
+  border: 1px solid rgba(225, 191, 179, 0.55);
+  box-shadow: 0 18px 44px rgba(89, 51, 42, 0.11);
+}
+
+.auth-card--portal-login .auth-brand {
+  margin-bottom: 30px;
+}
+
+.auth-card--portal-login .auth-brand__logo {
+  width: 92px;
+  height: 92px;
+}
+
+.auth-card--portal-login .input-field__control {
+  background: #fff7f3;
+}
+
+.portal-login__footnote {
+  margin: 30px 0 0;
+  color: var(--color-text-body);
+  font-size: 12px;
+  line-height: 1.5;
+  text-align: center;
+}
+
 @media (max-width: 560px) {
   .customer-header {
     height: 58px;
@@ -520,6 +553,19 @@ body {
     max-width: 100%;
     padding: 24px 18px 20px;
     border-radius: 14px;
+  }
+
+  .auth-card--portal-login {
+    padding: 28px 22px 26px;
+  }
+
+  .auth-card--portal-login .auth-brand {
+    margin-bottom: 24px;
+  }
+
+  .auth-card--portal-login .auth-brand__logo {
+    width: 78px;
+    height: 78px;
   }
 
   .auth-brand {

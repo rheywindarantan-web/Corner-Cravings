@@ -103,6 +103,17 @@
   padding: 9px var(--space-4);
 }
 
+.nav-item--inventory-parent.is-active {
+  background: transparent;
+  color: var(--color-primary);
+}
+
+.nav-item--sub.is-active {
+  background: var(--color-primary);
+  color: #fff;
+  border-left-color: var(--color-primary);
+}
+
 .sidebar__footer {
   padding: var(--space-3);
 }
@@ -396,6 +407,10 @@
   }
 
   .sidebar__brand {
+    display: none;
+  }
+
+  .nav-item--inventory-parent {
     display: none;
   }
 

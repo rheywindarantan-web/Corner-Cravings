@@ -1,0 +1,39 @@
+.add-product-page { max-width: 1020px; width: 100%; margin: 0 auto; }
+.add-product-back { display: inline-flex; align-items: center; gap: 6px; margin-bottom: 8px; color: var(--color-text-heading); font-size: 12px; font-weight: 600; }
+.add-product-back:hover { color: var(--color-primary); }
+.add-product-title { margin: 0 0 22px; font-family: var(--font-heading); font-size: 30px; color: var(--color-text-dark); }
+.product-form-card { padding: 24px; border: 1px solid var(--color-border); border-radius: var(--radius-md); background: #fff; box-shadow: 0 8px 24px rgba(89,51,42,.05); }
+.product-form-layout { display: grid; grid-template-columns: minmax(0, 1fr) 280px; gap: 24px; }
+.product-fields { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 16px; align-content: start; }
+.product-field { display: grid; gap: 7px; min-width: 0; }
+.product-field--full { grid-column: 1 / -1; }
+.product-field label, .product-image-label { color: var(--color-text-heading); font-size: 12px; font-weight: 700; }
+.product-field input, .product-field select, .product-field textarea { width: 100%; min-width: 0; border: 1px solid var(--color-border); border-radius: 8px; background: #fff; color: var(--color-text-dark); font: inherit; font-size: 13px; outline: none; }
+.product-field input, .product-field select { height: 44px; padding: 0 13px; }
+.product-field textarea { min-height: 132px; padding: 12px 13px; resize: vertical; }
+.product-field input:focus, .product-field select:focus, .product-field textarea:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(239,108,31,.12); }
+.product-price-wrap { position: relative; }
+.product-price-wrap span { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--color-text-body); font-size: 13px; }
+.product-price-wrap input { padding-left: 28px; }
+.product-upload { display: flex; flex-direction: column; min-width: 0; }
+.product-image-label { margin-bottom: 7px; }
+.upload-zone { flex: 1; min-height: 278px; display: grid; place-items: center; padding: 18px; border: 1.5px dashed var(--color-border); border-radius: 10px; background: #fffaf8; color: var(--color-text-body); text-align: center; cursor: pointer; overflow: hidden; transition: border-color .15s ease, background .15s ease; }
+.upload-zone:hover, .upload-zone.is-dragging { border-color: var(--color-primary); background: #fff3ed; }
+.upload-zone__content svg { margin-bottom: 10px; color: var(--color-text-heading); }
+.upload-zone__content strong { display: block; color: var(--color-primary); font-size: 12px; }
+.upload-zone__content span { display: block; margin: 3px 0 8px; font-size: 11px; }
+.upload-zone__content small { display: block; font-size: 9px; }
+.upload-preview { width: 100%; height: 100%; min-height: 240px; display: none; object-fit: cover; border-radius: 7px; }
+.upload-zone.has-image .upload-zone__content { display: none; }
+.upload-zone.has-image .upload-preview { display: block; }
+.product-form-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--color-border-light); }
+.product-form-actions a, .product-form-actions button { min-width: 108px; justify-content: center; }
+.product-confirm { position: fixed; inset: 0; z-index: 1300; display: none; place-items: center; padding: 20px; background: rgba(42,42,42,.45); }
+.product-confirm.is-open { display: grid; }
+.product-confirm__dialog { width: min(440px, 100%); padding: 54px 34px 38px; border: 1px solid var(--color-text-heading); background: #fff; text-align: center; box-shadow: 0 22px 70px rgba(0,0,0,.2); }
+.product-confirm__dialog h2 { margin: 0 0 16px; font-family: var(--font-heading); font-size: 30px; }
+.product-confirm__dialog p { margin: 0 0 28px; color: var(--color-text-body); font-size: 12px; line-height: 1.55; }
+.product-confirm__actions { display: flex; justify-content: center; gap: 20px; }
+.product-confirm__actions button { min-width: 120px; justify-content: center; }
+@media (max-width: 900px) { .product-form-layout { grid-template-columns: 1fr; } .upload-zone { min-height: 220px; } }
+@media (max-width: 560px) { .product-form-card { padding: 18px; } .product-fields { grid-template-columns: 1fr; } .product-field--full { grid-column: auto; } .product-form-actions, .product-confirm__actions { flex-direction: column-reverse; } .product-form-actions a, .product-form-actions button, .product-confirm__actions button { width: 100%; } .product-confirm__dialog { padding: 38px 20px 26px; } }

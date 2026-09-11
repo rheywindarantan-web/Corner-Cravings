@@ -3,84 +3,78 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Inventory · Corner Cravings Admin</title>
+  <title>Stock In · Corner Cravings Admin</title>
   <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="dashboard.css" />
-  <style>
-    .inventory-grid { display: grid; grid-template-columns: repeat(3, minmax(180px, 1fr)); gap: 16px; }
-    .inventory-card { background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); padding: 20px; }
-    .inventory-card h3 { margin: 0 0 8px; color: var(--color-text-dark); }
-    .inventory-card p { margin: 0; color: var(--color-text-body); }
-    .inventory-card strong { color: var(--color-primary); }
-    .panel { background: #fff; border: 1px solid var(--color-border-light); border-radius: var(--radius-md); }
-    .panel__header { padding: 18px 20px; border-bottom: 1px solid var(--color-border-light); }
-    .panel__title { margin: 0; font-size: 18px; color: var(--color-text-dark); }
-    .stock-list { list-style: none; margin: 0; padding: 0; }
-    .stock-list li { display: flex; justify-content: space-between; padding: 14px 20px; border-bottom: 1px solid var(--color-border-light); }
-    .stock-list li:last-child { border-bottom: none; }
-    .tag { display: inline-flex; padding: 5px 10px; border-radius: 999px; font-size: 12px; font-weight: 600; }
-    .tag--good { background: #eaf9ee; color: #208b48; }
-    .tag--low { background: #fff3dc; color: #b77712; }
-  </style>
+  <link rel="stylesheet" href="inventory.css" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="sidebar__brand">
         <img class="sidebar__brand-logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" />
-        <div>
-          <p class="sidebar__brand-name">Corner<br />Cravings</p>
-          <p class="sidebar__brand-sub">Admin Panel</p>
-        </div>
+        <div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div>
       </div>
-
       <nav class="sidebar__nav" aria-label="Primary">
-        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
-        <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-1.5 9h-13z"/><path d="M4 4L3 2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
-        <a class="nav-item is-active" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
-        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
+        <a class="nav-item is-active nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
+        <a class="nav-item nav-item--sub is-active" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In</span></a>
+        <a class="nav-item nav-item--sub" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg><span>Stock Out</span></a>
+        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
       </nav>
-
-      <div class="sidebar__footer">
-        <button class="btn-logout" type="button" onclick="window.location.href='login.html'"> <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><polyline points="16 17 21 12 16 7"/><line x1="21" y1="12" x2="9" y2="12"/></svg><span>Logout</span></button>
-      </div>
+      <div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg><span>Logout</span></button></div>
     </aside>
 
     <div class="main">
       <header class="topbar">
         <h2 class="topbar__title">Corner Cravings Admin</h2>
-        <div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg><input type="search" placeholder="Search..." aria-label="Search" /></div>
-        <div class="topbar__actions">
-          <button class="icon-btn" type="button" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
-        </div>
+        <div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input type="search" placeholder="Search inventory..." aria-label="Search inventory" /></div>
+        <div class="topbar__actions"><button class="icon-btn" type="button" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21h-3.4"/></svg></button></div>
       </header>
 
-      <main class="page-content">
-        <div class="page-header">
-          <div><h1 class="page-header__title">Inventory</h1><p class="page-header__subtitle">Track stock availability and replenishment.</p></div>
-          <div class="page-header__actions"><button class="btn-outline" type="button" data-action="restock">Restock</button><a class="btn-solid-sm" href="add-product.html">Add Item</a></div>
-        </div>
+      <main class="page-content inventory-page">
+        <header class="page-header">
+          <div><h1 class="page-header__title">Stock In</h1><p class="page-header__subtitle">Record incoming deliveries and review recently received inventory.</p></div>
+          <div class="page-header__actions"><a class="btn-outline" href="stock-out.html">View Stock Out</a></div>
+        </header>
 
-        <div class="inventory-grid">
-          <div class="inventory-card"><h3>Flour</h3><p><strong>94%</strong> remaining</p></div>
-          <div class="inventory-card"><h3>Milk</h3><p><strong>62%</strong> remaining</p></div>
-          <div class="inventory-card"><h3>Chocolate</h3><p><strong>81%</strong> remaining</p></div>
-        </div>
+        <div class="inventory-layout">
+          <div class="inventory-form-column">
+            <form class="inventory-form-card" id="stock-in-form" novalidate>
+              <h2 class="inventory-section-title"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3"/></svg>Log New Delivery</h2>
+              <div class="inventory-field"><label for="stock-item">Item name</label><select id="stock-item" required><option value="">Choose an item</option><option>Free Range Eggs</option><option>Atlantic Salmon</option><option>Heirloom Tomatoes</option><option>00 Pizza Flour</option><option>Fresh Milk</option></select></div>
+              <div class="inventory-field"><label for="stock-category">Category</label><select id="stock-category" required><option value="">Select category</option><option>Dairy &amp; Eggs</option><option>Proteins</option><option>Fresh Produce</option><option>Dry Goods</option><option>Beverages</option></select></div>
+              <div class="inventory-field"><label for="stock-quantity">Quantity</label><input id="stock-quantity" type="number" min="1" step="1" placeholder="0" required /></div>
+              <div class="inventory-field"><label for="stock-date">Date received</label><input id="stock-date" type="date" required /></div>
+              <button class="btn-solid-sm inventory-submit" type="submit">Log Entry</button>
+            </form>
+            <aside class="delivery-summary" aria-label="Today's delivery total"><div><span class="delivery-summary__label">Today's delivery</span><span class="delivery-summary__value"><span id="delivery-count">14</span> items</span></div><span class="delivery-summary__icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span></aside>
+          </div>
 
-        <section class="panel">
-          <div class="panel__header"><h2 class="panel__title">Critical Stock</h2></div>
-          <ul class="stock-list">
-            <li><span>Butter</span><span class="tag tag--low">Low</span></li>
-            <li><span>Eggs</span><span class="tag tag--good">Healthy</span></li>
-            <li><span>Bread Flour</span><span class="tag tag--low">Low</span></li>
-          </ul>
-        </section>
+          <section class="inventory-panel" aria-labelledby="receipts-title">
+            <div class="inventory-panel__header"><div><h2 class="inventory-panel__title" id="receipts-title">Recent Receipts</h2><p class="inventory-panel__subtitle">Last 30 days of inbound stock logs</p></div></div>
+            <div class="inventory-table-wrap">
+              <table class="inventory-table">
+                <thead><tr><th>Item details</th><th>Category</th><th>Qty received</th><th>Date</th><th>Status</th></tr></thead>
+                <tbody id="receipt-body">
+                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">🥚</span><div><strong>Free Range Eggs</strong><small>BCH-18-09-24</small></div></div></td><td>Dairy &amp; Eggs</td><td>15 crates</td><td>Oct 24, 2026</td><td><span class="inventory-status inventory-status--verified">Verified</span></td></tr>
+                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">🐟</span><div><strong>Atlantic Salmon</strong><small>SLM-15-10-24</small></div></div></td><td>Proteins</td><td>40 lbs</td><td>Oct 24, 2026</td><td><span class="inventory-status inventory-status--verified">Verified</span></td></tr>
+                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">🍅</span><div><strong>Heirloom Tomatoes</strong><small>TOM-19-09-24</small></div></div></td><td>Fresh Produce</td><td>25 lbs</td><td>Oct 23, 2026</td><td><span class="inventory-status inventory-status--pending">Pending QC</span></td></tr>
+                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">◇</span><div><strong>00 Pizza Flour</strong><small>FLR-10-09-24</small></div></div></td><td>Dry Goods</td><td>100 lbs</td><td>Oct 21, 2026</td><td><span class="inventory-status inventory-status--verified">Verified</span></td></tr>
+                </tbody>
+              </table>
+            </div>
+            <div class="inventory-panel__footer"><span>Showing 1–4 of 42 entries</span><span>Recently received inventory</span></div>
+          </section>
+        </div>
       </main>
     </div>
   </div>
   <script src="auth.js"></script>
+  <script src="inventory.js"></script>
 </body>
 </html>
