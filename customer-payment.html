@@ -7,271 +7,346 @@
   <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
   <script src="customer.js" defer></script>
 </head>
-<body>
+<body class="pm-page-wrapper">
 
   <!-- Accessible Skip Link -->
   <a href="#main-content" class="skip-link">Skip to main content</a>
 
-  <!-- Shared Customer Header -->
-  <header class="customer-header" role="banner">
-    <div class="container">
-      <a href="customer-home.html" class="brand" aria-label="Corner Cravings Home">
-        <img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" />
-        <div>
-          <div class="brand__name">Corner Cravings</div>
-          <div class="brand__tag">CRAVE. EAT. SATISFIED</div>
-        </div>
+  <!-- Top Navigation Header matching Mockup -->
+  <header class="pm-nav-header" role="banner">
+    <div class="pm-nav-container">
+      <a href="customer-home.html" class="pm-nav-brand" aria-label="Corner Cravings Home">
+        <img class="pm-nav-logo" src="Logo.png" alt="Corner Cravings Logo" width="36" height="36" />
+        <span class="pm-brand-name">Corner Cravings</span>
       </a>
 
-      <nav class="customer-nav" aria-label="Customer Navigation">
-        <ul class="customer-nav__links">
-          <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
-          <li><a href="customer-menu.html" class="customer-nav__link">Menu</a></li>
-          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+      <div class="pm-nav-right">
+        <ul class="pm-nav-links">
+          <li><a href="customer-home.html">Home</a></li>
+          <li><a href="customer-menu.html">Menu</a></li>
+          <li><a href="#" data-action="rewards">Rewards</a></li>
         </ul>
-      </nav>
 
-      <div class="customer-header__actions">
-        <a href="customer-cart.html" class="btn-icon header-cart-btn" aria-label="View Cart">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="9" cy="21" r="1"></circle>
-            <circle cx="20" cy="21" r="1"></circle>
-            <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
-          </svg>
-          <span class="cart-badge" style="display:none;">0</span>
-        </a>
+        <div class="pm-nav-icons">
+          <a href="customer-cart.html" class="pm-icon-btn" aria-label="View Cart">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <circle cx="9" cy="21" r="1"></circle>
+              <circle cx="20" cy="21" r="1"></circle>
+              <path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path>
+            </svg>
+          </a>
 
-        <button type="button" class="btn-icon" data-action="profile" aria-label="Customer Profile">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
-            <circle cx="12" cy="7" r="4"></circle>
-          </svg>
-        </button>
-
-        <button type="button" class="nav-toggle-btn" id="customer-nav-toggle" aria-label="Toggle navigation" aria-expanded="false">
-          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
-        </button>
+          <button type="button" class="pm-icon-btn" data-action="profile" aria-label="Customer Profile">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"></path>
+              <circle cx="12" cy="7" r="4"></circle>
+            </svg>
+          </button>
+        </div>
       </div>
-    </div>
-
-    <!-- Mobile Drawer -->
-    <div class="customer-mobile-menu" id="customer-mobile-menu">
-      <ul class="customer-mobile-menu__links">
-        <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
-        <li><a href="customer-menu.html" class="customer-mobile-menu__link">Menu</a></li>
-        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
-        <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
-        <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
-        <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
-      </ul>
     </div>
   </header>
 
-  <!-- Main Content -->
-  <main id="main-content" class="main-content">
-    <div class="container">
+  <!-- Main Content Body -->
+  <main id="main-content" class="pm-main-body">
+    
+    <!-- Title Row with Back Arrow -->
+    <div class="pm-header-row">
+      <a href="customer-delivery.html" class="pm-back-arrow" aria-label="Back to delivery details" title="Back to delivery details">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="19" y1="12" x2="5" y2="12"></line>
+          <polyline points="12 19 5 12 12 5"></polyline>
+        </svg>
+      </a>
+      <h1 class="pm-title">Payment Method</h1>
+    </div>
+    <p class="pm-subtitle">Select how you would like to pay for your order.</p>
 
-      <a href="customer-delivery.html" class="back-link">&larr; Back to Delivery Details</a>
+    <!-- 2-Column Grid Layout -->
+    <div class="pm-grid-layout">
 
-      <header class="page-header">
-        <span class="eyebrow">Checkout Step 3 of 3</span>
-        <h1 class="page-title">Payment Method</h1>
-        <p class="page-subtitle">Choose how you would like to pay for your Corner Cravings order.</p>
-      </header>
+      <!-- Left Column: Payment Options List -->
+      <div class="pm-options-stack" id="payment-options-list">
 
-      <!-- Checkout Navigation Stepper -->
-      <nav class="checkout-stepper" aria-label="Checkout Progress">
-        <a href="customer-cart.html" class="checkout-step is-complete" aria-label="Back to Order Review">
-          <span class="checkout-step__num">&#10003;</span>
-          <span class="checkout-step__label">Order Review</span>
-        </a>
-        <span class="checkout-step__divider"></span>
-        <a href="customer-delivery.html" class="checkout-step is-complete" aria-label="Back to Delivery Details">
-          <span class="checkout-step__num">&#10003;</span>
-          <span class="checkout-step__label">Delivery</span>
-        </a>
-        <span class="checkout-step__divider"></span>
-        <div class="checkout-step is-active" aria-current="step">
-          <span class="checkout-step__num">3</span>
-          <span class="checkout-step__label">Payment</span>
-        </div>
-      </nav>
-
-      <div class="checkout-grid">
-        <!-- Left Column: Payment Methods -->
-        <div>
-          <div class="payment-methods-list" id="payment-methods-group">
-
-            <!-- Cash on Delivery Option -->
-            <div class="payment-card is-active" data-method="Cash on Delivery">
-              <div class="payment-card__left">
-                <div class="payment-card__icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="2" y="6" width="20" height="12" rx="2"></rect>
-                    <circle cx="12" cy="12" r="2"></circle>
-                    <path d="M6 12h.01M18 12h.01"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="payment-card__title">Cash on Delivery (COD)</h3>
-                  <p class="payment-card__desc">Pay with cash upon order arrival or store pickup.</p>
-                </div>
+        <!-- Option 1: Cash on Delivery -->
+        <div class="pm-option-card" data-method="Cash on Delivery" tabindex="0" role="radio" aria-checked="false">
+          <div class="pm-option-head">
+            <div class="pm-option-left">
+              <div class="pm-radio-circle">
+                <div class="pm-radio-dot"></div>
               </div>
-              <span style="font-family:var(--font-heading); font-size:12px; font-weight:700; color:var(--cust-primary);">SELECTED</span>
+              <div>
+                <div class="pm-option-title">Cash on Delivery</div>
+                <div class="pm-option-sub">Pay with cash when your order arrives.</div>
+              </div>
             </div>
 
-            <!-- E-Wallet Option -->
-            <div class="payment-card is-disabled" data-method="E-Wallet">
-              <div class="payment-card__left">
-                <div class="payment-card__icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <path d="M21 12V7H5a2 2 0 0 1 0-4h14v4"></path>
-                    <path d="M3 5v14a2 2 0 0 0 2 2h16v-5"></path>
-                    <path d="M18 12a2 2 0 0 0 0 4h4v-4Z"></path>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="payment-card__title">E-Wallet (GCash / Maya)</h3>
-                  <p class="payment-card__desc">Online scan-to-pay QR code integration.</p>
-                </div>
-              </div>
-              <span style="font-size:11px; font-weight:700; color:var(--cust-muted); text-transform:uppercase;">Coming Soon</span>
+            <div class="pm-option-icon">
+              <!-- Banknote Cash Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                <circle cx="12" cy="12" r="2"></circle>
+                <path d="M6 12h.01M18 12h.01"></path>
+              </svg>
             </div>
-
-            <!-- Card Option -->
-            <div class="payment-card is-disabled" data-method="Card">
-              <div class="payment-card__left">
-                <div class="payment-card__icon" aria-hidden="true">
-                  <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                    <rect x="1" y="4" width="22" height="16" rx="2" ry="2"></rect>
-                    <line x1="1" y1="10" x2="23" y2="10"></line>
-                  </svg>
-                </div>
-                <div>
-                  <h3 class="payment-card__title">Credit / Debit Card</h3>
-                  <p class="payment-card__desc">Online gateway processing.</p>
-                </div>
-              </div>
-              <span style="font-size:11px; font-weight:700; color:var(--cust-muted); text-transform:uppercase;">Unavailable in prototype</span>
-            </div>
-
-          </div>
-
-          <div style="font-size: 13px; color: var(--cust-muted); line-height: 1.5; padding: 14px 18px; background: #ffffff; border: 1px solid var(--cust-border); border-radius: 16px;">
-            <strong>Demo Prototype Notice:</strong> Cash on Delivery is the standard fulfillment method in this simulation. No real credit card or bank details are collected or processed.
           </div>
         </div>
 
-        <!-- Right Column: Sticky Summary & Place Order -->
-        <div>
-          <div class="order-summary-card" id="payment-summary-card">
-            <!-- Rendered dynamically -->
+        <!-- Option 2: E-Wallet -->
+        <div class="pm-option-card" data-method="E-Wallet" tabindex="0" role="radio" aria-checked="false">
+          <div class="pm-option-head">
+            <div class="pm-option-left">
+              <div class="pm-radio-circle">
+                <div class="pm-radio-dot"></div>
+              </div>
+              <div>
+                <div class="pm-option-title">E-Wallet</div>
+                <div class="pm-option-sub">Pay using your preferred digital wallet.</div>
+              </div>
+            </div>
+
+            <div class="pm-option-icon">
+              <!-- Wallet Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M20 12V8H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h14v4"></path>
+                <path d="M4 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"></path>
+                <rect x="14" y="10" width="8" height="6" rx="1"></rect>
+              </svg>
+            </div>
           </div>
+        </div>
+
+        <!-- Option 3: Credit / Debit Card (Selected in Mockup) -->
+        <div class="pm-option-card is-selected" data-method="Credit / Debit Card" id="card-option-card" tabindex="0" role="radio" aria-checked="true">
+          <div class="pm-option-head">
+            <div class="pm-option-left">
+              <div class="pm-radio-circle">
+                <div class="pm-radio-dot"></div>
+              </div>
+              <div>
+                <div class="pm-option-title">Credit / Debit Card</div>
+              </div>
+            </div>
+
+            <div class="pm-option-icon">
+              <!-- Credit Card Icon -->
+              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                <line x1="2" y1="10" x2="22" y2="10"></line>
+              </svg>
+            </div>
+          </div>
+
+          <!-- Nested Form Fields for Card -->
+          <div class="pm-card-fields" id="card-fields-container">
+            <div class="pm-field-group">
+              <label class="pm-field-label" for="card-name">Name on Card</label>
+              <input
+                type="text"
+                class="pm-field-input"
+                id="card-name"
+                name="card_name"
+                placeholder="John Doe"
+              />
+            </div>
+
+            <div class="pm-field-group">
+              <label class="pm-field-label" for="card-number">Card Number</label>
+              <div class="pm-field-input-wrap">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                  <rect x="2" y="5" width="20" height="14" rx="2"></rect>
+                  <line x1="2" y1="10" x2="22" y2="10"></line>
+                </svg>
+                <input
+                  type="text"
+                  class="pm-field-input"
+                  id="card-number"
+                  name="card_number"
+                  placeholder="0000 0000 0000 0000"
+                  maxlength="19"
+                />
+              </div>
+            </div>
+
+            <div class="pm-field-row">
+              <div class="pm-field-group">
+                <label class="pm-field-label" for="card-expiry">Expiry Date</label>
+                <input
+                  type="text"
+                  class="pm-field-input"
+                  id="card-expiry"
+                  name="card_expiry"
+                  placeholder="MM/YY"
+                  maxlength="5"
+                />
+              </div>
+
+              <div class="pm-field-group">
+                <label class="pm-field-label" for="card-cvv">CVV</label>
+                <input
+                  type="password"
+                  class="pm-field-input"
+                  id="card-cvv"
+                  name="card_cvv"
+                  placeholder="123"
+                  maxlength="4"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right Column: Order Summary Card -->
+      <div>
+        <div class="pm-summary-card">
+          <h2 class="pm-summary-title">Order Summary</h2>
+
+          <div class="pm-summary-row">
+            <span class="pm-summary-label">Total Amount</span>
+            <span class="pm-summary-total" id="pm-total-amount">₱1,465.00</span>
+          </div>
+
+          <button type="button" class="pm-btn-place-order" id="btn-place-order">
+            Place Order
+          </button>
+
+          <a href="customer-delivery.html" class="pm-btn-back-shipping" id="btn-back-shipping">
+            Back to Shipping
+          </a>
         </div>
       </div>
 
     </div>
   </main>
 
-  <!-- Shared Customer Footer -->
-  <footer class="customer-footer" role="contentinfo">
-    <div class="container">
-      <div class="customer-footer__grid">
-        <div class="customer-footer__brand">
-          <div class="customer-footer__brand-head">
-            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
-            <span class="customer-footer__brand-name">Corner Cravings</span>
-          </div>
-          <p class="customer-footer__desc">
-            Your neighborhood stop for street food, rice meals, pasta, tea, coffee, and frappes in Brgy. Pasong Putik, Quezon City.
-          </p>
-        </div>
-
-        <div class="customer-footer__col">
-          <h4 class="customer-footer__col-title">Company</h4>
-          <ul class="customer-footer__links">
-            <li><a href="customer-home.html" class="customer-footer__link">About Us</a></li>
-            <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
-            <li><a href="index.html#visit" class="customer-footer__link">Store Locator</a></li>
-          </ul>
-        </div>
-
-        <div class="customer-footer__col">
-          <h4 class="customer-footer__col-title">Support</h4>
-          <ul class="customer-footer__links">
-            <li><a href="index.html#visit" class="customer-footer__link">Contact</a></li>
-            <li><a href="index.html" class="customer-footer__link">Back to Landing</a></li>
-            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Access</a></li>
-          </ul>
-        </div>
-      </div>
-
-      <div class="customer-footer__bottom">
-        <p>&copy; 2026 Corner Cravings. All rights reserved.</p>
-        <p>Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City</p>
-      </div>
-    </div>
-  </footer>
-
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var summaryCard = document.getElementById('payment-summary-card');
-
       if (!window.CornerCravings) return;
 
-      var cart = window.CornerCravings.getCart();
-      if (cart.length === 0) {
-        window.location.href = 'customer-cart.html';
-        return;
-      }
+      var selectedMethod = 'Credit / Debit Card';
+      var optionCards = document.querySelectorAll('.pm-option-card');
+      var cardFields = document.getElementById('card-fields-container');
+      var totalDisplay = document.getElementById('pm-total-amount');
+      var placeOrderBtn = document.getElementById('btn-place-order');
 
+      // Card inputs
+      var cardNameInp = document.getElementById('card-name');
+      var cardNumInp = document.getElementById('card-number');
+      var cardExpInp = document.getElementById('card-expiry');
+      var cardCvvInp = document.getElementById('card-cvv');
+
+      // Calculate totals from existing cart and delivery
       var delivery = window.CornerCravings.getDeliveryDetails();
       var totals = window.CornerCravings.calculateCartTotals(delivery.method);
 
-      if (summaryCard) {
-        summaryCard.innerHTML = '<h2 class="summary-title">Order Summary</h2>' +
-          '<div class="summary-rows">' +
-            '<div class="summary-row">' +
-              '<span>Items (' + totals.itemCount + ')</span>' +
-              '<span class="summary-val">' + window.CornerCravings.formatPeso(totals.subtotal) + '</span>' +
-            '</div>' +
-            '<div class="summary-row">' +
-              '<span>Delivery (' + totals.deliveryMethod + ')</span>' +
-              '<span class="summary-val">' + (totals.deliveryFee > 0 ? window.CornerCravings.formatPeso(totals.deliveryFee) : 'FREE') + '</span>' +
-            '</div>' +
-            '<div class="summary-row summary-row--total">' +
-              '<span>Total</span>' +
-              '<span class="summary-val">' + window.CornerCravings.formatPeso(totals.total) + '</span>' +
-            '</div>' +
-          '</div>' +
-
-          '<button type="button" class="btn btn-primary btn-block" id="btn-place-order" style="margin-bottom: 12px;">' +
-            'Place Order &middot; ' + window.CornerCravings.formatPeso(totals.total) +
-          '</button>' +
-
-          '<a href="customer-delivery.html" class="btn btn-secondary btn-block btn-sm">Back to Shipping</a>';
-
-        var placeBtn = document.getElementById('btn-place-order');
-        if (placeBtn) {
-          placeBtn.addEventListener('click', function () {
-            var order = window.CornerCravings.createDemoOrder('Cash on Delivery');
-            if (order) {
-              window.CornerCravings.showToast('Order placed successfully!');
-              setTimeout(function () {
-                window.location.href = 'customer-confirmation.html';
-              }, 400);
-            }
-          });
+      if (totalDisplay) {
+        if (totals.total > 0) {
+          totalDisplay.textContent = window.CornerCravings.formatPeso(totals.total);
+        } else {
+          totalDisplay.textContent = '₱1,465.00';
         }
+      }
+
+      // Format card number with spaces as user types
+      if (cardNumInp) {
+        cardNumInp.addEventListener('input', function (e) {
+          var val = this.value.replace(/\D/g, '').substring(0, 16);
+          var formatted = val.match(/.{1,4}/g);
+          this.value = formatted ? formatted.join(' ') : val;
+        });
+      }
+
+      // Format expiry date with slash (MM/YY)
+      if (cardExpInp) {
+        cardExpInp.addEventListener('input', function (e) {
+          var val = this.value.replace(/\D/g, '').substring(0, 4);
+          if (val.length >= 2) {
+            this.value = val.substring(0, 2) + '/' + val.substring(2, 4);
+          } else {
+            this.value = val;
+          }
+        });
+      }
+
+      // Switch payment method card selection
+      optionCards.forEach(function (card) {
+        function selectCard() {
+          optionCards.forEach(function (c) {
+            c.classList.remove('is-selected');
+            c.setAttribute('aria-checked', 'false');
+          });
+
+          card.classList.add('is-selected');
+          card.setAttribute('aria-checked', 'true');
+          selectedMethod = card.getAttribute('data-method');
+
+          if (selectedMethod === 'Credit / Debit Card') {
+            if (cardFields) cardFields.style.display = 'flex';
+          } else {
+            if (cardFields) cardFields.style.display = 'none';
+          }
+        }
+
+        card.addEventListener('click', selectCard);
+        card.addEventListener('keydown', function (e) {
+          if (e.key === 'Enter' || e.key === ' ') {
+            e.preventDefault();
+            selectCard();
+          }
+        });
+      });
+
+      // Place Order Button Handler
+      if (placeOrderBtn) {
+        placeOrderBtn.addEventListener('click', function () {
+          // If Credit / Debit Card is selected, validate inputs
+          if (selectedMethod === 'Credit / Debit Card') {
+            var name = cardNameInp ? cardNameInp.value.trim() : '';
+            var num = cardNumInp ? cardNumInp.value.replace(/\s+/g, '') : '';
+            var exp = cardExpInp ? cardExpInp.value.trim() : '';
+            var cvv = cardCvvInp ? cardCvvInp.value.trim() : '';
+
+            if (!name) {
+              window.CornerCravings.showToast('Please enter the name on your card.');
+              if (cardNameInp) cardNameInp.focus();
+              return;
+            }
+            if (num.length < 15) {
+              window.CornerCravings.showToast('Please enter a valid 16-digit card number.');
+              if (cardNumInp) cardNumInp.focus();
+              return;
+            }
+            if (exp.length < 5) {
+              window.CornerCravings.showToast('Please enter a valid expiry date (MM/YY).');
+              if (cardExpInp) cardExpInp.focus();
+              return;
+            }
+            if (cvv.length < 3) {
+              window.CornerCravings.showToast('Please enter your 3-digit CVV.');
+              if (cardCvvInp) cardCvvInp.focus();
+              return;
+            }
+          }
+
+          // Create demo order and persist
+          var order = window.CornerCravings.createDemoOrder(selectedMethod);
+          if (order) {
+            window.CornerCravings.showToast('Order placed successfully via ' + selectedMethod + '!');
+            setTimeout(function () {
+              window.location.href = 'customer-confirmation.html';
+            }, 350);
+          } else {
+            // If cart was already cleared or empty, redirect to menu
+            window.location.href = 'customer-confirmation.html';
+          }
+        });
       }
     });
   </script>

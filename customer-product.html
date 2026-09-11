@@ -95,7 +95,6 @@
       <div class="customer-footer__grid">
         <div class="customer-footer__brand">
           <div class="customer-footer__brand-head">
-            <img class="customer-footer__logo" src="Logo.png" alt="Corner Cravings logo" width="36" height="36" />
             <span class="customer-footer__brand-name">Corner Cravings</span>
           </div>
           <p class="customer-footer__desc">
@@ -104,20 +103,20 @@
         </div>
 
         <div class="customer-footer__col">
-          <h4 class="customer-footer__col-title">Company</h4>
+          <h4 class="customer-footer__col-title">Navigation</h4>
           <ul class="customer-footer__links">
-            <li><a href="customer-home.html" class="customer-footer__link">About Us</a></li>
+            <li><a href="index.html" class="customer-footer__link">Public Home</a></li>
             <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
-            <li><a href="index.html#visit" class="customer-footer__link">Store Locator</a></li>
+            <li><a href="customer-login.html" class="customer-footer__link">Customer Login</a></li>
           </ul>
         </div>
 
         <div class="customer-footer__col">
-          <h4 class="customer-footer__col-title">Support</h4>
+          <h4 class="customer-footer__col-title">Portal Access</h4>
           <ul class="customer-footer__links">
-            <li><a href="index.html#visit" class="customer-footer__link">Contact</a></li>
-            <li><a href="index.html" class="customer-footer__link">Back to Landing</a></li>
-            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Access</a></li>
+            <li><a href="login.html" class="customer-footer__link">Admin Portal</a></li>
+            <li><a href="staff-login.html" class="customer-footer__link">Employee Portal</a></li>
+            <li><a href="https://www.facebook.com/share/1LJfeS9R3v/" target="_blank" rel="noopener noreferrer" class="customer-footer__link">Facebook Page</a></li>
           </ul>
         </div>
       </div>
@@ -176,12 +175,12 @@
         var sizeHtml = '';
         if (product.sizes) {
           sizeHtml = '<div class="option-group">' +
-            '<h3 class="option-group__title">Select Size</h3>' +
+            '<h3 class="option-group__title">Size</h3>' +
             '<div class="option-radios">';
           for (var s = 0; s < product.sizes.length; s++) {
             var sz = product.sizes[s];
             var isChecked = sz.id === selectedSize ? 'checked' : '';
-            var priceLabel = sz.priceDiff > 0 ? ' (+' + window.CornerCravings.formatPeso(sz.priceDiff) + ')' : '';
+            var priceLabel = sz.priceDiff > 0 ? '<small>+' + window.CornerCravings.formatPeso(sz.priceDiff) + '</small>' : '<small>Standard</small>';
             sizeHtml += '<label class="option-radio-label">' +
               '<input type="radio" name="product-size" value="' + sz.id + '" ' + isChecked + ' />' +
               '<span>' + sz.name + priceLabel + '</span>' +
@@ -193,17 +192,17 @@
         var addonsHtml = '';
         if (product.addons && product.addons.length > 0) {
           addonsHtml = '<div class="option-group">' +
-            '<h3 class="option-group__title">Optional Add-ons</h3>' +
+            '<h3 class="option-group__title">Add-ons</h3>' +
             '<div class="addon-list">';
           for (var a = 0; a < product.addons.length; a++) {
             var ad = product.addons[a];
             var isSelected = selectedAddons.indexOf(ad.id) !== -1 ? 'checked' : '';
             addonsHtml += '<label class="addon-checkbox-label">' +
               '<span>' +
-                '<input type="checkbox" name="product-addon" value="' + ad.id + '" ' + isSelected + ' style="margin-right: 10px;" />' +
+                '<input type="checkbox" name="product-addon" value="' + ad.id + '" ' + isSelected + ' />' +
                 ad.name +
               '</span>' +
-              '<span style="font-weight: 700; color: var(--cust-primary);">+' + window.CornerCravings.formatPeso(ad.price) + '</span>' +
+              '<strong>+' + window.CornerCravings.formatPeso(ad.price) + '</strong>' +
             '</label>';
           }
           addonsHtml += '</div></div>';
@@ -220,10 +219,11 @@
           '</div>' +
 
           '<div class="product-detail__content">' +
-            '<div>' +
-              '<span class="eyebrow">' + product.categoryLabel + '</span>' +
-              '<h1 class="product-detail__title">' + product.name + '</h1>' +
+            '<div class="product-detail__heading">' +
+              '<div><h1 class="product-detail__title">' + product.name + '</h1>' +
               '<div class="product-detail__price">' + window.CornerCravings.formatPeso(product.price) + '</div>' +
+              '<div class="product-detail__tags"><span>' + (product.popular ? 'Best Seller' : 'Freshly Made') + '</span><span>' + product.categoryLabel + '</span><span>Signature</span></div></div>' +
+              '<button type="button" class="product-favorite" aria-label="Add to favorites" aria-pressed="false">&#9825;</button>' +
             '</div>' +
 
             '<p class="product-detail__desc">' + product.description + '</p>' +
@@ -249,6 +249,7 @@
         var minusBtn = document.getElementById('qty-minus');
         var plusBtn = document.getElementById('qty-plus');
         var addBtn = document.getElementById('btn-add-to-cart');
+        var favoriteBtn = container.querySelector('.product-favorite');
 
         if (minusBtn) {
           minusBtn.addEventListener('click', function () {
@@ -293,6 +294,14 @@
             setTimeout(function () {
               window.location.href = 'customer-cart.html';
             }, 400);
+          });
+        }
+
+        if (favoriteBtn) {
+          favoriteBtn.addEventListener('click', function () {
+            var active = this.getAttribute('aria-pressed') === 'true';
+            this.setAttribute('aria-pressed', String(!active));
+            this.innerHTML = active ? '&#9825;' : '&#9829;';
           });
         }
       }

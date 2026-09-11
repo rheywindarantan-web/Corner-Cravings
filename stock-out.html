@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Stock Out · Corner Cravings Admin</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="inventory.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <img class="sidebar__brand-logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" />
+        <div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div>
+      </div>
+      <nav class="sidebar__nav" aria-label="Primary">
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
+        <a class="nav-item is-active nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
+        <a class="nav-item nav-item--sub" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In</span></a>
+        <a class="nav-item nav-item--sub is-active" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg><span>Stock Out</span></a>
+        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+      </nav>
+      <div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg><span>Logout</span></button></div>
+    </aside>
+
+    <div class="main">
+      <header class="topbar">
+        <h2 class="topbar__title">Corner Cravings Admin</h2>
+        <div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input type="search" placeholder="Search inventory..." aria-label="Search inventory" /></div>
+        <div class="topbar__actions"><button class="icon-btn" type="button" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21h-3.4"/></svg></button></div>
+      </header>
+
+      <main class="page-content inventory-page">
+        <header class="page-header">
+          <div><h1 class="page-header__title">Stock Out / Outbound Inventory</h1><p class="page-header__subtitle">Review ingredients and supplies dispatched from inventory.</p></div>
+          <div class="page-header__actions"><a class="btn-outline" href="stock-in.html">Log Stock In</a></div>
+        </header>
+
+        <section class="inventory-panel" aria-labelledby="dispatch-title">
+          <div class="inventory-panel__header">
+            <div><h2 class="inventory-panel__title" id="dispatch-title">Recent Dispatches</h2><p class="inventory-panel__subtitle">Latest outbound inventory activity</p></div>
+            <div class="inventory-tools">
+              <div class="inventory-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input id="inventory-search" type="search" placeholder="Search records..." aria-label="Search stock-out records" /></div>
+              <select class="inventory-filter" id="inventory-category-filter" aria-label="Filter by category"><option value="all">All categories</option><option value="bakery">Bakery</option><option value="produce">Produce</option><option value="beverage">Beverage</option><option value="condiments">Condiments</option></select>
+            </div>
+          </div>
+
+          <div class="inventory-table-wrap">
+            <table class="inventory-table">
+              <thead><tr><th>Item name</th><th>Category</th><th>Qty dispatched</th><th>Available stock</th><th>Usage purpose</th><th>Date dispatched</th></tr></thead>
+              <tbody id="stock-out-body">
+                <tr data-category="bakery"><td><div class="inventory-item"><div><strong>Artisan Sourdough Buns</strong></div></div></td><td>Bakery</td><td class="inventory-qty--out">−45</td><td>120</td><td><span class="inventory-status inventory-status--daily">Daily Prep</span></td><td>Today, 06:30 AM</td></tr>
+                <tr data-category="produce"><td><div class="inventory-item"><div><strong>Organic Avocados</strong></div></div></td><td>Produce</td><td class="inventory-qty--out">−12</td><td>8</td><td><span class="inventory-status inventory-status--spoilage">Spoilage</span></td><td>Today, 09:15 AM</td></tr>
+                <tr data-category="beverage"><td><div class="inventory-item"><div><strong>Cold Brew Concentrate</strong></div></div></td><td>Beverage</td><td class="inventory-qty--out">−5 L</td><td>25 L</td><td><span class="inventory-status inventory-status--daily">Daily Prep</span></td><td>Yesterday, 10:00 PM</td></tr>
+                <tr data-category="condiments"><td><div class="inventory-item"><div><strong>Truffle Mayo</strong></div></div></td><td>Condiments</td><td class="inventory-qty--out">−2 kg</td><td>18 kg</td><td><span class="inventory-status inventory-status--transfer">Stock Transfer</span></td><td>Dec 21, 11:45 AM</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="inventory-empty" id="inventory-empty">No dispatch records match your search.</p>
+          <div class="inventory-panel__footer"><span>Showing 1–4 of 128 entries</span><span>Outbound inventory records</span></div>
+        </section>
+      </main>
+    </div>
+  </div>
+  <script src="auth.js"></script>
+  <script src="inventory.js"></script>
+</body>
+</html>

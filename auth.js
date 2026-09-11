@@ -591,10 +591,10 @@
     staffLoginForm.addEventListener('submit', function (e) {
       e.preventDefault();
       var email = document.getElementById('email').value.trim();
-      var token = document.getElementById('token').value;
+      var password = document.getElementById('staff-password').value;
 
-      if (!email || !token) {
-        window.alert('Please enter both your Gmail address and access token.');
+      if (!email || !password) {
+        window.alert('Please enter both your Gmail address and password.');
         return;
       }
 
@@ -739,6 +739,53 @@
       console.log('Password reset submitted.');
       window.alert('Your password has been reset successfully.');
       window.location.href = 'login.html';
+    });
+  }
+
+  // Employee forgot-password verification form
+  var staffForgotForm = document.getElementById('staff-forgot-form');
+  if (staffForgotForm) {
+    staffForgotForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('staff-recovery-email').value.trim();
+      var code = document.getElementById('staff-recovery-code').value.trim();
+
+      if (!email) {
+        window.alert('Please enter your employee email address.');
+        return;
+      }
+      if (!code) {
+        window.alert('Please enter the verification code sent to your email.');
+        return;
+      }
+
+      window.location.href = 'staff-reset-password.html';
+    });
+  }
+
+  // Employee reset-password form
+  var staffResetForm = document.getElementById('staff-reset-form');
+  if (staffResetForm) {
+    staffResetForm.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var newPassword = document.getElementById('staff-new-password').value;
+      var confirmPassword = document.getElementById('staff-confirm-password').value;
+
+      if (!newPassword || !confirmPassword) {
+        window.alert('Please fill in both password fields.');
+        return;
+      }
+      if (newPassword !== confirmPassword) {
+        window.alert('Passwords do not match. Please try again.');
+        return;
+      }
+      if (newPassword.length < 8) {
+        window.alert('Password must be at least 8 characters long.');
+        return;
+      }
+
+      window.alert('Your employee password has been reset successfully.');
+      window.location.href = 'staff-login.html';
     });
   }
 })();

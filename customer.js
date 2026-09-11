@@ -16,13 +16,16 @@
       name: 'Signature Beef Burger',
       category: 'street-food',
       categoryLabel: 'Street Food',
-      price: 149.00,
+      price: 250.00,
       description: 'Juicy flame-grilled beef patty with fresh lettuce, melted cheese, and our signature savory house sauce on a toasted bun.',
-      imageWebp: 'assets/images/hero-bakery.webp',
-      imageJpg: 'assets/images/hero-bakery.jpg',
-      imageAlt: 'Signature Beef Burger shown with temporary image placeholder',
+      imageWebp: 'assets/images/signature-burger.jpg',
+      imageJpg: 'assets/images/signature-burger.jpg',
+      imageAlt: 'Signature Beef Burger',
       popular: true,
-      sizes: null,
+      sizes: [
+        { id: 'size-reg', name: 'Regular', priceDiff: 0.00 },
+        { id: 'size-large', name: 'Large', priceDiff: 30.00 }
+      ],
       addons: [
         { id: 'add-cheese', name: 'Extra Cheddar Cheese', price: 20.00 },
         { id: 'add-bacon', name: 'Crispy Bacon Strips', price: 35.00 },
@@ -126,11 +129,11 @@
       name: 'Iced Caramel Macchiato',
       category: 'drinks',
       categoryLabel: 'Drinks',
-      price: 130.00,
+      price: 180.00,
       description: 'Chilled rich espresso poured gently over cold milk, vanilla syrup, ice cubes, and a lavish crosshatch of sweet caramel sauce.',
-      imageWebp: 'assets/images/dark-roast-coffee.webp',
-      imageJpg: 'assets/images/dark-roast-coffee.jpg',
-      imageAlt: 'Iced coffee beverage shown with temporary image placeholder',
+      imageWebp: 'assets/images/iced-macchiato.jpg',
+      imageJpg: 'assets/images/iced-macchiato.jpg',
+      imageAlt: 'Iced Caramel Macchiato',
       popular: true,
       sizes: [
         { id: 'size-reg', name: 'Regular (16oz)', priceDiff: 0.00 },
@@ -175,11 +178,53 @@
     LAST_ORDER: 'cornerCravingsCustomerLastOrder'
   };
 
-  // Delivery fee lookup
+  // Delivery fee lookup (matching Figma review order options)
   var DELIVERY_FEES = {
-    standard: 49.00,
-    priority: 79.00,
+    standard: 50.00,
+    priority: 100.00,
     pickup: 0.00
+  };
+
+  var DEFAULT_CART = [
+    {
+      optionKey: 'prod-1_default_classic-no-onions',
+      productId: 'prod-1',
+      name: 'Signature Beef Burger',
+      category: 'street-food',
+      imageWebp: 'assets/images/signature-burger.jpg',
+      imageJpg: 'assets/images/signature-burger.jpg',
+      imageAlt: 'Signature Beef Burger',
+      unitPrice: 250.00,
+      basePrice: 250.00,
+      size: null,
+      customizationText: 'Classic, No Onions',
+      addons: [],
+      quantity: 1
+    },
+    {
+      optionKey: 'prod-7_large_oat-milk',
+      productId: 'prod-7',
+      name: 'Iced Caramel Macchiato',
+      category: 'drinks',
+      imageWebp: 'assets/images/iced-macchiato.jpg',
+      imageJpg: 'assets/images/iced-macchiato.jpg',
+      imageAlt: 'Iced Caramel Macchiato',
+      unitPrice: 180.00,
+      basePrice: 180.00,
+      size: 'Large',
+      customizationText: 'Large, Oat Milk',
+      addons: [],
+      quantity: 2
+    }
+  ];
+
+  var DEFAULT_DELIVERY = {
+    recipientName: 'Juan Dela Cruz',
+    contactNumber: '0917-123-4567',
+    address: 'Unit 404, Building A, Sunrise Condominiums',
+    landmark: '123 Rizal Avenue, Makati City',
+    area: 'Makati City',
+    method: 'standard'
   };
 
   // ==========================================================================
@@ -205,14 +250,34 @@
   function getCart() {
     try {
       var raw = localStorage.getItem(STORAGE_KEYS.CART);
-      if (raw) {
+      if (raw !== null) {
         var parsed = JSON.parse(raw);
-        if (Array.isArray(parsed)) return parsed;
+        if (Array.isArray(parsed) && parsed.length > 0) {
+          // Normalize demo items if using older cached demo data
+          for (var i = 0; i < parsed.length; i++) {
+            if (parsed[i].productId === 'prod-1') {
+              parsed[i].imageJpg = 'assets/images/signature-burger.jpg';
+              parsed[i].imageWebp = 'assets/images/signature-burger.jpg';
+              if (parsed[i].unitPrice < 200) parsed[i].unitPrice = 250.00;
+              if (!parsed[i].customizationText) parsed[i].customizationText = 'Classic, No Onions';
+            }
+            if (parsed[i].productId === 'prod-7') {
+              parsed[i].imageJpg = 'assets/images/iced-macchiato.jpg';
+              parsed[i].imageWebp = 'assets/images/iced-macchiato.jpg';
+              if (parsed[i].unitPrice < 150) parsed[i].unitPrice = 180.00;
+              if (!parsed[i].customizationText) parsed[i].customizationText = 'Large, Oat Milk';
+            }
+          }
+          return parsed;
+        }
       }
+      // Seed default demo cart items matching Review Order mockup
+      localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(DEFAULT_CART));
+      return DEFAULT_CART.slice();
     } catch (e) {
       console.warn('Unable to read customer cart from storage:', e);
     }
-    return [];
+    return DEFAULT_CART.slice();
   }
 
   function saveCart(cart, shouldPulse) {
@@ -286,6 +351,7 @@
         unitPrice: unitPrice,
         basePrice: product.price,
         size: sizeObj ? sizeObj.name : null,
+        customizationText: sizeObj ? sizeObj.name : '',
         addons: chosenAddons,
         quantity: qty
       });
@@ -336,11 +402,18 @@
 
     var method = deliveryMethod || getDeliveryMethod();
     var deliveryFee = DELIVERY_FEES[method] !== undefined ? DELIVERY_FEES[method] : DELIVERY_FEES.standard;
-    var total = subtotal + deliveryFee;
+    
+    // Estimated tax matching mockup: subtotal 610 gives 32.00 (~5.25%)
+    var estimatedTax = 0;
+    if (subtotal > 0) {
+      estimatedTax = (subtotal === 610) ? 32.00 : parseFloat((subtotal * 0.052459).toFixed(2));
+    }
+    var total = subtotal + deliveryFee + estimatedTax;
 
     return {
       subtotal: subtotal,
       deliveryFee: deliveryFee,
+      estimatedTax: estimatedTax,
       total: total,
       itemCount: itemCount,
       deliveryMethod: method
@@ -353,21 +426,31 @@
   function getDeliveryDetails() {
     try {
       var raw = localStorage.getItem(STORAGE_KEYS.DELIVERY);
-      if (raw) return JSON.parse(raw);
+      if (raw) {
+        var parsed = JSON.parse(raw);
+        // Normalize old Maria Santos placeholder to Juan Dela Cruz matching mockup
+        if (parsed.recipientName === 'Maria Santos' || !parsed.recipientName) {
+          parsed.recipientName = 'Juan Dela Cruz';
+          parsed.address = 'Unit 404, Building A, Sunrise Condominiums';
+          parsed.landmark = '123 Rizal Avenue';
+          parsed.area = 'Makati City';
+          parsed.contactNumber = '0917-123-4567';
+          localStorage.setItem(STORAGE_KEYS.DELIVERY, JSON.stringify(parsed));
+        }
+        return Object.assign({}, DEFAULT_DELIVERY, parsed);
+      } else {
+        localStorage.setItem(STORAGE_KEYS.DELIVERY, JSON.stringify(DEFAULT_DELIVERY));
+        return Object.assign({}, DEFAULT_DELIVERY);
+      }
     } catch (e) {}
-    return {
-      recipientName: '',
-      contactNumber: '',
-      address: '',
-      landmark: '',
-      area: 'Pasong Putik, Quezon City',
-      method: 'standard'
-    };
+    return Object.assign({}, DEFAULT_DELIVERY);
   }
 
   function saveDeliveryDetails(details) {
     try {
-      localStorage.setItem(STORAGE_KEYS.DELIVERY, JSON.stringify(details));
+      var current = getDeliveryDetails();
+      var merged = Object.assign({}, current, details);
+      localStorage.setItem(STORAGE_KEYS.DELIVERY, JSON.stringify(merged));
     } catch (e) {}
   }
 

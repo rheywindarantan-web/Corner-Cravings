@@ -37,21 +37,13 @@
       </div>
     </div>
   </header>
-  <main class="auth-page auth-page--white">
-    <section class="auth-card auth-card--login" aria-labelledby="login-title">
+  <main class="auth-page auth-page--portal-login">
+    <section class="auth-card auth-card--portal-login" aria-labelledby="login-title">
 
       <div class="auth-brand">
         <img class="auth-brand__logo" src="Logo.png" alt="Corner Cravings logo" width="72" height="72" />
         <h1 class="auth-brand__name" id="login-title">Corner Cravings</h1>
-        <p class="auth-brand__subtitle">Admin Portal</p>
-      </div>
-
-      <div class="role-toggle"
-        style="display:grid; grid-template-columns:1fr 1fr; gap:8px; margin-bottom: var(--space-5);">
-        <button type="button" class="role-toggle__button is-active" data-role-target="login.html"
-          style="height: 42px; border: 1px solid var(--color-border); border-radius: 10px; background: var(--color-primary); color: #fff; font-weight: 600; cursor: pointer;">Admin</button>
-        <button type="button" class="role-toggle__button" data-role-target="staff-login.html"
-          style="height: 42px; border: 1px solid var(--color-border); border-radius: 10px; background: #fff; color: var(--color-text-dark); font-weight: 600; cursor: pointer;">Employee</button>
+        <p class="auth-brand__subtitle">Admin Portal Login</p>
       </div>
 
       <form id="login-form" novalidate>
@@ -106,8 +98,9 @@
         </div>
 
         <button type="submit" class="btn btn-primary" style="margin-top: var(--space-5);">Log In</button>
-        <a href="signup.html" class="btn btn-secondary" style="margin-top: var(--space-3);">Sign Up</a>
       </form>
+
+      <p class="portal-login__footnote">Secure Admin Access. Authorized personnel only.</p>
     </section>
   </main>
   <!-- Shared Portal Footer -->
@@ -127,16 +120,16 @@
           <h4 class="customer-footer__col-title">Navigation</h4>
           <ul class="customer-footer__links">
             <li><a href="index.html" class="customer-footer__link">Public Home</a></li>
-            <li><a href="customer-login.html" class="customer-footer__link">Customer Sign In</a></li>
-            <li><a href="login.html" class="customer-footer__link">Staff &amp; Admin Portal</a></li>
+            <li><a href="customer-menu.html" class="customer-footer__link">Menu</a></li>
+            <li><a href="customer-login.html" class="customer-footer__link">Customer Login</a></li>
           </ul>
         </div>
 
         <div class="customer-footer__col">
-          <h4 class="customer-footer__col-title">Support &amp; Location</h4>
+          <h4 class="customer-footer__col-title">Portal Access</h4>
           <ul class="customer-footer__links">
-            <li><a href="index.html#visit" class="customer-footer__link">Pasong Putik Store</a></li>
-            <li><a href="index.html#reviews" class="customer-footer__link">Customer Reviews</a></li>
+            <li><a href="login.html" class="customer-footer__link">Admin Portal</a></li>
+            <li><a href="staff-login.html" class="customer-footer__link">Employee Portal</a></li>
             <li><a href="https://www.facebook.com/share/1LJfeS9R3v/" target="_blank" rel="noopener noreferrer" class="customer-footer__link">Facebook Page</a></li>
           </ul>
         </div>
