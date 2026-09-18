@@ -6,6 +6,19 @@
 (function () {
   'use strict';
 
+  var adminNav = document.querySelector('.sidebar__nav');
+  var adminLabel = document.querySelector('.sidebar__brand-sub');
+  if (adminNav && adminLabel && adminLabel.textContent.trim() === 'Admin Panel' && !adminNav.querySelector('[href="order-history.html"]')) {
+    var ordersLink = adminNav.querySelector('[href="orders.html"]');
+    if (ordersLink) {
+      var historyLink = document.createElement('a');
+      historyLink.className = 'nav-item nav-item--sub' + (location.pathname.endsWith('/order-history.html') ? ' is-active' : '');
+      historyLink.href = 'order-history.html';
+      historyLink.innerHTML = '<svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v6h6M12 7v5l3 2"/></svg><span>Order History</span>';
+      ordersLink.insertAdjacentElement('afterend', historyLink);
+    }
+  }
+
   function isValidGmail(email) {
     return /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(email);
   }

@@ -221,7 +221,7 @@
                       '<div class="ro-option-desc">30–45 mins</div>' +
                     '</div>' +
                   '</div>' +
-                  '<div class="ro-option-fee">50.00</div>' +
+                  '<div class="ro-option-fee">₱50.00</div>' +
                 '</div>' +
 
                 '<!-- Priority Delivery -->' +
@@ -235,7 +235,7 @@
                       '<div class="ro-option-desc">15–30 mins (Jump the queue)</div>' +
                     '</div>' +
                   '</div>' +
-                  '<div class="ro-option-fee">100.00</div>' +
+                  '<div class="ro-option-fee">₱100.00</div>' +
                 '</div>' +
 
                 '<!-- Self-Pickup -->' +
@@ -266,15 +266,15 @@
               '<div class="ro-summary-lines">' +
                 '<div class="ro-summary-line">' +
                   '<span>Subtotal (' + totals.itemCount + ' items)</span>' +
-                  '<span>' + totals.subtotal.toFixed(2) + '</span>' +
+                  '<span>' + window.CornerCravings.formatPeso(totals.subtotal) + '</span>' +
                 '</div>' +
                 '<div class="ro-summary-line">' +
                   '<span>Delivery Fee</span>' +
-                  '<span>' + (totals.deliveryFee > 0 ? totals.deliveryFee.toFixed(2) : 'Free') + '</span>' +
+                  '<span>' + (totals.deliveryFee > 0 ? window.CornerCravings.formatPeso(totals.deliveryFee) : 'Free') + '</span>' +
                 '</div>' +
                 '<div class="ro-summary-line">' +
                   '<span>Estimated Tax</span>' +
-                  '<span>' + totals.estimatedTax.toFixed(2) + '</span>' +
+                  '<span>' + window.CornerCravings.formatPeso(totals.estimatedTax) + '</span>' +
                 '</div>' +
               '</div>' +
 

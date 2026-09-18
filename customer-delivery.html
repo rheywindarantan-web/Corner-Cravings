@@ -174,15 +174,15 @@
             <div class="dd-summary-breakdown">
               <div class="dd-breakdown-row">
                 <span>Subtotal</span>
-                <span id="dd-val-subtotal">18.48</span>
+                <span id="dd-val-subtotal">₱18.48</span>
               </div>
               <div class="dd-breakdown-row">
                 <span id="dd-label-delivery">Standard Delivery</span>
-                <span id="dd-val-delivery">3.99</span>
+                <span id="dd-val-delivery">₱3.99</span>
               </div>
               <div class="dd-breakdown-row">
                 <span>Taxes &amp; Fees</span>
-                <span id="dd-val-tax">2.10</span>
+                <span id="dd-val-tax">₱2.10</span>
               </div>
             </div>
 
@@ -307,7 +307,7 @@
           var itemsHtml = '';
           for (var i = 0; i < cart.length; i++) {
             var item = cart[i];
-            var linePrice = (item.unitPrice * item.quantity).toFixed(2);
+            var linePrice = window.CornerCravings.formatPeso(item.unitPrice * item.quantity);
             itemsHtml += '<div class="dd-summary-item">' +
               '<div class="dd-item-left">' +
                 '<span class="dd-item-qty">' + item.quantity + 'x</span>' +
@@ -319,7 +319,7 @@
           itemsListEl.innerHTML = itemsHtml;
         }
 
-        if (subtotalEl) subtotalEl.textContent = totals.subtotal.toFixed(2);
+        if (subtotalEl) subtotalEl.textContent = window.CornerCravings.formatPeso(totals.subtotal);
         
         var methodLabels = {
           standard: 'Standard Delivery',
@@ -327,8 +327,8 @@
           pickup: 'Store Pickup'
         };
         if (delLabelEl) delLabelEl.textContent = methodLabels[currentMethod] || 'Standard Delivery';
-        if (delFeeEl) delFeeEl.textContent = (totals.deliveryFee > 0 ? totals.deliveryFee.toFixed(2) : 'Free');
-        if (taxEl) taxEl.textContent = totals.estimatedTax.toFixed(2);
+        if (delFeeEl) delFeeEl.textContent = (totals.deliveryFee > 0 ? window.CornerCravings.formatPeso(totals.deliveryFee) : 'Free');
+        if (taxEl) taxEl.textContent = window.CornerCravings.formatPeso(totals.estimatedTax);
         if (totalEl) totalEl.textContent = window.CornerCravings.formatPeso(totals.total);
       }
 
