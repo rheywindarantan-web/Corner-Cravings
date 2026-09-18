@@ -521,17 +521,37 @@
       minute: '2-digit'
     });
 
-    var order = {
+      var order = {
       orderNumber: orderNumber,
       orderDate: dateString,
       items: cart,
       delivery: delivery,
       paymentMethod: paymentMethod || 'Cash on Delivery',
       totals: totals,
-      status: 'Confirmed'
-    };
+        status: 'Confirmed'
+      };
 
-    saveLastOrder(order);
+      try {
+        var adminOrders = JSON.parse(localStorage.getItem('cornerCravingsAdminOrders') || '[]');
+        if (!Array.isArray(adminOrders)) adminOrders = [];
+        var adminId = orderNumber.replace(/\D/g, '');
+        adminOrders.unshift({
+          id: adminId,
+          customer: delivery.recipientName || 'Customer',
+          email: (getCustomerSession() || {}).email || 'customer@cornercravings.com',
+          placedAt: new Date().toISOString(),
+          status: 'Pending',
+          items: cart.map(function (item) {
+            return { name: item.name, option: item.customizationText || item.size || 'Regular', quantity: item.quantity, price: item.unitPrice };
+          }),
+          notes: delivery.notes || ''
+        });
+        localStorage.setItem('cornerCravingsAdminOrders', JSON.stringify(adminOrders));
+      } catch (error) {
+        console.warn('Unable to add the order to the admin queue:', error);
+      }
+
+      saveLastOrder(order);
     clearCart();
     return order;
   }
@@ -608,7 +628,7 @@
         e.preventDefault();
         var session = getCustomerSession();
         if (session) {
-          showToast('Signed in as ' + (session.name || session.email));
+          window.location.href = 'customer-profile.html';
         } else {
           window.location.href = 'customer-login.html';
         }

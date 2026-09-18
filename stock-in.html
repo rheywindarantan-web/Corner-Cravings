@@ -39,20 +39,19 @@
       <main class="page-content inventory-page">
         <header class="page-header">
           <div><h1 class="page-header__title">Stock In</h1><p class="page-header__subtitle">Record incoming deliveries and review recently received inventory.</p></div>
-          <div class="page-header__actions"><a class="btn-outline" href="stock-out.html">View Stock Out</a></div>
         </header>
 
         <div class="inventory-layout">
           <div class="inventory-form-column">
             <form class="inventory-form-card" id="stock-in-form" novalidate>
               <h2 class="inventory-section-title"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3"/></svg>Log New Delivery</h2>
-              <div class="inventory-field"><label for="stock-item">Item name</label><select id="stock-item" required><option value="">Choose an item</option><option>Free Range Eggs</option><option>Atlantic Salmon</option><option>Heirloom Tomatoes</option><option>00 Pizza Flour</option><option>Fresh Milk</option></select></div>
-              <div class="inventory-field"><label for="stock-category">Category</label><select id="stock-category" required><option value="">Select category</option><option>Dairy &amp; Eggs</option><option>Proteins</option><option>Fresh Produce</option><option>Dry Goods</option><option>Beverages</option></select></div>
+              <div class="inventory-field"><label for="stock-item">Item name</label><select id="stock-item" required><option value="">Choose an item</option></select></div>
+              <div class="inventory-field"><label for="stock-category">Category</label><input id="stock-category" type="text" placeholder="Selected automatically" readonly required /></div>
               <div class="inventory-field"><label for="stock-quantity">Quantity</label><input id="stock-quantity" type="number" min="1" step="1" placeholder="0" required /></div>
               <div class="inventory-field"><label for="stock-date">Date received</label><input id="stock-date" type="date" required /></div>
               <button class="btn-solid-sm inventory-submit" type="submit">Log Entry</button>
             </form>
-            <aside class="delivery-summary" aria-label="Today's delivery total"><div><span class="delivery-summary__label">Today's delivery</span><span class="delivery-summary__value"><span id="delivery-count">14</span> items</span></div><span class="delivery-summary__icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span></aside>
+            <aside class="delivery-summary" aria-label="Today's delivery total"><div><span class="delivery-summary__label">Today's delivery</span><span class="delivery-summary__value"><span id="delivery-count">0</span> deliveries</span></div><span class="delivery-summary__icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span></aside>
           </div>
 
           <section class="inventory-panel" aria-labelledby="receipts-title">
@@ -60,15 +59,10 @@
             <div class="inventory-table-wrap">
               <table class="inventory-table">
                 <thead><tr><th>Item details</th><th>Category</th><th>Qty received</th><th>Date</th><th>Status</th></tr></thead>
-                <tbody id="receipt-body">
-                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">🥚</span><div><strong>Free Range Eggs</strong><small>BCH-18-09-24</small></div></div></td><td>Dairy &amp; Eggs</td><td>15 crates</td><td>Oct 24, 2026</td><td><span class="inventory-status inventory-status--verified">Verified</span></td></tr>
-                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">🐟</span><div><strong>Atlantic Salmon</strong><small>SLM-15-10-24</small></div></div></td><td>Proteins</td><td>40 lbs</td><td>Oct 24, 2026</td><td><span class="inventory-status inventory-status--verified">Verified</span></td></tr>
-                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">🍅</span><div><strong>Heirloom Tomatoes</strong><small>TOM-19-09-24</small></div></div></td><td>Fresh Produce</td><td>25 lbs</td><td>Oct 23, 2026</td><td><span class="inventory-status inventory-status--pending">Pending QC</span></td></tr>
-                  <tr><td><div class="inventory-item"><span class="inventory-item__icon">◇</span><div><strong>00 Pizza Flour</strong><small>FLR-10-09-24</small></div></div></td><td>Dry Goods</td><td>100 lbs</td><td>Oct 21, 2026</td><td><span class="inventory-status inventory-status--verified">Verified</span></td></tr>
-                </tbody>
+                <tbody id="receipt-body"></tbody>
               </table>
             </div>
-            <div class="inventory-panel__footer"><span>Showing 1–4 of 42 entries</span><span>Recently received inventory</span></div>
+            <div class="inventory-panel__footer"><span id="receipt-results-count">Showing 0 entries</span><span>Recently received inventory</span></div>
           </section>
         </div>
       </main>

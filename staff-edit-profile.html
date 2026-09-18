@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Employee Profile · Staff Portal</title><link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" /><link rel="stylesheet" href="staff.css" />
+  <script src="staff-edit-profile.js" defer></script>
+</head>
+<body><div class="staff-shell">
+  <aside class="staff-sidebar">
+    <div class="staff-brand"><div><p class="staff-brand__name">Staff Portal</p><p class="staff-brand__sub">Employee</p></div></div>
+    <nav class="staff-nav" aria-label="Primary">
+      <a class="staff-nav-item" href="staff-orders.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="4" y="4" width="16" height="18" rx="2"/><path d="M9 2v4M15 2v4M9 14l2 2 4-4"/></svg><span>Upcoming Orders</span></a>
+      <a class="staff-nav-item" href="staff-history.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7L3 8V3m0 5h5M12 7v5l4 2"/></svg><span>Order History</span></a>
+      <a class="staff-nav-item is-active" href="staff-profile.html"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+    </nav>
+    <div class="staff-sidebar__footer"><button class="btn-clockout" type="button" onclick="location.href='staff-login.html'"><span>Clock Out</span></button></div>
+  </aside>
+  <div class="staff-main"><header class="staff-topbar"><h1 class="staff-topbar__title">Edit Profile</h1></header><main class="staff-content">
+    <form id="staff-edit-profile-form" class="staff-edit-profile-card">
+      <div class="staff-photo-editor"><div class="staff-photo-editor__frame"><img id="staff-edit-avatar" alt="Employee profile" /><span aria-hidden="true">+</span></div><p>Profile Photo</p></div>
+      <div class="staff-edit-profile-grid">
+        <label>First Name<input name="firstName" type="text" required autocomplete="given-name" /></label>
+        <label>Last Name<input name="lastName" type="text" required autocomplete="family-name" /></label>
+        <label class="is-wide">Email Address<span class="staff-edit-input-icon">✉</span><input name="email" type="email" required autocomplete="email" /></label>
+        <label class="is-wide">Phone Number<span class="staff-edit-input-icon">⌕</span><input name="phone" type="tel" required autocomplete="tel" /></label>
+        <label class="is-wide">Store Name<span class="staff-edit-lock" aria-label="Locked">♙</span><input name="store" type="text" readonly /></label>
+      </div>
+      <fieldset class="staff-save-confirm"><legend>Save Changes?</legend><div><a class="staff-confirm-no" href="staff-profile.html">No</a><button class="staff-confirm-yes" type="submit">Yes</button></div></fieldset>
+    </form>
+  </main></div>
+</div></body></html>

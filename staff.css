@@ -890,3 +890,42 @@ button:active,
     line-height: 1.5;
   }
 }
+
+/* Employee edit-profile screen */
+.staff-btn-solid { text-decoration: none; }
+.staff-edit-profile-card { max-width: 960px; margin: 0 auto; padding: 34px 24px 0; overflow: hidden; border: 1px solid #4f4a47; border-radius: 12px; background: #fff; box-shadow: 0 9px 24px rgba(62, 40, 33, .08); }
+.staff-photo-editor { text-align: center; }
+.staff-photo-editor__frame { position: relative; width: 108px; height: 108px; margin: 0 auto; border: 3px dashed var(--staff-primary); border-radius: 50%; padding: 8px; }
+.staff-photo-editor__frame img { width: 100%; height: 100%; display: block; border-radius: 50%; object-fit: cover; }
+.staff-photo-editor__frame span { position: absolute; right: 4px; bottom: 5px; width: 31px; height: 31px; display: grid; place-items: center; border: 3px solid #fff; border-radius: 50%; background: var(--staff-primary); color: #fff; font-size: 22px; font-weight: 700; }
+.staff-photo-editor p { margin: 10px 0 22px; color: var(--staff-text-heading); font-size: 14px; }
+.staff-edit-profile-grid { display: grid; grid-template-columns: 1fr .55fr; gap: 17px 20px; }
+.staff-edit-profile-grid label { position: relative; display: grid; gap: 7px; color: var(--staff-text-body); font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.staff-edit-profile-grid .is-wide { grid-column: 1 / -1; }
+.staff-edit-profile-grid input { width: 100%; height: 45px; padding: 0 13px; border: 1px solid #e8bfb2; border-radius: 6px; background: #fffaf8; color: var(--staff-text-heading); font: inherit; font-size: 13px; outline: none; }
+.staff-edit-profile-grid input:focus { border-color: var(--staff-primary); box-shadow: 0 0 0 3px rgba(139,31,6,.1); }
+.staff-edit-profile-grid input[readonly] { background: #efedec; border-color: #ddd7d4; }
+.staff-edit-input-icon { position: absolute; z-index: 1; left: 12px; bottom: 13px; color: #8c7c76; font-size: 14px; }
+.staff-edit-input-icon + input { padding-left: 38px; }
+.staff-edit-lock { position: absolute; z-index: 1; right: 12px; bottom: 13px; color: #938681; }
+.staff-save-confirm { margin: 24px -24px 0; padding: 0 24px 28px; border: 0; border-top: 1px solid #ece4e0; text-align: center; }
+.staff-save-confirm legend { width: 100%; padding: 15px 0 16px; color: #111; font-family: var(--font-heading); font-size: 23px; font-weight: 700; }
+.staff-save-confirm > div { display: flex; justify-content: center; gap: 35px; }
+.staff-confirm-no, .staff-confirm-yes { min-width: 105px; min-height: 39px; display: inline-grid; place-items: center; border: 1px solid #4c4643; border-radius: 0; font: inherit; text-decoration: none; cursor: pointer; }
+.staff-confirm-no { background: #fff; color: #111; }
+.staff-confirm-yes { border-color: var(--staff-primary); background: var(--staff-primary); color: #fff; }
+
+/* Profile view displays values as flat information cards. */
+#staff-profile-form .profile-form-field:disabled { height: auto; padding: 0; border: 0; background: transparent; color: var(--staff-text-heading); opacity: 1; }
+#staff-profile-form textarea.profile-form-field:disabled { resize: none; }
+
+@media (max-width: 640px) {
+  .staff-edit-profile-card { padding: 25px 18px 0; }
+  .staff-save-confirm { margin-inline: -18px; }
+}
+@media (max-width: 480px) {
+  .staff-edit-profile-grid { grid-template-columns: 1fr; }
+  .staff-edit-profile-grid .is-wide { grid-column: auto; }
+  .staff-save-confirm > div { gap: 12px; }
+  .staff-confirm-no, .staff-confirm-yes { flex: 1; min-width: 0; }
+}
