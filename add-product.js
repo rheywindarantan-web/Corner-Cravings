@@ -7,6 +7,12 @@
   var preview = document.getElementById('product-image-preview');
   var dialog = document.getElementById('product-confirm');
   var pendingImage = '';
+  var categorySelect = document.getElementById('product-category');
+  if (categorySelect && Array.isArray(window.CornerCravingsMenu)) {
+    var categories = {};
+    window.CornerCravingsMenu.forEach(function (product) { categories[product.categoryLabel] = true; });
+    categorySelect.innerHTML = '<option value="">Select a category</option>' + Object.keys(categories).map(function (category) { return '<option>' + category + '</option>'; }).join('');
+  }
 
   function useFile(file) {
     if (!file) return;

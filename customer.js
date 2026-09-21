@@ -1,15 +1,15 @@
 /**
  * Corner Cravings — Customer Ordering Architecture & State Management
- * Handles demo menu catalog, cart operations, delivery preferences, demo session, and order lifecycle.
+ * Handles the owner menu catalog, cart operations, delivery preferences, demo session, and order lifecycle.
  */
 
 (function () {
   'use strict';
 
   // ==========================================================================
-  // Centralized Demo Menu Data
+  // Centralized Menu Data
   // ==========================================================================
-  // TODO: Replace demo menu data with the owner-approved item names, prices, categories, and images.
+  // The legacy fallback below is used only if menu-data.js fails to load.
   var DEMO_MENU = [
     {
       id: 'prod-1',
@@ -167,6 +167,10 @@
     }
   ];
 
+  if (Array.isArray(window.CornerCravingsMenu) && window.CornerCravingsMenu.length) {
+    DEMO_MENU = window.CornerCravingsMenu;
+  }
+
   // ==========================================================================
   // Storage Keys (Strictly Isolated from Admin/Staff)
   // ==========================================================================
@@ -175,7 +179,8 @@
     PROFILE: 'cornerCravingsCustomerProfile',
     CART: 'cornerCravingsCustomerCart',
     DELIVERY: 'cornerCravingsCustomerDelivery',
-    LAST_ORDER: 'cornerCravingsCustomerLastOrder'
+    LAST_ORDER: 'cornerCravingsCustomerLastOrder',
+    ORDERS: 'cornerCravingsCustomerOrders'
   };
 
   // Delivery fee lookup (matching Figma review order options)
@@ -252,32 +257,18 @@
       var raw = localStorage.getItem(STORAGE_KEYS.CART);
       if (raw !== null) {
         var parsed = JSON.parse(raw);
-        if (Array.isArray(parsed) && parsed.length > 0) {
-          // Normalize demo items if using older cached demo data
-          for (var i = 0; i < parsed.length; i++) {
-            if (parsed[i].productId === 'prod-1') {
-              parsed[i].imageJpg = 'assets/images/signature-burger.jpg';
-              parsed[i].imageWebp = 'assets/images/signature-burger.jpg';
-              if (parsed[i].unitPrice < 200) parsed[i].unitPrice = 250.00;
-              if (!parsed[i].customizationText) parsed[i].customizationText = 'Classic, No Onions';
-            }
-            if (parsed[i].productId === 'prod-7') {
-              parsed[i].imageJpg = 'assets/images/iced-macchiato.jpg';
-              parsed[i].imageWebp = 'assets/images/iced-macchiato.jpg';
-              if (parsed[i].unitPrice < 150) parsed[i].unitPrice = 180.00;
-              if (!parsed[i].customizationText) parsed[i].customizationText = 'Large, Oat Milk';
-            }
-          }
-          return parsed;
+        if (Array.isArray(parsed)) {
+          var currentItems = parsed.filter(function (item) { return getProductById(item.productId); });
+          if (currentItems.length !== parsed.length) localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(currentItems));
+          return currentItems;
         }
       }
-      // Seed default demo cart items matching Review Order mockup
-      localStorage.setItem(STORAGE_KEYS.CART, JSON.stringify(DEFAULT_CART));
-      return DEFAULT_CART.slice();
+      localStorage.setItem(STORAGE_KEYS.CART, '[]');
+      return [];
     } catch (e) {
       console.warn('Unable to read customer cart from storage:', e);
     }
-    return DEFAULT_CART.slice();
+    return [];
   }
 
   function saveCart(cart, shouldPulse) {
@@ -292,6 +283,10 @@
   function addToCart(productId, quantity, selectedSizeId, selectedAddonIds) {
     var product = getProductById(productId);
     if (!product) return false;
+    if (product.available === false) {
+      showToast(product.name + ' is currently unavailable.');
+      return false;
+    }
 
     var qty = parseInt(quantity, 10) || 1;
     if (qty < 1) qty = 1;
@@ -505,6 +500,19 @@
     } catch (e) {}
   }
 
+  function getCustomerOrders() {
+    try {
+      var orders = JSON.parse(localStorage.getItem(STORAGE_KEYS.ORDERS) || '[]');
+      return Array.isArray(orders) ? orders : [];
+    } catch (e) { return []; }
+  }
+
+  function saveCustomerOrder(order) {
+    var orders = getCustomerOrders();
+    orders.unshift(order);
+    localStorage.setItem(STORAGE_KEYS.ORDERS, JSON.stringify(orders.slice(0, 50)));
+  }
+
   function createDemoOrder(paymentMethod) {
     var cart = getCart();
     if (cart.length === 0) return null;
@@ -521,30 +529,42 @@
       minute: '2-digit'
     });
 
+      var session = getCustomerSession() || {};
+      var adminId = orderNumber.replace(/\D/g, '');
       var order = {
+      id: adminId,
       orderNumber: orderNumber,
       orderDate: dateString,
+      placedAt: new Date().toISOString(),
+      customer: delivery.recipientName || session.name || 'Customer',
+      email: session.email || 'customer@cornercravings.com',
       items: cart,
       delivery: delivery,
       paymentMethod: paymentMethod || 'Cash on Delivery',
       totals: totals,
-        status: 'Confirmed'
+      status: 'Pending',
+      statusUpdatedAt: new Date().toISOString()
       };
 
       try {
         var adminOrders = JSON.parse(localStorage.getItem('cornerCravingsAdminOrders') || '[]');
         if (!Array.isArray(adminOrders)) adminOrders = [];
-        var adminId = orderNumber.replace(/\D/g, '');
         adminOrders.unshift({
           id: adminId,
+          orderNumber: orderNumber,
           customer: delivery.recipientName || 'Customer',
-          email: (getCustomerSession() || {}).email || 'customer@cornercravings.com',
-          placedAt: new Date().toISOString(),
+          email: session.email || 'customer@cornercravings.com',
+          placedAt: order.placedAt,
           status: 'Pending',
           items: cart.map(function (item) {
             return { name: item.name, option: item.customizationText || item.size || 'Regular', quantity: item.quantity, price: item.unitPrice };
           }),
-          notes: delivery.notes || ''
+          delivery: delivery,
+          paymentMethod: order.paymentMethod,
+          totals: totals,
+          total: totals.total,
+          notes: delivery.notes || '',
+          statusUpdatedAt: order.statusUpdatedAt
         });
         localStorage.setItem('cornerCravingsAdminOrders', JSON.stringify(adminOrders));
       } catch (error) {
@@ -552,6 +572,7 @@
       }
 
       saveLastOrder(order);
+      saveCustomerOrder(order);
     clearCart();
     return order;
   }
@@ -611,6 +632,18 @@
 
   function initHeaderActions() {
     updateCartCountBadge();
+
+    // Keep order tracking available throughout the signed-in customer flow.
+    document.querySelectorAll('.customer-nav ul, .customer-mobile-menu ul, .pm-nav-links ul').forEach(function (list) {
+      if (list.querySelector('[href="customer-orders.html"]')) return;
+      var item = document.createElement('li');
+      var link = document.createElement('a');
+      link.href = 'customer-orders.html';
+      link.textContent = 'Track Orders';
+      if (list.closest('.customer-mobile-menu')) link.className = 'customer-mobile-menu__link';
+      item.appendChild(link);
+      list.appendChild(item);
+    });
 
     // Rewards link click handler (Honest coming soon state)
     var rewardsLinks = document.querySelectorAll('[data-action="rewards"]');
@@ -674,6 +707,7 @@
     setCustomerSession: setCustomerSession,
     clearCustomerSession: clearCustomerSession,
     getLastOrder: getLastOrder,
+    getCustomerOrders: getCustomerOrders,
     createDemoOrder: createDemoOrder,
     updateCartCountBadge: updateCartCountBadge,
     showToast: showToast

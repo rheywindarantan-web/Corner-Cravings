@@ -80,7 +80,8 @@ Corner-Cravings/
 ├── customer-login.html          # Customer login
 ├── customer-signup.html         # Customer account creation
 ├── customer.css                 # Shared customer-side styles
-├── customer.js                  # Demo menu, cart, and checkout state
+├── menu-data.js                 # Shared owner menu and editable image/popular settings
+├── customer.js                  # Customer cart and checkout state
 ├── login.html                   # Admin login
 ├── products.html                # Admin product dashboard
 ├── orders.html                  # Admin orders
@@ -98,22 +99,20 @@ Corner-Cravings/
 
 ## Updating the menu
 
-Customer menu items are currently centralized in the `DEMO_MENU` array near the top of `customer.js`. Replace this demonstration data after the owner supplies the approved:
+The customer and Admin catalogs share the owner menu in `menu-data.js`. The supplied product names, categories, and prices have been transcribed into that file.
 
-- Product names
-- Categories
-- Prices
-- Descriptions
-- Sizes and add-ons
-- Food photographs
+- Add confirmed best-seller IDs to `POPULAR_PRODUCT_IDS`.
+- Add future photo paths to `PRODUCT_IMAGES`.
+- Review the generated descriptions and suggested food add-ons with the owner.
+- The beverage add-ons and their ₱10 prices come from the supplied menu board.
 
-The current product names, prices, generated images, ratings, and review text must not be treated as verified business information.
+Product photos and best-seller selections are intentionally left blank until they are provided or approved by the owner.
 
 ## Verified business information
 
 - Business: Corner Cravings
 - Address: Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City
-- Categories: street food, rice meals, pasta, tea, coffee, and frappes
+- Categories: rice meals, pasta, burgers, combo meals, coffee, milk tea, Yakult drinks, frappes, matcha drinks, shaken tea, fruity milk, fruity soda, and Frostee drinks
 - Facebook: <https://www.facebook.com/share/1LJfeS9R3v/>
 
 ## Prototype limitations
@@ -126,7 +125,7 @@ This repository is currently a front-end prototype:
 - Payment methods do not process real payments.
 - Credit/debit card information must not be entered or stored.
 - The Google Maps embed requires an internet connection.
-- Menu content, prices, operating hours, and customer reviews still require owner approval.
+- Product photos, generated descriptions, suggested food add-ons, operating hours, and customer reviews still require owner approval.
 
 Do not deploy the authentication, payment, or ordering flows as a production system without a secure backend, server-side validation, proper session management, database storage, and an approved payment provider.
 

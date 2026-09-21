@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="customer.js" defer></script>
+  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body>
 
@@ -187,18 +187,22 @@
 
       if (grid && window.CornerCravings) {
         var items = window.CornerCravings.DEMO_MENU.filter(function (x) {
-          return x.popular;
+          return x.popular && x.available !== false;
         });
+
+        if (!items.length) {
+          grid.innerHTML = '<div class="popular-empty"><span class="popular-empty__icon">★</span><h3>Popular items will appear here</h3><p>Edit <code>POPULAR_PRODUCT_IDS</code> in <code>menu-data.js</code> after the owner confirms the best sellers.</p></div>';
+          return;
+        }
 
         var html = '';
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
+          var lazyAttr = i >= 4 ? ' loading="lazy"' : ' fetchpriority="high"';
+          var imageHtml = item.imageJpg ? '<picture><source srcset="' + (item.imageWebp || item.imageJpg) + '" type="image/webp" /><img src="' + item.imageJpg + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300"' + lazyAttr + ' data-product-name="' + item.name + '" /></picture>' : '<div class="product-image-placeholder"><span>Image coming soon</span><small>' + item.name + '</small></div>';
           html += '<article class="product-card" aria-label="' + item.name + '">' +
             '<div class="product-card__media">' +
-              '<picture>' +
-                '<source srcset="' + item.imageWebp + '" type="image/webp" />' +
-                '<img src="' + item.imageJpg + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300" loading="lazy" />' +
-              '</picture>' +
+              imageHtml +
               '<span class="product-card__chip">' + item.categoryLabel + '</span>' +
             '</div>' +
             '<div class="product-card__body">' +
@@ -212,6 +216,23 @@
           '</article>';
         }
         grid.innerHTML = html;
+
+        grid.querySelectorAll('.product-card__img').forEach(function (img) {
+          img.addEventListener('error', function () {
+            var media = img.closest('.product-card__media');
+            if (!media) return;
+            var placeholder = document.createElement('div');
+            placeholder.className = 'product-image-placeholder';
+            var label = document.createElement('span');
+            label.textContent = 'Image coming soon';
+            var name = document.createElement('small');
+            name.textContent = img.getAttribute('data-product-name') || 'Product';
+            placeholder.appendChild(label);
+            placeholder.appendChild(name);
+            var picture = img.closest('picture');
+            if (picture) picture.replaceWith(placeholder);
+          }, { once: true });
+        });
 
       }
 

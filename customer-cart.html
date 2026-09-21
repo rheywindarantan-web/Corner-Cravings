@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="customer.js" defer></script>
+  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body>
 
@@ -123,10 +123,10 @@
             subtext = opts.join(' · ') || 'Standard Serving';
           }
 
+          var thumbFallback = "this.onerror=null;this.parentElement.innerHTML='<span class=\"ro-item-thumb-placeholder\" aria-label=\"Image coming soon\">＋</span>';";
+          var thumbHtml = item.imageJpg ? '<img src="' + item.imageJpg + '" alt="' + item.name + '" loading="lazy" onerror="' + thumbFallback + '" />' : '<span class="ro-item-thumb-placeholder" aria-label="Image coming soon">＋</span>';
           itemsHtml += '<div class="ro-item-card" data-key="' + item.optionKey + '">' +
-            '<div class="ro-item-thumb">' +
-              '<img src="' + (item.imageJpg || 'assets/images/signature-burger.jpg') + '" alt="' + item.name + '" loading="lazy" />' +
-            '</div>' +
+            '<div class="ro-item-thumb">' + thumbHtml + '</div>' +
 
             '<div class="ro-item-info">' +
               '<h3 class="ro-item-name">' + item.name + '</h3>' +

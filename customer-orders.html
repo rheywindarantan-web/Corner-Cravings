@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Track Orders · Corner Cravings</title>
+  <link rel="icon" href="Logo.png" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="customer.css" />
+  <script src="menu-data.js" defer></script>
+  <script src="customer.js" defer></script>
+  <script src="customer-orders.js" defer></script>
+</head>
+<body class="customer-page">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="customer-header">
+    <div class="container">
+      <a class="brand" href="customer-home.html" aria-label="Corner Cravings home"><img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" /><div><div class="brand__name">Corner Cravings</div><div class="brand__tag">CRAVE. EAT. SATISFIED</div></div></a>
+      <nav class="customer-nav" aria-label="Customer navigation"><ul class="customer-nav__links"><li><a class="customer-nav__link" href="customer-home.html">Home</a></li><li><a class="customer-nav__link" href="customer-menu.html">Menu</a></li><li><a class="customer-nav__link is-active" href="customer-orders.html">Track Orders</a></li></ul></nav>
+      <div class="customer-header__actions"><a class="btn-icon" href="customer-cart.html" aria-label="Cart">🛒<span class="cart-badge">0</span></a><button class="btn-icon" type="button" data-action="profile" aria-label="Customer profile">◎</button><button class="nav-toggle-btn" id="customer-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button></div>
+    </div>
+    <nav class="customer-mobile-menu" id="customer-mobile-menu" aria-label="Mobile navigation"><ul><li><a class="customer-mobile-menu__link" href="customer-home.html">Home</a></li><li><a class="customer-mobile-menu__link" href="customer-menu.html">Menu</a></li><li><a class="customer-mobile-menu__link" href="customer-orders.html">Track Orders</a></li><li><a class="customer-mobile-menu__link" href="customer-cart.html">Cart</a></li></ul></nav>
+  </header>
+
+  <main id="main-content" class="main-content customer-orders-page">
+    <header class="customer-orders-heading"><div><p class="customer-orders-eyebrow">ORDER TRACKING</p><h1>My Orders</h1><p>Follow the preparation and fulfillment status of your Corner Cravings orders.</p></div><a class="btn btn-primary" href="customer-menu.html">Order Again</a></header>
+    <section class="customer-order-list" id="customer-order-list" aria-live="polite"></section>
+  </main>
+
+  <footer class="customer-footer"><div class="customer-footer__grid"><div><h3>Corner Cravings</h3><p>Your neighborhood destination for meals, snacks, coffee, and refreshing drinks.</p></div><div><h3>Navigation</h3><a href="customer-home.html">Home</a><a href="customer-menu.html">Menu</a><a href="customer-orders.html">Track Orders</a></div><div><h3>Portal Access</h3><a href="login.html">Admin Portal</a><a href="staff-login.html">Employee Portal</a></div></div></footer>
+</body>
+</html>

@@ -929,3 +929,21 @@ button:active,
   .staff-save-confirm > div { gap: 12px; }
   .staff-confirm-no, .staff-confirm-yes { flex: 1; min-width: 0; }
 }
+
+/* Mobile order cards keep fulfillment controls readable without horizontal
+   table scrolling. */
+.staff-empty-state { display: grid; justify-items: center; gap: 5px; padding: 34px 16px; color: var(--staff-text-body); text-align: center; }
+.staff-empty-state strong { color: var(--staff-text-dark); font-size: 16px; }
+
+@media (max-width: 640px) {
+  .staff-panel:has(.staff-table) { overflow: visible; background: transparent; border: 0; box-shadow: none; }
+  .staff-table { display: block; min-width: 0; width: 100%; }
+  .staff-table thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); }
+  .staff-table tbody { display: grid; gap: 12px; }
+  .staff-table tr { display: grid; gap: 10px; padding: 16px; border: 1px solid var(--staff-border); border-radius: 12px; background: #fff; box-shadow: 0 5px 14px rgba(74, 39, 29, .05); }
+  .staff-table td { display: grid; grid-template-columns: minmax(82px, .45fr) minmax(0, 1fr); gap: 12px; align-items: start; padding: 0; border: 0; text-align: left !important; overflow-wrap: anywhere; }
+  .staff-table td::before { content: attr(data-label); color: var(--staff-text-muted); font-size: 10px; font-weight: 800; letter-spacing: .06em; text-transform: uppercase; }
+  .staff-table td[colspan] { display: block; }
+  .staff-table td[colspan]::before { display: none; }
+  .staff-table .action-btn { width: 100%; }
+}

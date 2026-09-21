@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="customer.js" defer></script>
+  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body>
 
@@ -174,6 +174,14 @@
       var currentCat = 'all';
       var currentSearch = '';
 
+      if (filterContainer && window.CornerCravings) {
+        var categoryMap = {};
+        window.CornerCravings.DEMO_MENU.forEach(function (item) { categoryMap[item.category] = item.categoryLabel; });
+        filterContainer.innerHTML = '<button type="button" class="filter-pill is-active" data-cat="all">All</button>' + Object.keys(categoryMap).map(function (key) {
+          return '<button type="button" class="filter-pill" data-cat="' + key + '">' + categoryMap[key] + '</button>';
+        }).join('');
+      }
+
       // Read query param if exists (e.g. ?q=burger)
       var urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('q')) {
@@ -204,7 +212,7 @@
             var text = (item.name + ' ' + item.description + ' ' + item.categoryLabel).toLowerCase();
             matchSearch = text.indexOf(currentSearch) !== -1;
           }
-          return matchCat && matchSearch;
+          return item.available !== false && matchCat && matchSearch;
         });
 
         if (filtered.length === 0) {
@@ -240,12 +248,11 @@
         var html = '';
         for (var i = 0; i < filtered.length; i++) {
           var item = filtered[i];
+          var lazyAttr = i >= 4 ? ' loading="lazy"' : ' fetchpriority="high"';
+          var imageHtml = item.imageJpg ? '<picture><source srcset="' + (item.imageWebp || item.imageJpg) + '" type="image/webp" /><img src="' + item.imageJpg + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300"' + lazyAttr + ' data-product-name="' + item.name + '" /></picture>' : '<div class="product-image-placeholder"><span>Image coming soon</span><small>' + item.name + '</small></div>';
           html += '<article class="product-card" aria-label="' + item.name + '">' +
             '<div class="product-card__media">' +
-              '<picture>' +
-                '<source srcset="' + item.imageWebp + '" type="image/webp" />' +
-                '<img src="' + item.imageJpg + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300" loading="lazy" />' +
-              '</picture>' +
+              imageHtml +
               '<span class="product-card__chip">' + item.categoryLabel + '</span>' +
             '</div>' +
             '<div class="product-card__body">' +
@@ -259,6 +266,23 @@
           '</article>';
         }
         grid.innerHTML = html;
+
+        grid.querySelectorAll('.product-card__img').forEach(function (img) {
+          img.addEventListener('error', function () {
+            var media = img.closest('.product-card__media');
+            if (!media) return;
+            var placeholder = document.createElement('div');
+            placeholder.className = 'product-image-placeholder';
+            var label = document.createElement('span');
+            label.textContent = 'Image coming soon';
+            var name = document.createElement('small');
+            name.textContent = img.getAttribute('data-product-name') || 'Product';
+            placeholder.appendChild(label);
+            placeholder.appendChild(name);
+            var picture = img.closest('picture');
+            if (picture) picture.replaceWith(placeholder);
+          }, { once: true });
+        });
       }
 
       renderMenu();

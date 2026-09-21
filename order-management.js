@@ -38,7 +38,11 @@
   function saveOrders(orders) { localStorage.setItem(STORAGE_KEY, JSON.stringify(orders)); }
   function escapeHtml(value) { var node = document.createElement('div'); node.textContent = value == null ? '' : String(value); return node.innerHTML; }
   function peso(value) { return '₱' + Number(value).toFixed(2); }
-  function orderTotal(order) { return order.items.reduce(function (total, item) { return total + Number(item.price) * Number(item.quantity); }, 0); }
+  function orderTotal(order) {
+    if (order.totals && Number.isFinite(Number(order.totals.total))) return Number(order.totals.total);
+    if (Number.isFinite(Number(order.total))) return Number(order.total);
+    return order.items.reduce(function (total, item) { return total + Number(item.price) * Number(item.quantity); }, 0);
+  }
   function itemCount(order) { return order.items.reduce(function (total, item) { return total + Number(item.quantity); }, 0); }
   function initials(name) { return name.split(/\s+/).map(function (part) { return part.charAt(0); }).slice(0, 2).join('').toUpperCase(); }
   function statusKey(status) { return String(status).toLowerCase(); }
@@ -67,9 +71,9 @@
     var visible = orders.slice(start, start + PAGE_SIZE);
     body.innerHTML = visible.map(function (order) {
       var count = itemCount(order);
-      var common = '<td><a class="order-link" href="order-details.html?order=' + encodeURIComponent(order.id) + '">#ORD-' + escapeHtml(order.id) + '</a></td><td><div class="customer-cell"><span class="customer-initials">' + initials(order.customer) + '</span>' + escapeHtml(order.customer) + '</div></td>';
-      if (historyPage) return '<tr data-status="' + statusKey(order.status) + '">' + common + '<td>' + formatDate(order.placedAt) + '</td><td>' + count + (count === 1 ? ' item' : ' items') + '</td><td>' + peso(orderTotal(order)) + '</td><td><span class="order-status order-status--' + statusKey(order.status) + '">' + escapeHtml(order.status) + '</span></td></tr>';
-      return '<tr data-status="' + statusKey(order.status) + '">' + common + '<td>' + formatTime(order.placedAt) + '</td><td>' + count + (count === 1 ? ' item' : ' items') + '</td><td><span class="order-status order-status--' + statusKey(order.status) + '">' + escapeHtml(order.status) + '</span></td></tr>';
+      var common = '<td data-label="Order"><a class="order-link" href="order-details.html?order=' + encodeURIComponent(order.id) + '">#ORD-' + escapeHtml(order.id) + '</a></td><td data-label="Customer"><div class="customer-cell"><span class="customer-initials">' + initials(order.customer) + '</span>' + escapeHtml(order.customer) + '</div></td>';
+      if (historyPage) return '<tr data-status="' + statusKey(order.status) + '">' + common + '<td data-label="Date">' + formatDate(order.placedAt) + '</td><td data-label="Items">' + count + (count === 1 ? ' item' : ' items') + '</td><td data-label="Total">' + peso(orderTotal(order)) + '</td><td data-label="Status"><span class="order-status order-status--' + statusKey(order.status) + '">' + escapeHtml(order.status) + '</span></td></tr>';
+      return '<tr data-status="' + statusKey(order.status) + '">' + common + '<td data-label="Time">' + formatTime(order.placedAt) + '</td><td data-label="Items">' + count + (count === 1 ? ' item' : ' items') + '</td><td data-label="Status"><span class="order-status order-status--' + statusKey(order.status) + '">' + escapeHtml(order.status) + '</span></td></tr>';
     }).join('');
 
     var empty = document.getElementById('orders-empty');
