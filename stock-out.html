@@ -7,11 +7,11 @@
   <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="dashboard.css" />
-  <link rel="stylesheet" href="inventory.css" />
+  <link rel="stylesheet" href="tokens.css?v=20260924_5" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
+  <link rel="stylesheet" href="inventory.css?v=20260924_8" />
 </head>
-<body>
+<body class="inventory-admin-page">
   <div class="app-shell">
     <aside class="sidebar">
       <div class="sidebar__brand">
@@ -19,12 +19,13 @@
         <div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div>
       </div>
       <nav class="sidebar__nav" aria-label="Primary">
-        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
         <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg><span>Products</span></a>
         <a class="nav-item is-active nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
         <a class="nav-item nav-item--sub" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In</span></a>
         <a class="nav-item nav-item--sub is-active" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg><span>Stock Out</span></a>
-        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile / Settings</span></a>
       </nav>
       <div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg><span>Logout</span></button></div>
     </aside>
@@ -41,8 +42,24 @@
       </header>
 
       <main class="page-content inventory-page">
-        <header class="page-header">
-          <div><h1 class="page-header__title">Stock Out / Outbound Inventory</h1></div>
+        <!-- Inventory Section Switcher (Accessible 1-tap navigation between Stock In and Stock Out) -->
+        <nav class="inventory-mode-nav" aria-label="Inventory Sections">
+          <a href="stock-in.html" class="inventory-mode-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+            <span class="mode-text-full">Stock In & Catalog</span>
+            <span class="mode-text-short">Stock In</span>
+          </a>
+          <a href="stock-out.html" class="inventory-mode-btn is-active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg>
+            <span>Stock Out</span>
+          </a>
+        </nav>
+
+        <header class="page-header inventory-header-banner">
+          <div class="inventory-header-copy">
+            <h1 class="page-header__title">Stock Out / Outbound Inventory</h1>
+            <p class="page-header__subtitle">Track dispatches, kitchen order prep deductions, spoilage, and manual stock dispatches.</p>
+          </div>
         </header>
 
         <section class="inventory-panel" aria-labelledby="dispatch-title">
@@ -56,7 +73,7 @@
 
           <div class="inventory-table-wrap">
             <table class="inventory-table">
-              <thead><tr><th>Item name</th><th>Category</th><th>Qty removed</th><th>Available stock</th><th>Reason</th><th>Date dispatched</th><th class="inventory-action-heading">Action</th></tr></thead>
+              <thead><tr><th>Item name</th><th>Category</th><th>Qty removed</th><th>Balance after</th><th>Reason</th><th>Date dispatched</th><th class="inventory-action-heading">Action</th></tr></thead>
               <tbody id="stock-out-body"></tbody>
             </table>
           </div>
@@ -72,6 +89,7 @@
     </div>
   </div>
   <script src="auth.js"></script>
-  <script src="inventory.js"></script>
+  <script src="inventory-data.js?v=20260924_10"></script>
+  <script src="inventory.js?v=20260924_9"></script>
 </body>
 </html>

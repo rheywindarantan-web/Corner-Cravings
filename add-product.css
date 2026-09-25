@@ -26,6 +26,26 @@
 .upload-preview { width: 100%; height: 100%; min-height: 240px; display: none; object-fit: cover; border-radius: 7px; }
 .upload-zone.has-image .upload-zone__content { display: none; }
 .upload-zone.has-image .upload-preview { display: block; }
+.product-recipe { margin-top: 24px; padding-top: 22px; border-top: 1px solid var(--color-border-light); }
+.product-recipe__header { display: flex; align-items: flex-start; justify-content: space-between; gap: 18px; margin-bottom: 16px; }
+.product-recipe__header h2 { margin: 0 0 5px; color: var(--color-text-dark); font-family: var(--font-heading); font-size: 18px; }
+.product-recipe__header p { max-width: 680px; margin: 0; color: var(--color-text-body); font-size: 12px; line-height: 1.55; }
+.product-recipe__inventory-link { flex: 0 0 auto; min-height: 38px; padding-inline: 13px; font-size: 11px; }
+.product-recipe__rows { display: grid; gap: 10px; }
+.product-recipe-row { display: grid; grid-template-columns: minmax(240px, 1.6fr) minmax(190px, .8fr) auto; gap: 12px; align-items: end; padding: 13px; border: 1px solid var(--color-border-light); border-radius: 9px; background: #fffaf8; }
+.product-recipe-row label { display: grid; gap: 6px; min-width: 0; }
+.product-recipe-row label > span { color: var(--color-text-heading); font-size: 10px; font-weight: 700; letter-spacing: .035em; text-transform: uppercase; }
+.product-recipe-row select,
+.product-recipe-row input { width: 100%; min-width: 0; height: 42px; padding: 0 11px; border: 1px solid var(--color-border); border-radius: 7px; background: #fff; color: var(--color-text-dark); font: inherit; font-size: 12px; outline: none; }
+.product-recipe-row select:focus,
+.product-recipe-row input:focus { border-color: var(--color-primary); box-shadow: 0 0 0 3px rgba(239,108,31,.12); }
+.product-recipe-quantity { position: relative; }
+.product-recipe-quantity input { padding-right: 58px; }
+.product-recipe-quantity .recipe-unit { position: absolute; right: 11px; top: 50%; transform: translateY(-50%); color: var(--color-text-body); font-size: 11px; }
+.product-recipe-remove { height: 42px; padding: 0 13px; border: 1px solid #efc3b7; border-radius: 7px; background: #fff; color: #b9382d; font: inherit; font-size: 11px; font-weight: 700; cursor: pointer; }
+.product-recipe-remove:hover { background: #fff0ec; }
+.product-recipe__add { margin-top: 12px; min-height: 39px; padding-inline: 14px; font-size: 11px; }
+.product-recipe__error { min-height: 18px; margin: 9px 0 0; color: #b9382d; font-size: 11px; font-weight: 600; }
 .product-form-actions { display: flex; justify-content: flex-end; gap: 12px; margin-top: 20px; padding-top: 18px; border-top: 1px solid var(--color-border-light); }
 .product-form-actions a, .product-form-actions button { min-width: 108px; justify-content: center; }
 .product-confirm { position: fixed; inset: 0; z-index: 1300; display: none; place-items: center; padding: 20px; background: rgba(42,42,42,.45); }
@@ -35,5 +55,5 @@
 .product-confirm__dialog p { margin: 0 0 28px; color: var(--color-text-body); font-size: 12px; line-height: 1.55; }
 .product-confirm__actions { display: flex; justify-content: center; gap: 20px; }
 .product-confirm__actions button { min-width: 120px; justify-content: center; }
-@media (max-width: 900px) { .product-form-layout { grid-template-columns: 1fr; } .upload-zone { min-height: 220px; } }
-@media (max-width: 560px) { .product-form-card { padding: 18px; } .product-fields { grid-template-columns: 1fr; } .product-field--full { grid-column: auto; } .product-form-actions, .product-confirm__actions { flex-direction: column-reverse; } .product-form-actions a, .product-form-actions button, .product-confirm__actions button { width: 100%; } .product-confirm__dialog { padding: 38px 20px 26px; } }
+@media (max-width: 900px) { .product-form-layout { grid-template-columns: 1fr; } .upload-zone { min-height: 220px; } .product-recipe-row { grid-template-columns: 1fr 1fr; } .product-recipe-remove { grid-column: 1 / -1; } }
+@media (max-width: 560px) { .product-form-card { padding: 18px; } .product-fields { grid-template-columns: 1fr; } .product-field--full { grid-column: auto; } .product-recipe__header { flex-direction: column; } .product-recipe__inventory-link { width: 100%; justify-content: center; } .product-recipe-row { grid-template-columns: 1fr; } .product-recipe-remove { grid-column: auto; width: 100%; } .product-form-actions, .product-confirm__actions { flex-direction: column-reverse; } .product-form-actions a, .product-form-actions button, .product-confirm__actions button { width: 100%; } .product-confirm__dialog { padding: 38px 20px 26px; } }

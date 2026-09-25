@@ -1,4 +1,163 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="UTF-8" /><meta name="viewport" content="width=device-width, initial-scale=1.0" /><title>Order Details · Corner Cravings Admin</title><link rel="icon" type="image/png" href="Logo.png" /><link rel="preconnect" href="https://fonts.googleapis.com" /><link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" /><link rel="stylesheet" href="tokens.css" /><link rel="stylesheet" href="dashboard.css" /><link rel="stylesheet" href="order-management.css" /></head><body><div class="app-shell">
-<aside class="sidebar"><div class="sidebar__brand"><img class="sidebar__brand-logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" /><div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div></div><nav class="sidebar__nav" aria-label="Primary"><a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg><span>Dashboard</span></a><a class="nav-item is-active" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a><a class="nav-item nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/></svg><span>Manage Inventory</span></a><a class="nav-item nav-item--sub" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5m-6 6 6-6 6 6"/></svg><span>Stock In</span></a><a class="nav-item nav-item--sub" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14m6-6-6 6-6-6"/></svg><span>Stock Out</span></a><a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a></nav><div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><span>Logout</span></button></div></aside>
-<div class="main"><main class="page-content order-detail-page"><p class="order-breadcrumb"><a href="orders.html">Upcoming Orders</a> › <strong>ORD-8824</strong></p><h1 class="order-detail-title">Order Details</h1><article class="order-detail-card"><header class="order-detail-card__header"><div><h2>Order Items</h2><span class="order-detail-card__meta">Placed: Oct 24, 2026 · 08:42 AM</span></div><div class="order-customer"><strong>Customer</strong><span>Sarah Jenkins</span><span>sarah.j@example.com</span></div></header><div class="order-items"><table><thead><tr><th>Item</th><th>Qty</th><th>Price</th></tr></thead><tbody><tr><td><div class="order-product"><span class="order-product__icon">🍔</span><div><strong>Cheesy Burger</strong><span>Classic</span></div></div></td><td>1</td><td>₱55.00</td></tr><tr class="order-total"><td></td><td>Total</td><td>₱55.00</td></tr></tbody></table></div><form class="fulfillment" id="order-update-form"><h2>Fulfillment Status</h2><div class="fulfillment-grid"><label for="fulfillment-status">Current Status<select id="fulfillment-status"><option value="Pending">Pending</option><option value="Preparing">Preparing</option><option value="Ready">Ready for Pickup</option><option value="Completed">Completed</option><option value="Cancelled">Cancelled</option></select></label><label for="admin-notes">Admin Notes (optional)<textarea id="admin-notes" placeholder="Add internal notes here..."></textarea></label><div class="fulfillment-actions"><button class="btn-outline" id="print-order-ticket" type="button">Print Ticket</button><button class="btn-solid-sm" type="submit">Update Order</button></div></div></form></article></main></div>
-</div><script src="auth.js"></script><script src="order-management.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Order Details · Corner Cravings Admin</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
+  <link rel="stylesheet" href="order-management.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <img class="sidebar__brand-logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" />
+        <div>
+          <p class="sidebar__brand-name">Corner<br />Cravings</p>
+          <p class="sidebar__brand-sub">Admin Panel</p>
+        </div>
+      </div>
+      <nav class="sidebar__nav" aria-label="Primary">
+        <a class="nav-item" href="dashboard.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item is-active" href="orders.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+          <span>Orders</span>
+        </a>
+        <a class="nav-item" href="products.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg>
+          <span>Products</span>
+        </a>
+        <a class="nav-item nav-item--inventory-parent" href="stock-in.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg>
+          <span>Manage Inventory</span>
+        </a>
+        <a class="nav-item nav-item--sub" href="stock-in.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+          <span>Stock In</span>
+        </a>
+        <a class="nav-item nav-item--sub" href="stock-out.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg>
+          <span>Stock Out</span>
+        </a>
+        <a class="nav-item" href="profile.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <span>Profile / Settings</span>
+        </a>
+      </nav>
+      <div class="sidebar__footer">
+        <button class="btn-logout" type="button" data-logout-target="login.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- Main Content -->
+    <div class="main">
+      <main class="page-content order-detail-page">
+        <p class="order-breadcrumb"><a href="orders.html">Upcoming Orders</a> › <strong>—</strong></p>
+        <h1 class="order-detail-title">Order Details</h1>
+
+        <article class="order-detail-card">
+          <header class="order-detail-card__header">
+            <div>
+              <h2>Order Items</h2>
+              <span class="order-detail-card__meta">Placed: —</span>
+            </div>
+            <div class="order-customer">
+              <strong>Customer</strong>
+              <span>—</span>
+              <span>—</span>
+            </div>
+          </header>
+
+          <div class="order-items">
+            <table>
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Qty</th>
+                  <th>Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td colspan="3" style="text-align: center; color: var(--color-text-body); padding: 24px;">Loading order details...</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Kitchen Recipe & Inventory Consumption Card -->
+          <section class="order-inventory-section" id="order-inventory-section" style="margin: 20px 0; padding: 18px 20px; background: #f8fafc; border: 1px solid var(--color-border-light); border-radius: var(--radius-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+              <h2 style="font-size: 16px; font-weight: 700; color: var(--color-text-dark); margin: 0;">Kitchen Recipe Ingredients &amp; Inventory</h2>
+              <div id="order-inventory-badge-slot"></div>
+            </div>
+            <div id="order-inventory-details" style="font-size: 13px; line-height: 1.6; color: var(--color-text-dark);">
+              <!-- Dynamically populated -->
+            </div>
+          </section>
+
+          <!-- Payment & Billing Information Card -->
+          <section class="order-billing-section" id="order-billing-section" style="margin: 20px 0; padding: 18px 20px; background: #faf6f5; border: 1px solid var(--color-border-light); border-radius: var(--radius-sm);">
+            <div style="display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 12px; margin-bottom: 12px;">
+              <h2 style="font-size: 16px; font-weight: 700; color: var(--color-text-dark); margin: 0;">Payment &amp; Billing</h2>
+              <div id="payment-badge-slot"></div>
+            </div>
+            <div id="payment-details-info" style="font-size: 13px; line-height: 1.6; color: var(--color-text-dark);">
+              <!-- Dynamically populated -->
+            </div>
+            <div id="payment-actions-slot" style="display: flex; gap: 10px; margin-top: 14px; flex-wrap: wrap;">
+              <!-- Dynamically populated buttons -->
+            </div>
+          </section>
+
+          <!-- Status Transition History Audit Trail -->
+          <section class="order-audit-section" id="order-audit-section" style="margin: 20px 0; padding: 18px 20px; background: #ffffff; border: 1px solid var(--color-border-light); border-radius: var(--radius-sm);">
+            <h2 style="font-size: 15px; font-weight: 700; color: var(--color-text-dark); margin: 0 0 12px;">Order Progression &amp; Audit Trail</h2>
+            <div id="order-audit-timeline" style="font-size: 13px; line-height: 1.5;">
+              <!-- Dynamically populated -->
+            </div>
+          </section>
+
+          <!-- Fulfillment Controls Form -->
+          <form class="fulfillment" id="order-update-form">
+            <h2>Fulfillment Status</h2>
+            <div class="fulfillment-grid">
+              <label for="fulfillment-status">Current Status
+                <select id="fulfillment-status">
+                  <option value="Pending">Pending</option>
+                  <option value="Preparing">Preparing</option>
+                  <option value="Ready">Ready</option>
+                  <option value="Completed">Completed</option>
+                  <option value="Cancelled">Cancelled</option>
+                </select>
+              </label>
+              <label for="admin-notes">Admin Notes (optional)
+                <textarea id="admin-notes" placeholder="Add internal notes here..."></textarea>
+              </label>
+              <div class="fulfillment-actions">
+                <button class="btn-outline" id="print-order-ticket" type="button">Print Ticket</button>
+                <button class="btn-solid-sm" type="submit">Update Order</button>
+              </div>
+            </div>
+          </form>
+        </article>
+      </main>
+    </div>
+  </div>
+
+  <script src="auth.js"></script>
+  <script src="inventory-data.js"></script>
+  <script src="order-management.js"></script>
+</body>
+</html>

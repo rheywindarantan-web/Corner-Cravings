@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="customer.js" defer></script>
+  <script src="menu-data.js?v=20260925_5" defer></script><script src="inventory-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <ul class="customer-nav__links">
           <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
           <li><a href="customer-menu.html" class="customer-nav__link is-active">Menu</a></li>
-          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="promo">Promo</a></li>
         </ul>
       </nav>
 
@@ -76,7 +76,7 @@
       <ul class="customer-mobile-menu__links">
         <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
         <li><a href="customer-menu.html" class="customer-mobile-menu__link is-active">Menu</a></li>
-        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="promo">Promo (Coming Soon)</a></li>
         <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
         <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
         <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
@@ -174,6 +174,14 @@
       var currentCat = 'all';
       var currentSearch = '';
 
+      if (filterContainer && window.CornerCravings) {
+        var categoryMap = {};
+        window.CornerCravings.DEMO_MENU.forEach(function (item) { categoryMap[item.category] = item.categoryLabel; });
+        filterContainer.innerHTML = '<button type="button" class="filter-pill is-active" data-cat="all">All</button>' + Object.keys(categoryMap).map(function (key) {
+          return '<button type="button" class="filter-pill" data-cat="' + key + '">' + categoryMap[key] + '</button>';
+        }).join('');
+      }
+
       // Read query param if exists (e.g. ?q=burger)
       var urlParams = new URLSearchParams(window.location.search);
       if (urlParams.has('q')) {
@@ -204,7 +212,7 @@
             var text = (item.name + ' ' + item.description + ' ' + item.categoryLabel).toLowerCase();
             matchSearch = text.indexOf(currentSearch) !== -1;
           }
-          return matchCat && matchSearch;
+          return item.available !== false && matchCat && matchSearch;
         });
 
         if (filtered.length === 0) {
@@ -240,25 +248,55 @@
         var html = '';
         for (var i = 0; i < filtered.length; i++) {
           var item = filtered[i];
-          html += '<article class="product-card" aria-label="' + item.name + '">' +
+          var lazyAttr = i >= 4 ? ' loading="lazy"' : ' fetchpriority="high"';
+          var imagePath = item.imageJpg || item.imageWebp;
+          var sourceHtml = item.imageWebp ? '<source srcset="' + item.imageWebp + '" type="image/webp" />' : '';
+          var imageHtml = imagePath ? '<picture>' + sourceHtml + '<img src="' + imagePath + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300"' + lazyAttr + ' data-product-name="' + item.name + '" /></picture>' : '<div class="product-image-placeholder"><span>Image coming soon</span><small>' + item.name + '</small></div>';
+
+          var isSoldOut = false;
+          if (window.CornerCravingsInventory && typeof window.CornerCravingsInventory.isProductInStock === 'function') {
+            isSoldOut = !window.CornerCravingsInventory.isProductInStock(item.id);
+          }
+
+          var ctaHtml = isSoldOut
+            ? '<button type="button" class="btn btn-secondary btn-sm" disabled style="opacity:0.65; cursor:not-allowed;">Sold Out</button>'
+            : '<a href="customer-product.html?id=' + item.id + '" class="btn btn-primary btn-sm">Add to Cart</a>';
+
+          var chipSoldOut = isSoldOut ? ' <span style="background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:700; margin-left:4px;">Sold Out</span>' : '';
+
+          html += '<article class="product-card" aria-label="' + item.name + '"' + (isSoldOut ? ' style="opacity:0.85;"' : '') + '>' +
             '<div class="product-card__media">' +
-              '<picture>' +
-                '<source srcset="' + item.imageWebp + '" type="image/webp" />' +
-                '<img src="' + item.imageJpg + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300" loading="lazy" />' +
-              '</picture>' +
-              '<span class="product-card__chip">' + item.categoryLabel + '</span>' +
+              imageHtml +
+              '<span class="product-card__chip">' + item.categoryLabel + chipSoldOut + '</span>' +
             '</div>' +
             '<div class="product-card__body">' +
               '<h3 class="product-card__title"><a href="customer-product.html?id=' + item.id + '">' + item.name + '</a></h3>' +
               '<p class="product-card__desc">' + item.description + '</p>' +
               '<div class="product-card__footer">' +
                 '<span class="product-card__price">' + window.CornerCravings.formatPeso(item.price) + '</span>' +
-                '<a href="customer-product.html?id=' + item.id + '" class="btn btn-primary btn-sm">Add to Cart</a>' +
+                ctaHtml +
               '</div>' +
             '</div>' +
           '</article>';
         }
         grid.innerHTML = html;
+
+        grid.querySelectorAll('.product-card__img').forEach(function (img) {
+          img.addEventListener('error', function () {
+            var media = img.closest('.product-card__media');
+            if (!media) return;
+            var placeholder = document.createElement('div');
+            placeholder.className = 'product-image-placeholder';
+            var label = document.createElement('span');
+            label.textContent = 'Image coming soon';
+            var name = document.createElement('small');
+            name.textContent = img.getAttribute('data-product-name') || 'Product';
+            placeholder.appendChild(label);
+            placeholder.appendChild(name);
+            var picture = img.closest('picture');
+            if (picture) picture.replaceWith(placeholder);
+          }, { once: true });
+        });
       }
 
       renderMenu();

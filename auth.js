@@ -23,6 +23,10 @@
     return /^[a-zA-Z0-9._%+-]+@gmail\.com$/i.test(email);
   }
 
+  function isValidEmail(email) {
+    return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(String(email || ''));
+  }
+
   function getAdminProfile() {
     try {
       var saved = localStorage.getItem('cornerCravingsAdminProfile');
@@ -97,7 +101,16 @@
   function getStaffAccounts() {
     try {
       var saved = localStorage.getItem('cornerCravingsStaffAccounts');
-      return saved ? JSON.parse(saved) : [];
+      if (saved) {
+        var parsed = JSON.parse(saved);
+        return Array.isArray(parsed) ? parsed : [];
+      }
+      var defaults = [
+        { name: 'Elena Reyes', email: 'elena@cornercravings.com', role: 'Lead Cook', token: 'CC-STAFF-01', active: true },
+        { name: 'Marco Diaz', email: 'marco@cornercravings.com', role: 'Kitchen Staff', token: 'CC-STAFF-02', active: true }
+      ];
+      localStorage.setItem('cornerCravingsStaffAccounts', JSON.stringify(defaults));
+      return defaults;
     } catch (error) {
       return [];
     }
@@ -146,45 +159,53 @@
   });
 
   function getStaffProfile() {
+    var session = null;
     try {
-      var saved = localStorage.getItem('cornerCravingsStaffProfile');
-      if (saved) {
-        return JSON.parse(saved);
-      }
-    } catch (error) {
-      return {
-        name: 'Jane Emily Doe',
-        role: 'Senior Barista',
-        id: 'EMP-0492',
-        joined: 'Mar 2022',
-        status: 'Full-Time',
-        dob: 'Oct 15, 1995',
-        department: 'Front of House',
-        manager: 'Michael Scott',
-        email: 'jane.doe@cornercravings.com',
-        phone: '(555) 123-4567',
-        address: '123 Cafe Lane, Apt 4B\nSeattle, WA 98101',
-        avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80'
-      };
-    }
+      session = JSON.parse(localStorage.getItem('cornerCravingsStaffSession') || 'null');
+    } catch (ignore) {}
 
-    return {
-      name: 'Jane Emily Doe',
-      role: 'Senior Barista',
-      id: 'EMP-0492',
-      joined: 'Mar 2022',
-      status: 'Full-Time',
-      dob: 'Oct 15, 1995',
-      department: 'Front of House',
-      manager: 'Michael Scott',
-      email: 'jane.doe@cornercravings.com',
-      phone: '(555) 123-4567',
-      address: '123 Cafe Lane, Apt 4B\nSeattle, WA 98101',
-      avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80'
+    var account = session ? getStaffAccounts().find(function (entry) {
+      return entry.email && entry.email.toLowerCase() === String(session.email || '').toLowerCase();
+    }) : null;
+    var accountIndex = account ? getStaffAccounts().indexOf(account) : -1;
+    var defaultProfile = {
+      name: (account && account.name) || (session && session.name) || 'Jane Emily Doe',
+      role: (account && account.role) || (session && session.role) || 'Senior Barista',
+      id: (account && account.id) || (accountIndex >= 0 ? 'EMP-' + String(accountIndex + 1).padStart(4, '0') : 'EMP-0492'),
+      joined: (account && account.joined) || 'Sep 2026',
+      status: account && account.active === false ? 'Inactive' : 'Active',
+      dob: (account && account.dob) || '',
+      department: (account && account.department) || 'Store Operations',
+      manager: (account && account.manager) || 'Corner Cravings Admin',
+      email: (account && account.email) || (session && session.email) || 'jane.doe@cornercravings.com',
+      phone: (account && account.phone) || '',
+      address: (account && account.address) || '',
+      avatar: (account && account.avatar) || 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=200&q=80'
     };
+
+    try {
+      var profileKey = session && session.email
+        ? 'cornerCravingsStaffProfile:' + session.email.toLowerCase()
+        : 'cornerCravingsStaffProfile';
+      var saved = localStorage.getItem(profileKey);
+      if (!saved && session && session.email) {
+        var legacy = JSON.parse(localStorage.getItem('cornerCravingsStaffProfile') || 'null');
+        if (legacy && String(legacy.email || '').toLowerCase() === session.email.toLowerCase()) saved = JSON.stringify(legacy);
+      }
+      if (saved) {
+        return Object.assign({}, defaultProfile, JSON.parse(saved));
+      }
+    } catch (error) {}
+
+    return defaultProfile;
   }
 
   function saveStaffProfile(profile) {
+    var session = null;
+    try { session = JSON.parse(localStorage.getItem('cornerCravingsStaffSession') || 'null'); } catch (ignore) {}
+    if (session && session.email) {
+      localStorage.setItem('cornerCravingsStaffProfile:' + session.email.toLowerCase(), JSON.stringify(profile));
+    }
     localStorage.setItem('cornerCravingsStaffProfile', JSON.stringify(profile));
   }
 
@@ -360,8 +381,8 @@
         return;
       }
 
-      if (!isValidGmail(updatedProfile.email)) {
-        window.alert('Please use a valid Gmail address for the staff profile.');
+      if (!isValidEmail(updatedProfile.email)) {
+        window.alert('Please use a valid email address for the staff profile.');
         return;
       }
 
@@ -547,6 +568,10 @@
         target = btn.classList.contains('btn-clockout') ? 'staff-login.html' : 'login.html';
       }
 
+      if (btn.classList.contains('btn-clockout') || target === 'staff-login.html') {
+        localStorage.removeItem('cornerCravingsStaffSession');
+      }
+
       window.location.href = target;
     });
   });
@@ -611,12 +636,33 @@
         return;
       }
 
-      if (!isValidGmail(email)) {
-        window.alert('Please use a valid Gmail address for staff login.');
+      if (!isValidEmail(email)) {
+        window.alert('Please enter a valid employee email address.');
         return;
       }
 
-      console.log('Staff login submitted:', { email: email });
+      var staffAccount = getStaffAccounts().find(function (account) {
+        return account.email && account.email.toLowerCase() === email.toLowerCase();
+      });
+      if (!staffAccount || staffAccount.active === false) {
+        window.alert('This employee account was not found or is inactive. Contact the administrator.');
+        return;
+      }
+      var validCredential = staffAccount.password
+        ? password === staffAccount.password
+        : staffAccount.token && password === staffAccount.token;
+      if (!validCredential) {
+        window.alert('Incorrect employee password or access token.');
+        return;
+      }
+
+      localStorage.setItem('cornerCravingsStaffSession', JSON.stringify({
+        id: staffAccount.id || '',
+        name: staffAccount.name,
+        email: staffAccount.email,
+        role: staffAccount.role || 'Kitchen Staff',
+        signedInAt: new Date().toISOString()
+      }));
       window.location.href = 'staff-orders.html';
     });
   }
@@ -669,8 +715,8 @@
         window.alert('Please fill in all staff sign-up fields.');
         return;
       }
-      if (!isValidGmail(email)) {
-        window.alert('Please use a valid Gmail address for staff signup.');
+      if (!isValidEmail(email)) {
+        window.alert('Please use a valid employee email address for staff signup.');
         return;
       }
       if (password !== confirmPassword) {

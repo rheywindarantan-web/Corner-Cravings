@@ -3,12 +3,12 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Products · Corner Cravings Admin</title>
+  <title>Menu & Products · Corner Cravings Admin</title>
   <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="dashboard.css" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
   <link rel="stylesheet" href="products.css" />
 </head>
 <body>
@@ -25,21 +25,33 @@
       </div>
 
       <nav class="sidebar__nav" aria-label="Primary">
-        <a class="nav-item is-active" href="products.html">
+        <a class="nav-item" href="dashboard.html">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
           <span>Dashboard</span>
         </a>
         <a class="nav-item" href="orders.html">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-1.5 9h-13z"/><path d="M4 4L3 2"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
           <span>Orders</span>
         </a>
-        <a class="nav-item" href="stock-in.html">
+        <a class="nav-item is-active" href="products.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg>
+          <span>Products</span>
+        </a>
+        <a class="nav-item nav-item--inventory-parent" href="stock-in.html">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg>
           <span>Manage Inventory</span>
         </a>
+        <a class="nav-item nav-item--sub" href="stock-in.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+          <span>Stock In</span>
+        </a>
+        <a class="nav-item nav-item--sub" href="stock-out.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg>
+          <span>Stock Out</span>
+        </a>
         <a class="nav-item" href="profile.html">
           <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
-          <span>Profile</span>
+          <span>Profile / Settings</span>
         </a>
       </nav>
 
@@ -76,7 +88,7 @@
         <div class="page-header">
           <div>
             <h1 class="page-header__title">Products</h1>
-            <p class="page-header__subtitle">Manage your bakery menu and availability.</p>
+            <p class="page-header__subtitle">Manage the owner-approved food and beverage menu.</p>
           </div>
           <div class="page-header__actions">
             <button class="btn-outline" type="button" data-action="filter">
@@ -184,6 +196,45 @@
       </main>
     </div>
   </div>
+
+  <!-- In-Page Product Edit Modal -->
+  <div class="product-modal-backdrop" id="product-edit-modal" role="dialog" aria-modal="true" aria-labelledby="product-edit-title">
+    <div class="product-modal-card">
+      <div class="product-modal-header">
+        <h3 class="product-modal-title" id="product-edit-title">Edit Product Details</h3>
+        <button class="product-modal-close" id="btn-close-edit-modal" type="button" aria-label="Close dialog">×</button>
+      </div>
+      <form id="product-edit-form">
+        <div class="product-modal-body">
+          <input type="hidden" id="edit-product-id" />
+          <div class="product-modal-field">
+            <label for="edit-product-name">Product Name</label>
+            <input type="text" id="edit-product-name" required />
+          </div>
+          <div class="product-modal-field">
+            <label for="edit-product-price">Price (₱)</label>
+            <input type="number" id="edit-product-price" min="0" step="1" required />
+          </div>
+          <div class="product-modal-field">
+            <label for="edit-product-category">Category</label>
+            <input type="text" id="edit-product-category" readonly style="background:#f3f4f6; color:#6b7280;" />
+          </div>
+          <div class="product-modal-field">
+            <label for="edit-product-description">Description</label>
+            <textarea id="edit-product-description" rows="3"></textarea>
+          </div>
+        </div>
+        <div class="product-modal-footer">
+          <button type="button" class="btn-outline" id="btn-cancel-edit-modal" style="height:38px;">Cancel</button>
+          <button type="submit" class="btn-solid-sm" style="height:38px;">Save Changes</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script src="menu-data.js?v=20260925_5"></script>
+  <script src="inventory-data.js"></script>
   <script src="auth.js"></script>
+  <script src="products.js"></script>
 </body>
 </html>

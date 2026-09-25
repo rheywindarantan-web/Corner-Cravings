@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="staff.css" />
+  <link rel="stylesheet" href="staff.css?v=20260924_2" />
   <style>
     .staff-brand__mark--lg {
       width: 56px;
@@ -98,7 +98,10 @@
               <option value="refunded">Refunded</option>
             </select>
           </label>
-          <button class="staff-btn-solid" type="button" data-action="export">
+          <button class="staff-btn-outline" type="button" id="btn-clear-staff-history" style="cursor:pointer;" title="Clear completed and cancelled orders">
+            Clear History
+          </button>
+          <button class="staff-btn-solid" type="button" data-export-orders>
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
             Export
           </button>
@@ -107,7 +110,7 @@
 
       <main class="staff-content">
 
-        <div class="stat-grid">
+        <div class="stat-grid stat-grid--history">
           <div class="stat-card">
             <div class="stat-card__top">
               <span class="stat-card__label">Total Orders</span>
@@ -115,11 +118,8 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">1,284</p>
-            <span class="stat-card__meta stat-card__meta--up">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-              +12% this week
-            </span>
+            <p class="stat-card__value">0</p>
+            <span class="stat-card__meta">Completed fulfillment</span>
           </div>
 
           <div class="stat-card">
@@ -129,22 +129,8 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="6" width="20" height="12" rx="2"/><circle cx="12" cy="12" r="3"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">₱34,592</p>
-            <span class="stat-card__meta stat-card__meta--up">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-              +8% this week
-            </span>
-          </div>
-
-          <div class="stat-card">
-            <div class="stat-card__top">
-              <span class="stat-card__label">Avg Ticket</span>
-              <span class="stat-card__icon">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2 3 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2V6l-3-4Z"/><path d="M3 6h18M16 10a4 4 0 0 1-8 0"/></svg>
-              </span>
-            </div>
-            <p class="stat-card__value">₱26.95</p>
-            <span class="stat-card__meta">Stable</span>
+            <p class="stat-card__value">₱0.00</p>
+            <span class="stat-card__meta">Fulfilled order sales</span>
           </div>
 
           <div class="stat-card stat-card--accent">
@@ -154,12 +140,13 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8 21h8M12 17v4M7 4h10l-1 8a4 4 0 0 1-8 0Z"/><path d="M5 4a2 2 0 0 0-2 2c0 2 2 3 4 3M19 4a2 2 0 0 1 2 2c0 2-2 3-4 3"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">Bistro Burger</p>
-            <span class="stat-card__meta">420 units sold</span>
+            <p class="stat-card__value">None yet</p>
+            <span class="stat-card__meta">No sales recorded yet</span>
           </div>
         </div>
 
-        <section class="staff-panel">
+        <section class="staff-panel staff-history-panel">
+          <div class="staff-history-scroll" tabindex="0" aria-label="Scrollable order history">
           <table class="staff-table">
             <thead>
               <tr>
@@ -169,79 +156,52 @@
                 <th>Items</th>
                 <th>Total</th>
                 <th>Status</th>
+                <th>Receipt</th>
               </tr>
             </thead>
             <tbody>
               <tr>
-                <td class="cell-primary">#10245</td>
-                <td>Oct 24, 2023<div class="cell-sub">12:45 PM</div></td>
-                <td>
-                  <div class="person-cell">
-                    <img class="person-avatar" src="https://images.unsplash.com/photo-1502685104226-ee32379fefbe?auto=format&fit=crop&w=60&q=80" alt="" />
-                    Sarah Jenkins
+                <td colspan="7">
+                  <div class="staff-empty-state">
+                    <strong>No completed orders</strong>
+                    <span>Completed and cancelled customer orders will appear here automatically.</span>
                   </div>
                 </td>
-                <td>2× Bistro Burger, 1× Truffle F…</td>
-                <td class="cell-primary">₱48.50</td>
-                <td><span class="pill pill--completed"><span class="pill__dot"></span>Completed</span></td>
-              </tr>
-              <tr>
-                <td class="cell-primary">#10244</td>
-                <td>Oct 24, 2023<div class="cell-sub">12:30 PM</div></td>
-                <td>
-                  <div class="person-cell">
-                    <span class="person-avatar person-avatar--initials">MJ</span>
-                    Michael Johnson
-                  </div>
-                </td>
-                <td>1× Caesar Salad, 1× Sparklin…</td>
-                <td class="cell-primary">₱18.00</td>
-                <td><span class="pill pill--completed"><span class="pill__dot"></span>Completed</span></td>
-              </tr>
-              <tr>
-                <td class="cell-primary">#10243</td>
-                <td>Oct 24, 2023<div class="cell-sub">12:15 PM</div></td>
-                <td>
-                  <div class="person-cell">
-                    <img class="person-avatar" src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=60&q=80" alt="" />
-                    Emily Chen
-                  </div>
-                </td>
-                <td>3× Artisanal Pizza, 1× Garlic…</td>
-                <td class="cell-primary">₱64.00</td>
-                <td><span class="pill pill--refunded"><span class="pill__dot"></span>Refunded</span></td>
-              </tr>
-              <tr>
-                <td class="cell-primary">#10242</td>
-                <td>Oct 24, 2023<div class="cell-sub">11:55 AM</div></td>
-                <td>
-                  <div class="person-cell">
-                    <span class="person-avatar person-avatar--initials">G</span>
-                    Walk-in Customer
-                  </div>
-                </td>
-                <td>1× Soup of the Day, 1× Flatb…</td>
-                <td class="cell-primary">₱22.50</td>
-                <td><span class="pill pill--completed"><span class="pill__dot"></span>Completed</span></td>
               </tr>
             </tbody>
           </table>
+          </div>
 
           <div class="staff-panel__footer">
-            <span class="showing-text">Showing 1 to 10 of 1,284 orders</span>
-            <nav class="staff-pagination" aria-label="Order history pagination">
-              <button class="staff-page-btn is-active" type="button" aria-current="page">1</button>
-              <button class="staff-page-btn" type="button">2</button>
-              <button class="staff-page-btn" type="button">3</button>
-              <span style="color:var(--staff-text-body); padding:0 2px;">…</span>
-              <button class="staff-page-btn" type="button" aria-label="Next page">
-                <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="9 18 15 12 9 6"/></svg>
-              </button>
-            </nav>
+            <span class="showing-text">Showing 0 orders</span>
+            <span class="staff-history-scroll-hint">Scroll to view older orders</span>
           </div>
         </section>
       </main>
     </div>
   </div>
-</body>
+
+  <!-- Order Details Inspection Modal -->
+  <div class="staff-modal-overlay" id="staff-order-modal" role="dialog" aria-modal="true" aria-labelledby="staff-modal-title">
+    <div class="staff-modal-dialog">
+      <header class="staff-modal-header">
+        <h3 class="staff-modal-title" id="staff-modal-title">
+          <span id="staff-modal-order-number">Order Details</span>
+          <span class="pill pill--completed" id="staff-modal-status"><span class="pill__dot"></span>Completed</span>
+        </h3>
+        <button type="button" class="staff-modal-close" id="staff-modal-close" aria-label="Close modal">&times;</button>
+      </header>
+      <div class="staff-modal-body" id="staff-modal-body">
+        <!-- Rendered dynamically by staff-orders.js -->
+      </div>
+      <footer class="staff-modal-footer" id="staff-modal-footer">
+        <!-- Rendered dynamically by staff-orders.js -->
+      </footer>
+    </div>
+  </div>
+
   <script src="auth.js"></script>
+  <script src="inventory-data.js"></script>
+  <script src="staff-orders.js?v=20260924_2"></script>
+</body>
+</html>

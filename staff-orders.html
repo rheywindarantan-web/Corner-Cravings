@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="staff.css" />
+  <link rel="stylesheet" href="staff.css?v=20260924_2" />
 </head>
 <body>
   <div class="staff-shell">
@@ -77,11 +77,8 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 8h10M7 12h10M7 16h6"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">12</p>
-            <span class="stat-card__meta stat-card__meta--up">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="19" x2="12" y2="5"/><polyline points="5 12 12 5 19 12"/></svg>
-              3 new
-            </span>
+            <p class="stat-card__value">0</p>
+            <span class="stat-card__meta">Waiting for kitchen</span>
           </div>
 
           <div class="stat-card">
@@ -91,7 +88,7 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18h18"/><path d="M5 18c0-5 3-7 7-7s7 2 7 7"/><path d="M9 11V7M15 11V7"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">8</p>
+            <p class="stat-card__value">0</p>
             <span class="pill pill--progress"><span class="pill__dot"></span>Actively cooking</span>
           </div>
 
@@ -102,11 +99,8 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v3"/><path d="M4 14a8 8 0 0 1 16 0Z"/><path d="M2 14h20"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">4</p>
-            <span class="stat-card__meta">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
-              Avg wait 2m
-            </span>
+            <p class="stat-card__value">0</p>
+            <span class="stat-card__meta">Ready for pickup / rider</span>
           </div>
 
           <div class="stat-card">
@@ -116,11 +110,8 @@
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><polyline points="12 7 12 12 15 14"/></svg>
               </span>
             </div>
-            <p class="stat-card__value">14m</p>
-            <span class="stat-card__meta">
-              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="5" x2="12" y2="19"/><polyline points="19 12 12 19 5 12"/></svg>
-              -1m vs yesterday
-            </span>
+            <p class="stat-card__value">—</p>
+            <span class="stat-card__meta">Avg preparation time</span>
           </div>
         </div>
 
@@ -158,53 +149,11 @@
             </thead>
             <tbody>
               <tr>
-                <td>
-                  <div class="cell-primary">#ORD-092</div>
-                  <div class="cell-sub">Dine-in (Table 4)</div>
-                </td>
-                <td>
-                  2× Truffle Burger, 1× Sweet
-                  <div class="cell-sub">No onions on one burger</div>
-                </td>
-                <td>
-                  12:04 PM
-                  <div class="cell-sub">11m ago</div>
-                </td>
-                <td><span class="pill pill--progress"><span class="pill__dot"></span>In Progress</span></td>
-                <td style="text-align:right;">
-                  <button class="action-btn" type="button" data-action="mark-ready">Mark Ready</button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="cell-primary">#ORD-093</div>
-                  <div class="cell-sub">Takeout</div>
-                </td>
-                <td>1× Kale Salad, 1× Iced Tea</td>
-                <td>
-                  12:12 PM
-                  <div class="cell-sub">3m ago</div>
-                </td>
-                <td><span class="pill pill--pending"><span class="pill__dot"></span>Pending</span></td>
-                <td style="text-align:right;">
-                  <button class="action-btn action-btn--outline" type="button" data-action="save">Start Prep</button>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <div class="cell-primary">#ORD-089</div>
-                  <div class="cell-sub">Delivery</div>
-                </td>
-                <td>3× Classic Bistro Breakfast</td>
-                <td>
-                  11:50 AM
-                  <div class="cell-sub">25m ago</div>
-                </td>
-                <td><span class="pill pill--ready"><span class="pill__dot"></span>Ready</span></td>
-                <td style="text-align:right;">
-                  <button class="action-menu-btn" type="button" aria-label="More actions">
-                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="5" r="1"/><circle cx="12" cy="12" r="1"/><circle cx="12" cy="19" r="1"/></svg>
-                  </button>
+                <td colspan="5">
+                  <div class="staff-empty-state">
+                    <strong>No active orders</strong>
+                    <span>Orders placed by customers will appear here automatically in real time.</span>
+                  </div>
                 </td>
               </tr>
             </tbody>
@@ -213,6 +162,28 @@
       </main>
     </div>
   </div>
+
+  <!-- Order Details Inspection Modal -->
+  <div class="staff-modal-overlay" id="staff-order-modal" role="dialog" aria-modal="true" aria-labelledby="staff-modal-title">
+    <div class="staff-modal-dialog">
+      <header class="staff-modal-header">
+        <h3 class="staff-modal-title" id="staff-modal-title">
+          <span id="staff-modal-order-number">Order Details</span>
+          <span class="pill pill--pending" id="staff-modal-status"><span class="pill__dot"></span>Pending</span>
+        </h3>
+        <button type="button" class="staff-modal-close" id="staff-modal-close" aria-label="Close modal">&times;</button>
+      </header>
+      <div class="staff-modal-body" id="staff-modal-body">
+        <!-- Rendered dynamically by staff-orders.js -->
+      </div>
+      <footer class="staff-modal-footer" id="staff-modal-footer">
+        <!-- Rendered dynamically by staff-orders.js -->
+      </footer>
+    </div>
+  </div>
+
   <script src="auth.js"></script>
+  <script src="inventory-data.js"></script>
+  <script src="staff-orders.js?v=20260924_2"></script>
 </body>
 </html>

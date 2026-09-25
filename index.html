@@ -18,7 +18,7 @@
 
   <!-- Stylesheets -->
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="landing.css" />
+  <link rel="stylesheet" href="landing.css?v=20260922_final" />
 
   <!-- Minimal progressive behavior -->
   <script src="landing.js" defer></script>
@@ -73,22 +73,22 @@
         </svg>
       </button>
     </div>
-
-    <!-- Mobile Navigation Drawer -->
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      <ul class="mobile-menu__links">
-        <li><a href="#home" class="mobile-menu__link">Home</a></li>
-        <li><a href="#menu" class="mobile-menu__link">Menu</a></li>
-        <li><a href="#order" class="mobile-menu__link">How to Order</a></li>
-        <li><a href="#reviews" class="mobile-menu__link">Reviews</a></li>
-        <li><a href="#visit" class="mobile-menu__link">Visit Us</a></li>
-      </ul>
-
-      <div class="mobile-menu__actions">
-        <a href="customer-login.html" class="btn btn-primary">Order Online</a>
-      </div>
-    </div>
   </header>
+
+  <!-- Mobile Navigation Drawer -->
+  <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
+    <ul class="mobile-menu__links">
+      <li><a href="#home" class="mobile-menu__link">Home</a></li>
+      <li><a href="#menu" class="mobile-menu__link">Menu</a></li>
+      <li><a href="#order" class="mobile-menu__link">How to Order</a></li>
+      <li><a href="#reviews" class="mobile-menu__link">Reviews</a></li>
+      <li><a href="#visit" class="mobile-menu__link">Visit Us</a></li>
+    </ul>
+
+    <div class="mobile-menu__actions">
+      <a href="customer-login.html" class="btn btn-primary">Order Online</a>
+    </div>
+  </div>
 
   <!-- =========================================================================
        Main Content Landmark
@@ -220,28 +220,15 @@
           </p>
         </header>
 
-        <!-- Section-level honest notice -->
-        <div class="menu-notice">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
-            stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-            <circle cx="12" cy="12" r="10"></circle>
-            <line x1="12" y1="8" x2="12" y2="12"></line>
-            <line x1="12" y1="16" x2="12.01" y2="16"></line>
-          </svg>
-          <span>The complete menu, prices, and official food photos will be added after confirmation with the
-            owner.</span>
-        </div>
-
         <div class="menu-category-grid">
 
           <!-- Category 1: Street Food -->
           <article class="category-card" aria-label="Street Food Category">
             <div class="category-card__media">
-              <!-- TODO: Replace temporary visual placeholder with owner-approved street food photo once supplied -->
               <picture>
-                <source srcset="assets/images/sourdough-loaf.webp" type="image/webp" />
-                <img src="assets/images/sourdough-loaf.jpg"
-                  alt="Bread loaf on slate board shown as temporary visual placeholder" class="category-card__img"
+                <source srcset="assets/images/products/special-burger/burger-special.webp" type="image/webp" />
+                <img src="assets/images/products/special-burger/burger-special.webp"
+                  alt="Special Burger and street food favorites" class="category-card__img"
                   width="800" height="597" loading="lazy" />
               </picture>
               <span class="category-card__badge">Street Food</span>
@@ -262,10 +249,9 @@
           <!-- Category 2: Rice Meals -->
           <article class="category-card" aria-label="Rice Meals Category">
             <div class="category-card__media">
-              <!-- TODO: Replace temporary visual placeholder with owner-approved rice meal photo once supplied -->
               <picture>
-                <source srcset="assets/images/bakery-story.webp" type="image/webp" />
-                <img src="assets/images/bakery-story.jpg" alt="Kitchen workspace shown as temporary visual placeholder"
+                <source srcset="assets/images/products/rice-meals/rice-tapsilog.webp" type="image/webp" />
+                <img src="assets/images/products/rice-meals/rice-tapsilog.webp" alt="Savory Tapsilog rice meal"
                   class="category-card__img" width="800" height="532" loading="lazy" />
               </picture>
               <span class="category-card__badge">Rice Meals</span>
@@ -286,11 +272,10 @@
           <!-- Category 3: Pasta -->
           <article class="category-card" aria-label="Pasta Category">
             <div class="category-card__media">
-              <!-- TODO: Replace temporary visual placeholder with owner-approved pasta photo once supplied -->
               <picture>
-                <source srcset="assets/images/almond-croissant.webp" type="image/webp" />
-                <img src="assets/images/almond-croissant.jpg"
-                  alt="Pastry on plate shown as temporary visual placeholder" class="category-card__img" width="800"
+                <source srcset="assets/images/products/special-pasta/pasta-palabok.webp" type="image/webp" />
+                <img src="assets/images/products/special-pasta/pasta-palabok.webp"
+                  alt="Special Palabok pasta" class="category-card__img" width="800"
                   height="597" loading="lazy" />
               </picture>
               <span class="category-card__badge">Pasta</span>
@@ -311,23 +296,22 @@
           <!-- Category 4: Drinks -->
           <article class="category-card" aria-label="Drinks Category">
             <div class="category-card__media">
-              <!-- TODO: Replace temporary visual placeholder with owner-approved drink photos once supplied -->
               <picture>
-                <source srcset="assets/images/dark-roast-coffee.webp" type="image/webp" />
-                <img src="assets/images/dark-roast-coffee.jpg" alt="Cup of coffee shown as temporary visual placeholder"
+                <source srcset="assets/images/products/iced-coffee/iced-coffee-caramel-macchiato.webp" type="image/webp" />
+                <img src="assets/images/products/iced-coffee/iced-coffee-caramel-macchiato.webp" alt="Corner Cravings iced caramel macchiato"
                   class="category-card__img" width="800" height="600" loading="lazy" />
               </picture>
               <span class="category-card__badge">Drinks</span>
             </div>
             <div class="category-card__body">
-              <h3 class="category-card__title">Tea, Coffee &amp; Frappes</h3>
+              <h3 class="category-card__title">Coffee &amp; Frappes</h3>
               <p class="category-card__desc">
-                Cool refreshing teas, bold hot and iced coffee brews, and sweet blended frappes crafted to be the ideal
+                Bold iced coffee favorites and sweet blended frappes crafted for refreshing breaks and the perfect
                 companion to every meal.
               </p>
               <div class="category-card__footer">
                 <span class="category-card__footer-dot" aria-hidden="true"></span>
-                <span>Tea · Coffee · Blended Frappes</span>
+                <span>Iced Coffee · Blended Frappes</span>
               </div>
             </div>
           </article>
