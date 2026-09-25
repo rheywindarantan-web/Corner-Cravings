@@ -8,43 +8,40 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="dashboard.css" />
-  <link rel="stylesheet" href="order-management.css" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
+  <link rel="stylesheet" href="order-management.css?v=20260925-2" />
 </head>
 <body>
   <div class="app-shell">
     <aside class="sidebar">
       <div class="sidebar__brand"><img class="sidebar__brand-logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" /><div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div></div>
       <nav class="sidebar__nav" aria-label="Primary">
-        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
         <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
-        <a class="nav-item nav-item--sub is-active" href="order-history.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v6h6M12 7v5l3 2"/></svg><span>Order History</span></a>
+        <a class="nav-item nav-item--sub nav-item--history is-active" href="order-history.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v6h6M12 7v5l3 2"/></svg><span>Order History</span></a>
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg><span>Products</span></a>
         <a class="nav-item nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
         <a class="nav-item nav-item--sub" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In</span></a>
         <a class="nav-item nav-item--sub" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg><span>Stock Out</span></a>
-        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile / Settings</span></a>
       </nav>
       <div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg><span>Logout</span></button></div>
     </aside>
     <div class="main">
       <header class="topbar"><h2 class="topbar__title">Order History</h2><div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input type="search" placeholder="Search history..." aria-label="Search order history" /></div><div class="topbar__actions"><button class="icon-btn" type="button" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg></button></div></header>
       <main class="page-content orders-page">
-        <div class="orders-heading"><div><h1>Order History</h1><p>Review completed and cancelled customer orders.</p></div><div class="orders-tools"><div class="orders-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input id="order-search" type="search" placeholder="Search past orders..." aria-label="Search past orders" /></div><select class="orders-filter" id="order-filter" aria-label="Filter order status"><option value="all">All statuses</option><option value="completed">Completed</option><option value="cancelled">Cancelled</option></select></div></div>
+        <div class="orders-heading"><div><h1>Order History</h1><p>Review completed and cancelled customer orders.</p></div><div class="orders-tools"><div class="orders-search"><svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input id="order-search" type="search" placeholder="Search past orders..." aria-label="Search past orders" /></div><select class="orders-filter" id="order-filter" aria-label="Filter order status"><option value="all">All statuses</option><option value="completed">Completed</option><option value="delivered">Delivered</option><option value="picked-up">Picked Up</option><option value="cancelled">Cancelled</option></select><button type="button" class="btn-outline" id="btn-clear-history" style="font-size:13px; padding:6px 12px; white-space:nowrap; cursor:pointer;" title="Clear completed and cancelled orders">Clear History</button></div></div>
         <section class="orders-panel" aria-label="Order history">
           <div class="orders-table-wrap"><table class="orders-table"><thead><tr><th>Order ID</th><th>Customer</th><th>Date</th><th>Items</th><th>Total</th><th>Status</th></tr></thead><tbody id="upcoming-orders-body">
-            <tr data-status="completed"><td><a class="order-link" href="order-details.html?order=8819">#ORD-8819</a></td><td><div class="customer-cell"><span class="customer-initials">JR</span>Juan Reyes</div></td><td>Sep 18, 2026</td><td>3 items</td><td>₱475.00</td><td><span class="order-status order-status--completed">Completed</span></td></tr>
-            <tr data-status="completed"><td><a class="order-link" href="order-details.html?order=8818">#ORD-8818</a></td><td><div class="customer-cell"><span class="customer-initials">MS</span>Mae Sales</div></td><td>Sep 18, 2026</td><td>2 items</td><td>₱360.00</td><td><span class="order-status order-status--completed">Completed</span></td></tr>
-            <tr data-status="cancelled"><td><a class="order-link" href="order-details.html?order=8817">#ORD-8817</a></td><td><div class="customer-cell"><span class="customer-initials">CP</span>Carlo Perez</div></td><td>Sep 17, 2026</td><td>1 item</td><td>₱125.00</td><td><span class="order-status order-status--cancelled">Cancelled</span></td></tr>
-            <tr data-status="completed"><td><a class="order-link" href="order-details.html?order=8816">#ORD-8816</a></td><td><div class="customer-cell"><span class="customer-initials">AL</span>Anna Lim</div></td><td>Sep 17, 2026</td><td>4 items</td><td>₱699.00</td><td><span class="order-status order-status--completed">Completed</span></td></tr>
-            <tr data-status="completed"><td><a class="order-link" href="order-details.html?order=8815">#ORD-8815</a></td><td><div class="customer-cell"><span class="customer-initials">DM</span>Daniel Cruz</div></td><td>Sep 16, 2026</td><td>2 items</td><td>₱290.00</td><td><span class="order-status order-status--completed">Completed</span></td></tr>
           </tbody></table></div>
-          <p class="orders-empty" id="orders-empty">No past orders match your search.</p>
-          <footer class="orders-panel__footer"><span>Showing 5 of 18 past orders</span><nav class="order-pagination" aria-label="Order history pages"><button class="order-page-btn" type="button" disabled aria-label="Previous page">‹</button><button class="order-page-btn is-active" type="button">1</button><button class="order-page-btn" type="button">2</button><button class="order-page-btn" type="button">3</button><button class="order-page-btn" type="button" aria-label="Next page">›</button></nav></footer>
+          <p class="orders-empty" id="orders-empty">No past orders. Completed and cancelled customer orders will appear here automatically.</p>
+          <footer class="orders-panel__footer"><span>Showing 0 past orders</span><nav class="order-pagination" aria-label="Order history pages"><button class="order-page-btn" type="button" disabled aria-label="Previous page">‹</button><button class="order-page-btn is-active" type="button">1</button><button class="order-page-btn" type="button">2</button><button class="order-page-btn" type="button">3</button><button class="order-page-btn" type="button" aria-label="Next page">›</button></nav></footer>
         </section>
       </main>
     </div>
   </div>
   <script src="auth.js"></script>
-  <script src="order-management.js"></script>
+  <script src="inventory-data.js"></script>
+  <script src="order-management.js?v=20260925-1"></script>
 </body>
 </html>

@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
+  <script src="menu-data.js" defer></script><script src="inventory-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body class="dd-page-wrapper">
 
@@ -68,7 +68,7 @@
             <!-- Floating Address Badge on Map -->
             <div class="dd-map-info-badge">
               <div class="dd-map-brand-tag">CORNER CRAVINGS</div>
-              <div class="dd-map-address-live" id="dd-live-map-address">Delivery: Unit 404, Building A, Sunrise Condominiums</div>
+              <div class="dd-map-address-live" id="dd-live-map-address">Delivery: Set your address below</div>
             </div>
 
             <!-- Floating GPS Locate Button -->
@@ -156,6 +156,19 @@
               />
             </div>
           </div>
+
+          <!-- Special Kitchen / Delivery Instructions -->
+          <div class="dd-form-group" style="margin-top: var(--space-4); margin-bottom: 0;">
+            <label class="dd-form-label" for="del-notes">Order Notes / Kitchen Instructions (Optional)</label>
+            <textarea
+              class="dd-form-input"
+              id="del-notes"
+              name="notes"
+              rows="2"
+              placeholder="e.g. Please ring the doorbell, less ice on drinks, extra napkins"
+              style="resize: vertical; min-height: 56px; padding: 10px 14px; font-family: inherit;"
+            ></textarea>
+          </div>
         </div>
 
         <!-- Right Column: Sticky Order Summary matching Image 1 -->
@@ -174,22 +187,22 @@
             <div class="dd-summary-breakdown">
               <div class="dd-breakdown-row">
                 <span>Subtotal</span>
-                <span id="dd-val-subtotal">₱18.48</span>
+                <span id="dd-val-subtotal">₱0.00</span>
               </div>
               <div class="dd-breakdown-row">
                 <span id="dd-label-delivery">Standard Delivery</span>
-                <span id="dd-val-delivery">₱3.99</span>
+                <span id="dd-val-delivery">₱0.00</span>
               </div>
               <div class="dd-breakdown-row">
                 <span>Taxes &amp; Fees</span>
-                <span id="dd-val-tax">₱2.10</span>
+                <span id="dd-val-tax">₱0.00</span>
               </div>
             </div>
 
             <!-- Total -->
             <div class="dd-total-row">
               <span class="dd-total-label">Total</span>
-              <span class="dd-total-val" id="dd-val-total">₱24.57</span>
+              <span class="dd-total-val" id="dd-val-total">₱0.00</span>
             </div>
 
             <!-- Save CTA Button -->
@@ -232,6 +245,8 @@
       var areaSelect = document.getElementById('del-area');
       var nameInput = document.getElementById('del-name');
       var phoneInput = document.getElementById('del-phone');
+      var notesInput = document.getElementById('del-notes');
+      var currentMethod = window.CornerCravings.getDeliveryMethod();
 
       var liveMapAddress = document.getElementById('dd-live-map-address');
       var gpsBtn = document.getElementById('dd-btn-gps');
@@ -264,14 +279,19 @@
         }
         if (existing.recipientName) nameInput.value = existing.recipientName;
         if (existing.contactNumber) phoneInput.value = existing.contactNumber;
+        if (existing.notes && notesInput) notesInput.value = existing.notes;
       }
 
       // Update live map address preview
       function updateMapBadge() {
+        if (currentMethod === 'pickup') {
+          liveMapAddress.textContent = 'Store Pickup: Corner Cravings Pasong Putik, QC';
+          return;
+        }
         var a = addrInput.value.trim();
         var ar = areaSelect.value.trim();
-        var text = a ? a : '14 Oak Rd, Apt 28';
-        if (ar && !text.includes(ar)) text += ', ' + ar;
+        var text = a ? a : 'Set address below';
+        if (ar && !text.includes(ar) && a) text += ', ' + ar;
         liveMapAddress.textContent = 'Delivery: ' + text;
       }
 
@@ -279,25 +299,46 @@
       areaSelect.addEventListener('change', updateMapBadge);
       updateMapBadge();
 
-      // GPS Button handler with friendly feedback
+      // If method is pickup, set store notice and make address optional
+      if (currentMethod === 'pickup') {
+        if (!addrInput.value) addrInput.value = 'Pasong Putik Store (Pickup Counter)';
+        if (!areaSelect.value) areaSelect.value = 'Quezon City';
+        addrInput.disabled = true;
+        lmarkInput.placeholder = 'Counter pickup instructions (e.g. will arrive 12:30pm)';
+      }
+
+      // GPS Button handler with friendly feedback and geolocation
       if (gpsBtn) {
         gpsBtn.addEventListener('click', function () {
           gpsBtn.style.transform = 'scale(1.2)';
           setTimeout(function() { gpsBtn.style.transform = ''; }, 200);
 
-          if (!addrInput.value) {
-            addrInput.value = 'Unit 404, Building A, Sunrise Condominiums';
-            lmarkInput.value = '123 Rizal Avenue';
-            areaSelect.value = 'Makati City';
-            updateMapBadge();
+          if (navigator.geolocation && location.protocol === 'https:') {
+            navigator.geolocation.getCurrentPosition(function (pos) {
+              addrInput.value = 'Pinpointed via GPS (' + pos.coords.latitude.toFixed(4) + ', ' + pos.coords.longitude.toFixed(4) + ')';
+              updateMapBadge();
+              window.CornerCravings.showToast('Current GPS coordinates detected!');
+            }, function () {
+              fillLocalFallback();
+            });
+          } else {
+            fillLocalFallback();
           }
-          window.CornerCravings.showToast('Current GPS coordinates pinpointed!');
+
+          function fillLocalFallback() {
+            if (!addrInput.value || currentMethod === 'pickup') {
+              addrInput.value = 'Pasong Putik, Novaliches';
+              lmarkInput.value = 'Near Quirino Highway';
+              areaSelect.value = 'Quezon City';
+              updateMapBadge();
+            }
+            window.CornerCravings.showToast('Delivery location set to Quezon City vicinity!');
+          }
         });
       }
 
       // Render Order Summary in Right Column
       var cart = window.CornerCravings.getCart();
-      var currentMethod = existing.method || 'standard';
       var totals = window.CornerCravings.calculateCartTotals(currentMethod);
 
       if (itemsListEl) {
@@ -336,9 +377,10 @@
       function collectAndSaveDetails() {
         var addr = addrInput.value.trim();
         var landmark = lmarkInput.value.trim();
-        var area = areaSelect.value.trim() || 'Makati City';
+        var area = areaSelect.value.trim();
         var name = nameInput.value.trim();
         var phone = phoneInput.value.trim();
+        var notes = notesInput ? notesInput.value.trim() : '';
 
         var details = window.CornerCravings.getDeliveryDetails();
         if (addr) details.address = addr;
@@ -346,6 +388,7 @@
         if (area) details.area = area;
         if (name) details.recipientName = name;
         if (phone) details.contactNumber = phone;
+        details.notes = notes;
 
         window.CornerCravings.saveDeliveryDetails(details);
         return details;
@@ -375,11 +418,11 @@
           e.preventDefault();
 
           var addr = addrInput.value.trim();
-          var area = areaSelect.value.trim();
           var name = nameInput.value.trim();
           var phone = phoneInput.value.trim();
 
-          if (!addr) {
+          // Only require street address if fulfilling via Delivery
+          if (currentMethod !== 'pickup' && !addr) {
             window.CornerCravings.showToast('Please enter your complete street address.');
             addrInput.focus();
             return;

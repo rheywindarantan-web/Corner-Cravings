@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
   <script src="menu-data.js" defer></script>
+  <script src="inventory-data.js" defer></script>
   <script src="customer.js" defer></script>
   <script src="customer-orders.js" defer></script>
 </head>
@@ -17,7 +18,7 @@
     <div class="container">
       <a class="brand" href="customer-home.html" aria-label="Corner Cravings home"><img class="brand__logo" src="Logo.png" alt="Corner Cravings logo" width="40" height="40" /><div><div class="brand__name">Corner Cravings</div><div class="brand__tag">CRAVE. EAT. SATISFIED</div></div></a>
       <nav class="customer-nav" aria-label="Customer navigation"><ul class="customer-nav__links"><li><a class="customer-nav__link" href="customer-home.html">Home</a></li><li><a class="customer-nav__link" href="customer-menu.html">Menu</a></li><li><a class="customer-nav__link is-active" href="customer-orders.html">Track Orders</a></li></ul></nav>
-      <div class="customer-header__actions"><a class="btn-icon" href="customer-cart.html" aria-label="Cart">🛒<span class="cart-badge">0</span></a><button class="btn-icon" type="button" data-action="profile" aria-label="Customer profile">◎</button><button class="nav-toggle-btn" id="customer-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button></div>
+      <div class="customer-header__actions"><a class="btn-icon header-cart-btn" href="customer-cart.html" aria-label="Cart">🛒<span class="cart-badge">0</span></a><button class="btn-icon" type="button" data-action="profile" aria-label="Customer profile">◎</button><button class="nav-toggle-btn" id="customer-nav-toggle" type="button" aria-label="Toggle navigation" aria-expanded="false">☰</button></div>
     </div>
     <nav class="customer-mobile-menu" id="customer-mobile-menu" aria-label="Mobile navigation"><ul><li><a class="customer-mobile-menu__link" href="customer-home.html">Home</a></li><li><a class="customer-mobile-menu__link" href="customer-menu.html">Menu</a></li><li><a class="customer-mobile-menu__link" href="customer-orders.html">Track Orders</a></li><li><a class="customer-mobile-menu__link" href="customer-cart.html">Cart</a></li></ul></nav>
   </header>
@@ -27,6 +28,32 @@
     <section class="customer-order-list" id="customer-order-list" aria-live="polite"></section>
   </main>
 
-  <footer class="customer-footer"><div class="customer-footer__grid"><div><h3>Corner Cravings</h3><p>Your neighborhood destination for meals, snacks, coffee, and refreshing drinks.</p></div><div><h3>Navigation</h3><a href="customer-home.html">Home</a><a href="customer-menu.html">Menu</a><a href="customer-orders.html">Track Orders</a></div><div><h3>Portal Access</h3><a href="login.html">Admin Portal</a><a href="staff-login.html">Employee Portal</a></div></div></footer>
+  <footer class="customer-footer">
+    <div class="container">
+      <div class="customer-footer__grid">
+        <div class="customer-footer__brand">
+          <div class="customer-footer__brand-head">
+            <span class="customer-footer__brand-name">Corner Cravings</span>
+          </div>
+          <p class="customer-footer__desc">Your neighborhood destination for meals, snacks, coffee, and refreshing drinks in Brgy. Pasong Putik, Quezon City.</p>
+        </div>
+        <div>
+          <h4 class="customer-footer__col-title">Navigation</h4>
+          <ul class="customer-footer__links">
+            <li><a class="customer-footer__link" href="customer-home.html">Home</a></li>
+            <li><a class="customer-footer__link" href="customer-menu.html">Menu</a></li>
+            <li><a class="customer-footer__link" href="customer-orders.html">Track Orders</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4 class="customer-footer__col-title">Portal Access</h4>
+          <ul class="customer-footer__links">
+            <li><a class="customer-footer__link" href="login.html">Admin Portal</a></li>
+            <li><a class="customer-footer__link" href="staff-login.html">Employee Portal</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </footer>
 </body>
 </html>

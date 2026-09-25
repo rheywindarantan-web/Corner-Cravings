@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
+  <script src="menu-data.js?v=20260925_5" defer></script><script src="inventory-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <ul class="customer-nav__links">
           <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
           <li><a href="customer-menu.html" class="customer-nav__link is-active">Menu</a></li>
-          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="promo">Promo</a></li>
         </ul>
       </nav>
 
@@ -76,7 +76,7 @@
       <ul class="customer-mobile-menu__links">
         <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
         <li><a href="customer-menu.html" class="customer-mobile-menu__link is-active">Menu</a></li>
-        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="promo">Promo (Coming Soon)</a></li>
         <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
         <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
         <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
@@ -249,18 +249,32 @@
         for (var i = 0; i < filtered.length; i++) {
           var item = filtered[i];
           var lazyAttr = i >= 4 ? ' loading="lazy"' : ' fetchpriority="high"';
-          var imageHtml = item.imageJpg ? '<picture><source srcset="' + (item.imageWebp || item.imageJpg) + '" type="image/webp" /><img src="' + item.imageJpg + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300"' + lazyAttr + ' data-product-name="' + item.name + '" /></picture>' : '<div class="product-image-placeholder"><span>Image coming soon</span><small>' + item.name + '</small></div>';
-          html += '<article class="product-card" aria-label="' + item.name + '">' +
+          var imagePath = item.imageJpg || item.imageWebp;
+          var sourceHtml = item.imageWebp ? '<source srcset="' + item.imageWebp + '" type="image/webp" />' : '';
+          var imageHtml = imagePath ? '<picture>' + sourceHtml + '<img src="' + imagePath + '" alt="' + item.imageAlt + '" class="product-card__img" width="400" height="300"' + lazyAttr + ' data-product-name="' + item.name + '" /></picture>' : '<div class="product-image-placeholder"><span>Image coming soon</span><small>' + item.name + '</small></div>';
+
+          var isSoldOut = false;
+          if (window.CornerCravingsInventory && typeof window.CornerCravingsInventory.isProductInStock === 'function') {
+            isSoldOut = !window.CornerCravingsInventory.isProductInStock(item.id);
+          }
+
+          var ctaHtml = isSoldOut
+            ? '<button type="button" class="btn btn-secondary btn-sm" disabled style="opacity:0.65; cursor:not-allowed;">Sold Out</button>'
+            : '<a href="customer-product.html?id=' + item.id + '" class="btn btn-primary btn-sm">Add to Cart</a>';
+
+          var chipSoldOut = isSoldOut ? ' <span style="background:#fee2e2; color:#b91c1c; padding:2px 6px; border-radius:4px; font-size:10px; font-weight:700; margin-left:4px;">Sold Out</span>' : '';
+
+          html += '<article class="product-card" aria-label="' + item.name + '"' + (isSoldOut ? ' style="opacity:0.85;"' : '') + '>' +
             '<div class="product-card__media">' +
               imageHtml +
-              '<span class="product-card__chip">' + item.categoryLabel + '</span>' +
+              '<span class="product-card__chip">' + item.categoryLabel + chipSoldOut + '</span>' +
             '</div>' +
             '<div class="product-card__body">' +
               '<h3 class="product-card__title"><a href="customer-product.html?id=' + item.id + '">' + item.name + '</a></h3>' +
               '<p class="product-card__desc">' + item.description + '</p>' +
               '<div class="product-card__footer">' +
                 '<span class="product-card__price">' + window.CornerCravings.formatPeso(item.price) + '</span>' +
-                '<a href="customer-product.html?id=' + item.id + '" class="btn btn-primary btn-sm">Add to Cart</a>' +
+                ctaHtml +
               '</div>' +
             '</div>' +
           '</article>';

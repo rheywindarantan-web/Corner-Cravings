@@ -8,8 +8,8 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="dashboard.css" />
-  <link rel="stylesheet" href="profile.css" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
+  <link rel="stylesheet" href="profile.css?v=20260924" />
 </head>
 <body>
   <div class="app-shell">
@@ -19,12 +19,13 @@
         <div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div>
       </div>
       <nav class="sidebar__nav" aria-label="Primary">
-        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
         <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg><span>Products</span></a>
         <a class="nav-item nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
         <a class="nav-item nav-item--sub" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In</span></a>
         <a class="nav-item nav-item--sub" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg><span>Stock Out</span></a>
-        <a class="nav-item is-active" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+        <a class="nav-item is-active" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile / Settings</span></a>
       </nav>
       <div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg><span>Logout</span></button></div>
     </aside>
@@ -79,6 +80,106 @@
             <div class="profile-card-actions profile-save-actions"><button class="btn-outline" id="profile-cancel" type="button">Cancel</button><button class="btn-solid-sm" type="submit">Save Changes</button></div>
           </section>
         </form>
+
+        <!-- Store Business Operations & Configuration Section -->
+        <section class="profile-info-card" style="margin-top: 28px;">
+          <h2 class="profile-card-heading">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg>
+            Store Business Operations
+          </h2>
+          <form id="store-operations-form" style="display:flex; flex-direction:column; gap:16px;">
+            <div class="profile-fields">
+              <div class="profile-field">
+                <label for="store-open-time">Opening Time</label>
+                <input class="profile-control" id="store-open-time" type="time" value="09:00" required />
+              </div>
+              <div class="profile-field">
+                <label for="store-close-time">Closing Time</label>
+                <input class="profile-control" id="store-close-time" type="time" value="21:00" required />
+              </div>
+              <div class="profile-field">
+                <label for="store-delivery-fee">Standard Delivery Fee (₱)</label>
+                <input class="profile-control" id="store-delivery-fee" type="number" min="0" step="1" value="49" required />
+              </div>
+              <div class="profile-field">
+                <label for="store-phone-contact">Support Hotline</label>
+                <input class="profile-control" id="store-phone-contact" type="text" value="0917-555-CRAVE" required />
+              </div>
+              <div class="profile-field profile-field--full">
+                <label for="store-branch-address">Store Location / Pickup Address</label>
+                <input class="profile-control" id="store-branch-address" type="text" value="Blk 29 Lot 1, Bougainvilla St., Brgy. Pasong Putik, Quezon City" required />
+              </div>
+            </div>
+            <div style="display:flex; justify-content:flex-end; margin-top:8px;">
+              <button type="submit" class="btn-solid-sm">Save Store Operations</button>
+            </div>
+          </form>
+        </section>
+
+        <!-- Employee & Kitchen Staff Accounts Section -->
+        <section class="profile-info-card staff-management" aria-labelledby="staff-accounts-heading">
+          <header class="staff-management__header">
+            <div class="staff-management__title-wrap">
+              <span class="staff-management__icon" aria-hidden="true"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+              <div><h2 id="staff-accounts-heading">Kitchen &amp; Staff Accounts</h2><p>Manage employee access, assigned roles, and account availability.</p></div>
+            </div>
+            <div class="staff-management__header-actions">
+              <span class="staff-management__count" id="staff-account-count" aria-live="polite">0 accounts</span>
+              <button type="button" class="btn-solid-sm staff-management__add" id="btn-toggle-add-staff" aria-expanded="false" aria-controls="add-staff-quick-form"><span aria-hidden="true">+</span> Add Staff Member</button>
+            </div>
+          </header>
+
+          <!-- Add Staff Quick Form (collapsible) -->
+          <form class="staff-form" id="add-staff-quick-form" hidden>
+            <div class="staff-form__intro"><div><h3>Register New Staff Member</h3><p>Create an employee account and assign its operational role.</p></div><span class="staff-form__required">All fields required</span></div>
+            <div class="profile-fields">
+              <div class="profile-field">
+                <label for="new-staff-name">Full Name</label>
+                <input class="profile-control" id="new-staff-name" type="text" placeholder="e.g. Maria Santos" required />
+              </div>
+              <div class="profile-field">
+                <label for="new-staff-email">Email Address</label>
+                <input class="profile-control" id="new-staff-email" type="email" placeholder="staff@cornercravings.com" required />
+              </div>
+              <div class="profile-field">
+                <label for="new-staff-role">Role / Position</label>
+                <select class="profile-control" id="new-staff-role" required>
+                  <option value="Kitchen Staff">Kitchen Staff</option>
+                  <option value="Lead Cook">Lead Cook</option>
+                  <option value="Barista">Barista</option>
+                  <option value="Dispatcher">Dispatcher</option>
+                </select>
+              </div>
+              <div class="profile-field">
+                <label for="new-staff-token">Access Token / PIN</label>
+                <input class="profile-control" id="new-staff-token" type="text" placeholder="e.g. CC-STAFF-99" required />
+              </div>
+            </div>
+            <div class="staff-form__actions">
+              <button type="button" class="btn-outline" id="btn-cancel-add-staff">Cancel</button>
+              <button type="submit" class="btn-solid-sm">Save Staff Account</button>
+            </div>
+          </form>
+
+          <!-- Staff Table -->
+          <div class="staff-table-wrap">
+            <table class="staff-table">
+              <caption class="sr-only">Registered kitchen and staff accounts</caption>
+              <thead>
+                <tr>
+                  <th>Staff Name</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody id="staff-accounts-list-body">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
       </main>
     </div>
   </div>
@@ -92,6 +193,6 @@
   </div>
 
   <script src="auth.js"></script>
-  <script src="profile.js"></script>
+  <script src="profile.js?v=20260924"></script>
 </body>
 </html>

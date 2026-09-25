@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="customer.css" />
-  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
+  <link rel="stylesheet" href="customer.css?v=20260924_2" />
+  <script src="menu-data.js?v=20260925_5" defer></script><script src="inventory-data.js" defer></script><script src="customer.js?v=20260924_2" defer></script>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <ul class="customer-nav__links">
           <li><a href="customer-home.html" class="customer-nav__link is-active">Home</a></li>
           <li><a href="customer-menu.html" class="customer-nav__link">Menu</a></li>
-          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="promo">Promo</a></li>
         </ul>
       </nav>
 
@@ -76,7 +76,7 @@
       <ul class="customer-mobile-menu__links">
         <li><a href="customer-home.html" class="customer-mobile-menu__link is-active">Home</a></li>
         <li><a href="customer-menu.html" class="customer-mobile-menu__link">Menu</a></li>
-        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="promo">Promo (Coming Soon)</a></li>
         <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
         <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
         <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
@@ -126,8 +126,23 @@
         </aside>
       </div>
 
+      <!-- Customer Favorites -->
+      <section class="favorites-section" aria-labelledby="favorites-heading">
+        <div class="section-head">
+          <div>
+            <span class="eyebrow">Saved for you</span>
+            <h2 class="section-head__title" id="favorites-heading">Your Favorites</h2>
+          </div>
+          <a href="customer-menu.html" class="section-head__link">Find More Favorites &rarr;</a>
+        </div>
+
+        <div class="products-grid" id="favorite-products-grid">
+          <!-- Populated from the current customer's saved favorites -->
+        </div>
+      </section>
+
       <!-- Popular Now Row -->
-      <section aria-labelledby="popular-heading">
+      <section class="popular-section" aria-labelledby="popular-heading">
         <div class="section-head">
           <h2 class="section-head__title" id="popular-heading">Popular Now</h2>
           <a href="customer-menu.html" class="section-head__link">View All Menu &rarr;</a>
@@ -182,19 +197,11 @@
 
   <script>
     document.addEventListener('DOMContentLoaded', function () {
-      var grid = document.getElementById('popular-products-grid');
+      var favoriteGrid = document.getElementById('favorite-products-grid');
+      var popularGrid = document.getElementById('popular-products-grid');
       var searchInput = document.getElementById('home-search');
 
-      if (grid && window.CornerCravings) {
-        var items = window.CornerCravings.DEMO_MENU.filter(function (x) {
-          return x.popular && x.available !== false;
-        });
-
-        if (!items.length) {
-          grid.innerHTML = '<div class="popular-empty"><span class="popular-empty__icon">★</span><h3>Popular items will appear here</h3><p>Edit <code>POPULAR_PRODUCT_IDS</code> in <code>menu-data.js</code> after the owner confirms the best sellers.</p></div>';
-          return;
-        }
-
+      function productCardsHtml(items, favoriteSection) {
         var html = '';
         for (var i = 0; i < items.length; i++) {
           var item = items[i];
@@ -203,7 +210,7 @@
           html += '<article class="product-card" aria-label="' + item.name + '">' +
             '<div class="product-card__media">' +
               imageHtml +
-              '<span class="product-card__chip">' + item.categoryLabel + '</span>' +
+              '<span class="product-card__chip' + (favoriteSection ? ' product-card__chip--favorite' : '') + '">' + (favoriteSection ? 'Your Favorite' : item.categoryLabel) + '</span>' +
             '</div>' +
             '<div class="product-card__body">' +
               '<h3 class="product-card__title"><a href="customer-product.html?id=' + item.id + '">' + item.name + '</a></h3>' +
@@ -215,8 +222,11 @@
             '</div>' +
           '</article>';
         }
-        grid.innerHTML = html;
+        return html;
+      }
 
+      function attachImageFallbacks(grid) {
+        if (!grid) return;
         grid.querySelectorAll('.product-card__img').forEach(function (img) {
           img.addEventListener('error', function () {
             var media = img.closest('.product-card__media');
@@ -233,7 +243,48 @@
             if (picture) picture.replaceWith(placeholder);
           }, { once: true });
         });
+      }
 
+      if (favoriteGrid && popularGrid && window.CornerCravings) {
+        var favoriteIds = typeof window.CornerCravings.getFavoriteProductIds === 'function'
+          ? window.CornerCravings.getFavoriteProductIds()
+          : [];
+        var favoriteItems = favoriteIds.map(function (id) {
+          return window.CornerCravings.getProductById(id);
+        }).filter(function (item) {
+          return item && item.available !== false;
+        });
+        var popularItems = window.CornerCravings.DEMO_MENU.filter(function (item) {
+          return item.popular && item.available !== false;
+        }).slice(0, 4);
+
+        if (favoriteItems.length) {
+          favoriteGrid.innerHTML = productCardsHtml(favoriteItems, true);
+        } else {
+          favoriteGrid.innerHTML = '<div class="popular-empty favorite-empty"><span class="popular-empty__icon">♡</span><h3>You have no favorites yet</h3><p>Open a menu item and select the heart to save it here for your next order.</p><a href="customer-menu.html" class="btn btn-secondary btn-sm">Browse Menu</a></div>';
+        }
+
+        if (popularItems.length) {
+          popularGrid.innerHTML = productCardsHtml(popularItems, false);
+        } else {
+          popularGrid.innerHTML = '<div class="popular-empty"><span class="popular-empty__icon">★</span><h3>No popular items are available right now</h3><p>Please check the full menu for other available Corner Cravings items.</p></div>';
+        }
+
+        attachImageFallbacks(favoriteGrid);
+        attachImageFallbacks(popularGrid);
+
+        var favoriteFromUrl = new URLSearchParams(window.location.search).get('favorite');
+        if (favoriteFromUrl && typeof window.CornerCravings.showToast === 'function') {
+          var savedFavorite = window.CornerCravings.getProductById(favoriteFromUrl);
+          window.CornerCravings.showToast((savedFavorite ? savedFavorite.name : 'Product') + ' was added to your favorites.');
+          window.setTimeout(function () {
+            var favoriteHeading = document.getElementById('favorites-heading');
+            if (favoriteHeading) favoriteHeading.scrollIntoView({ behavior: 'smooth', block: 'start' });
+          }, 100);
+          if (window.history && typeof window.history.replaceState === 'function') {
+            window.history.replaceState({}, document.title, 'customer-home.html#favorites-heading');
+          }
+        }
       }
 
       if (searchInput) {

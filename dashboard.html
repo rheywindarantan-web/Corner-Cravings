@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard · Corner Cravings</title>
+  <link rel="icon" type="image/png" href="Logo.png" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="tokens.css" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
+  <link rel="stylesheet" href="order-management.css?v=20260925-1" />
+</head>
+<body>
+  <div class="app-shell">
+
+    <!-- ============== SIDEBAR ============== -->
+    <aside class="sidebar">
+      <div class="sidebar__brand">
+        <img class="sidebar__brand-logo" src="Logo.png" alt="Corner Cravings logo" width="44" height="44" />
+        <div>
+          <p class="sidebar__brand-name">Corner<br />Cravings</p>
+          <p class="sidebar__brand-sub">Admin Panel</p>
+        </div>
+      </div>
+
+      <nav class="sidebar__nav" aria-label="Primary">
+        <a class="nav-item is-active" href="dashboard.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+          <span>Dashboard</span>
+        </a>
+        <a class="nav-item" href="orders.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg>
+          <span>Orders</span>
+        </a>
+        <a class="nav-item nav-item--sub nav-item--history" href="order-history.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v6h6M12 7v5l3 2"/></svg>
+          <span>Order History</span>
+        </a>
+        <a class="nav-item" href="products.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg>
+          <span>Products</span>
+        </a>
+        <a class="nav-item nav-item--inventory-parent" href="stock-in.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg>
+          <span>Manage Inventory</span>
+        </a>
+        <a class="nav-item nav-item--sub" href="stock-in.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+          <span>Stock In</span>
+        </a>
+        <a class="nav-item nav-item--sub" href="stock-out.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg>
+          <span>Stock Out</span>
+        </a>
+        <a class="nav-item" href="profile.html">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg>
+          <span>Profile / Settings</span>
+        </a>
+      </nav>
+
+      <div class="sidebar__footer">
+        <button class="btn-logout" type="button" data-logout-target="login.html">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg>
+          <span>Logout</span>
+        </button>
+      </div>
+    </aside>
+
+    <!-- ============== MAIN ============== -->
+    <div class="main">
+      <header class="topbar">
+        <h2 class="topbar__title">Corner Cravings Admin</h2>
+        <div class="topbar__search">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+          <input type="search" placeholder="Search orders or customers..." aria-label="Search" />
+        </div>
+        <div class="topbar__actions">
+          <button class="icon-btn" type="button" aria-label="Notifications">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/></svg>
+          </button>
+          <button class="icon-btn" type="button" aria-label="Settings" onclick="location.href='profile.html'">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.72 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+          </button>
+        </div>
+      </header>
+
+      <main class="page-content">
+        <!-- Page Title -->
+        <header class="page-header">
+          <div>
+            <h1 class="page-header__title">Executive Dashboard</h1>
+            <p class="page-header__subtitle">Real-time revenue, order progression, and store operations overview.</p>
+          </div>
+        </header>
+
+        <!-- Store Open/Close Control Slot -->
+        <div id="store-control-slot"></div>
+
+        <!-- Dashboard Toolbar: Date Filters, Scope Toggle & CSV Export -->
+        <div class="dashboard-toolbar">
+          <div class="date-filter-group">
+            <button type="button" class="date-filter-btn is-active" data-date-filter="all">All Time</button>
+            <button type="button" class="date-filter-btn" data-date-filter="today">Today</button>
+            <button type="button" class="date-filter-btn" data-date-filter="7days">Past 7 Days</button>
+            <button type="button" class="date-filter-btn" data-date-filter="month">This Month</button>
+          </div>
+
+          <div class="dashboard-toolbar-actions">
+            <button type="button" class="btn-export-csv" id="btn-export-sales-csv" title="Download sales data as CSV">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+              Export CSV
+            </button>
+          </div>
+        </div>
+
+        <!-- KPI Grid -->
+        <section class="kpi-grid" aria-label="Key Performance Indicators">
+          <article class="kpi-card">
+            <div class="kpi-card__header">
+              <p class="kpi-card__label">Gross Sales</p>
+              <span class="kpi-card__icon kpi-card__icon--green">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
+              </span>
+            </div>
+            <h3 class="kpi-card__value" id="kpi-revenue">₱0.00</h3>
+            <p class="kpi-card__meta">Completed order receipts</p>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-card__header">
+              <p class="kpi-card__label">Completed Orders</p>
+              <span class="kpi-card__icon">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="20 6 9 17 4 12"/></svg>
+              </span>
+            </div>
+            <h3 class="kpi-card__value" id="kpi-completed">0</h3>
+            <p class="kpi-card__meta">Fulfilled transactions</p>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-card__header">
+              <p class="kpi-card__label">Active in Queue</p>
+              <span class="kpi-card__icon kpi-card__icon--blue">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+              </span>
+            </div>
+            <h3 class="kpi-card__value" id="kpi-active">0</h3>
+            <p class="kpi-card__meta">Pending, preparing & ready</p>
+          </article>
+
+          <article class="kpi-card">
+            <div class="kpi-card__header">
+              <p class="kpi-card__label">Avg Order Value</p>
+              <span class="kpi-card__icon kpi-card__icon--purple">
+                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/></svg>
+              </span>
+            </div>
+            <h3 class="kpi-card__value" id="kpi-aov">₱0.00</h3>
+            <p class="kpi-card__meta">Average ticket size</p>
+          </article>
+        </section>
+        <p id="kpi-scope-note" style="margin:-14px 0 24px; font-size:12px; color:#8c827f;"></p>
+
+        <!-- 2-Column Analytics: Category Performance & Ratio Breakdown -->
+        <div class="dashboard-grid-2col">
+          <section class="analytics-card" aria-label="Sales by Category">
+            <header class="analytics-card__header">
+              <div>
+                <h2 class="analytics-card__title">Sales by Category</h2>
+                <p class="analytics-card__subtitle">Revenue distribution across menu categories</p>
+              </div>
+            </header>
+            <div class="category-bars" id="category-bars-slot">
+              <!-- Dynamically populated -->
+            </div>
+          </section>
+
+          <section class="analytics-card" aria-label="Fulfillment & Payment Ratio">
+            <header class="analytics-card__header">
+              <div>
+                <h2 class="analytics-card__title">Operations & Payments</h2>
+                <p class="analytics-card__subtitle">Fulfillment channels and payment methods</p>
+              </div>
+            </header>
+            <div id="breakdown-slot">
+              <!-- Dynamically populated -->
+            </div>
+          </section>
+        </div>
+
+        <!-- Inventory Health & Low Stock Alerts Card -->
+        <section class="analytics-card" id="low-stock-alert-section" aria-label="Kitchen Inventory Alerts" style="margin-bottom: 24px;">
+          <header class="analytics-card__header">
+            <div>
+              <h2 class="analytics-card__title" style="display:flex; align-items:center; gap:8px;">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#ea580c" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+                Kitchen Inventory &amp; Stock Alerts
+              </h2>
+              <p class="analytics-card__subtitle">Real-time status of critical ingredients and restaurant kitchen supplies</p>
+            </div>
+            <a href="stock-in.html" class="recent-orders-link" style="font-size:12px;">Manage Stock &rarr;</a>
+          </header>
+          <div id="low-stock-slot">
+            <!-- Dynamically populated -->
+          </div>
+        </section>
+
+        <!-- Recent Orders Feed -->
+        <section class="recent-orders-card" aria-label="Recent Orders Feed">
+          <header class="recent-orders-header">
+            <div>
+              <h2 class="analytics-card__title">Recent Incoming Orders</h2>
+              <p class="analytics-card__subtitle">Latest customer orders needing fulfillment</p>
+            </div>
+            <a href="orders.html" class="recent-orders-link">View All Orders →</a>
+          </header>
+
+          <div class="orders-table-wrap">
+            <table class="orders-table">
+              <thead>
+                <tr>
+                  <th>Order ID</th>
+                  <th>Customer</th>
+                  <th>Time</th>
+                  <th>Details</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody id="recent-orders-slot">
+                <!-- Dynamically populated -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <script src="menu-data.js"></script>
+  <script src="auth.js"></script>
+  <script src="customer.js"></script>
+  <script src="inventory-data.js"></script>
+  <script src="dashboard.js?v=20260925-1"></script>
+</body>
+</html>

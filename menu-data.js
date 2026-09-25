@@ -2,8 +2,13 @@
 (function () {
 
   // Owner-approved menu names and prices transcribed from the supplied menu boards.
-  // Add product IDs to this list when the owner confirms which items are popular.
-  var POPULAR_PRODUCT_IDS = [];
+  // Market-based starter picks. Replace or reorder these when owner sales data is available.
+  var POPULAR_PRODUCT_IDS = [
+    'rice-meals-tapsilog',
+    'special-pasta-spaghetti',
+    'special-burger-special-burger',
+    'iced-coffee-caramel-macchiato'
+  ];
 
   // Product image paths and descriptive alt text for Rice Meals
   var PRODUCT_IMAGES = {
@@ -146,6 +151,122 @@
     'iced-coffee-salted-caramel': {
       webp: 'assets/images/products/iced-coffee/iced-coffee-salted-caramel.webp',
       jpg: 'assets/images/products/iced-coffee/iced-coffee-salted-caramel.webp'
+    },
+    'milk-tea-taro': {
+      webp: 'assets/images/products/milk-tea/milk-tea-taro.webp',
+      jpg: 'assets/images/products/milk-tea/milk-tea-taro.jpg'
+    },
+    'milk-tea-okinawa': {
+      webp: 'assets/images/products/milk-tea/milk-tea-okinawa.webp',
+      jpg: 'assets/images/products/milk-tea/milk-tea-okinawa.jpg'
+    },
+    'milk-tea-wintermelon': {
+      webp: 'assets/images/products/milk-tea/milk-tea-wintermelon.webp',
+      jpg: 'assets/images/products/milk-tea/milk-tea-wintermelon.jpg'
+    },
+    'milk-tea-cookies-n-cream': {
+      webp: 'assets/images/products/milk-tea/milk-tea-cookies-n-cream.webp',
+      jpg: 'assets/images/products/milk-tea/milk-tea-cookies-n-cream.jpg'
+    },
+    'milk-tea-choco-kisses': {
+      webp: 'assets/images/products/milk-tea/milk-tea-choco-kisses.webp',
+      jpg: 'assets/images/products/milk-tea/milk-tea-choco-kisses.jpg'
+    },
+    'milk-tea-matcha-milk-tea': {
+      webp: 'assets/images/products/milk-tea/milk-tea-matcha-milk-tea.webp',
+      jpg: 'assets/images/products/milk-tea/milk-tea-matcha-milk-tea.jpg'
+    },
+    'yakult-series-strawberry-yakult': {
+      webp: 'assets/images/products/yakult-series/yakult-strawberry.webp',
+      jpg: 'assets/images/products/yakult-series/yakult-strawberry.webp'
+    },
+    'yakult-series-green-apple-yakult': {
+      webp: 'assets/images/products/yakult-series/yakult-green-apple.webp',
+      jpg: 'assets/images/products/yakult-series/yakult-green-apple.webp'
+    },
+    'yakult-series-mango-yakult-splash': {
+      webp: 'assets/images/products/yakult-series/yakult-mango-splash.webp',
+      jpg: 'assets/images/products/yakult-series/yakult-mango-splash.jpg'
+    },
+    'yakult-series-blueberry-yakult': {
+      webp: 'assets/images/products/yakult-series/yakult-blueberry.webp',
+      jpg: 'assets/images/products/yakult-series/yakult-blueberry.webp'
+    },
+    'yakult-series-lychee-yakult': {
+      webp: 'assets/images/products/yakult-series/yakult-lychee.webp',
+      jpg: 'assets/images/products/yakult-series/yakult-lychee.webp'
+    },
+    'frappe-choco-lava': {
+      jpg: 'assets/images/products/frappe/Choco-Lava.png'
+    },
+    'frappe-oreo-cream': {
+      jpg: 'assets/images/products/frappe/Oreo-Cream.png'
+    },
+    'frappe-matcha-craze': {
+      jpg: 'assets/images/products/frappe/Matcha-Craze.png'
+    },
+    'frappe-ube-craze': {
+      jpg: 'assets/images/products/frappe/Ube-Craze.png'
+    },
+    'frappe-strawberry-dunk': {
+      jpg: 'assets/images/products/frappe/Strawberry-Dunk.png'
+    },
+    'frappe-mango-graham': {
+      jpg: 'assets/images/products/frappe/Mango-Graham.png'
+    },
+    'frappe-avocado-graham': {
+      jpg: 'assets/images/products/frappe/Avocado-Graham.png'
+    },
+    'matcha-series-matcha-espresso': {
+      jpg: 'assets/images/products/matcha-series/Matcha-Espresso.png'
+    },
+    'matcha-series-matcha-strawberry': {
+      jpg: 'assets/images/products/matcha-series/Matcha-Strawberry.png'
+    },
+    'matcha-series-matcha-ube': {
+      jpg: 'assets/images/products/matcha-series/Matcha-Ube.png'
+    },
+    'shaken-tea-mango-tea': {
+      jpg: 'assets/images/products/shaken-tea/Mango-Tea.png'
+    },
+    'shaken-tea-blueberry-tea': {
+      jpg: 'assets/images/products/shaken-tea/Blueberry-Tea.png'
+    },
+    'shaken-tea-lychee-tea': {
+      jpg: 'assets/images/products/shaken-tea/Lychee-Tea.png'
+    },
+    'shaken-tea-mixed-berries-tea': {
+      jpg: 'assets/images/products/shaken-tea/Mixed-Berries-Tea.png'
+    },
+    'fruity-soda-lychee-soda': {
+      jpg: 'assets/images/products/fruity-soda/Lychee-Soda.png'
+    },
+    'fruity-soda-strawberry-soda': {
+      jpg: 'assets/images/products/fruity-soda/Strawberry-Soda.png'
+    },
+    'fruity-soda-blueberry-soda': {
+      jpg: 'assets/images/products/fruity-soda/Blueberry-Soda.png'
+    },
+    'fruity-soda-green-apple-soda': {
+      jpg: 'assets/images/products/fruity-soda/Green-Apple-Soda.png'
+    },
+    'fruity-soda-mango-soda': {
+      jpg: 'assets/images/products/fruity-soda/Mango-Soda.png'
+    },
+    'frostee-series-lychee-frostee': {
+      jpg: 'assets/images/products/frostee-series/Lychee-Frostee.png'
+    },
+    'frostee-series-strawberry-frostee': {
+      jpg: 'assets/images/products/frostee-series/Strawberry-Frostee.png'
+    },
+    'frostee-series-blueberry-frostee': {
+      jpg: 'assets/images/products/frostee-series/Blueberry-Frostee.png'
+    },
+    'frostee-series-green-apple-frostee': {
+      jpg: 'assets/images/products/frostee-series/Green-Apple-Frostee.png'
+    },
+    'frostee-series-mango-frostee': {
+      jpg: 'assets/images/products/frostee-series/Mango-Frostee.png'
     }
   };
 
@@ -184,7 +305,42 @@
     'iced-coffee-spanish-latte': 'Creamy iced Spanish latte with espresso, condensed milk, and clear ice',
     'iced-coffee-iced-mocha': 'Iced mocha with espresso, milk, chocolate streaks, and clear ice',
     'iced-coffee-vietnamese-latte': 'Vietnamese iced latte with strong dark coffee, condensed milk, and clear ice',
-    'iced-coffee-salted-caramel': 'Salted caramel iced coffee with espresso, creamy milk, golden caramel ribbons, and clear ice'
+    'iced-coffee-salted-caramel': 'Salted caramel iced coffee with espresso, creamy milk, golden caramel ribbons, and clear ice',
+    'milk-tea-taro': 'Taro Milk Tea with creamy purple taro, milk swirl marbling, clear ice, and chewy black boba pearls',
+    'milk-tea-okinawa': 'Okinawa Milk Tea with roasted brown sugar caramel tiger stripes, creamy milk tea, and chewy black boba pearls',
+    'milk-tea-wintermelon': 'Wintermelon Milk Tea with caramelized wintermelon brewed tea, smooth cream blend, clear ice, and chewy black boba pearls',
+    'milk-tea-cookies-n-cream': 'Cookies N’ Cream Milk Tea with rich vanilla milk tea, crushed dark Oreo cookies, chocolate drizzle, and chewy black boba pearls',
+    'milk-tea-choco-kisses': 'Choco Kisses Milk Tea with rich milk chocolate tea, chocolate drizzle ribbons, creamy swirls, and chewy black boba pearls',
+    'milk-tea-matcha-milk-tea': 'Matcha Milk Tea with vibrant ceremonial green matcha layered over fresh creamy milk and chewy black boba pearls',
+    'yakult-series-strawberry-yakult': 'Strawberry Yakult with ruby-red strawberry fruit tea, cloudy probiotic yogurt swirls, and an inverted mini Yakult bottle',
+    'yakult-series-green-apple-yakult': 'Green Apple Yakult with crisp electric green apple tea, cloudy probiotic yogurt swirls, and an inverted mini Yakult bottle',
+    'yakult-series-mango-yakult-splash': 'Mango Yakult Splash with golden-orange mango nectar tea, cloudy probiotic yogurt swirls, and an inverted mini Yakult bottle',
+    'yakult-series-blueberry-yakult': 'Blueberry Yakult with deep violet blueberry tea, whole blueberries, cloudy probiotic yogurt swirls, and an inverted mini Yakult bottle',
+    'yakult-series-lychee-yakult': 'Lychee Yakult with delicate translucent lychee fruit tea, chewy nata de coco jelly, cloudy probiotic yogurt swirls, and an inverted mini Yakult bottle',
+    'frappe-choco-lava': 'Choco Lava frappe with a rich chocolate blend, chocolate drizzle, and crushed chocolate topping',
+    'frappe-oreo-cream': 'Oreo Cream frappe with a creamy vanilla blend, crushed chocolate cookies, and cookie crumb topping',
+    'frappe-matcha-craze': 'Matcha Craze frappe with a creamy green matcha blend and a smooth whipped topping',
+    'frappe-ube-craze': 'Ube Craze frappe with a creamy purple ube blend and a smooth whipped topping',
+    'frappe-strawberry-dunk': 'Strawberry Dunk frappe with a creamy strawberry blend and bright strawberry flavor',
+    'frappe-mango-graham': 'Mango Graham frappe with ripe mango, creamy graham blend, caramel drizzle, and graham crumbs',
+    'frappe-avocado-graham': 'Avocado Graham frappe with creamy avocado, graham layers, caramel drizzle, and graham crumbs',
+    'matcha-series-matcha-espresso': 'Iced Matcha Espresso with creamy green matcha, fresh milk, espresso, and clear ice',
+    'matcha-series-matcha-strawberry': 'Iced Matcha Strawberry with creamy green matcha, fresh milk, strawberry puree, and clear ice',
+    'matcha-series-matcha-ube': 'Iced Matcha Ube with creamy green matcha, fresh milk, purple ube, and clear ice',
+    'shaken-tea-mango-tea': 'Iced shaken mango tea with golden mango flavor, brewed tea, and clear ice',
+    'shaken-tea-blueberry-tea': 'Iced shaken blueberry tea with deep berry flavor, brewed tea, and clear ice',
+    'shaken-tea-lychee-tea': 'Iced shaken lychee tea with delicate floral fruit flavor, brewed tea, and clear ice',
+    'shaken-tea-mixed-berries-tea': 'Iced shaken mixed berries tea with strawberry, blueberry, and raspberry flavors over clear ice',
+    'fruity-soda-lychee-soda': 'Sparkling lychee soda served cold with clear ice in a takeaway cup',
+    'fruity-soda-strawberry-soda': 'Sparkling strawberry soda served cold with clear ice in a takeaway cup',
+    'fruity-soda-blueberry-soda': 'Sparkling blueberry soda served cold with clear ice in a takeaway cup',
+    'fruity-soda-green-apple-soda': 'Sparkling green apple soda served cold with clear ice in a takeaway cup',
+    'fruity-soda-mango-soda': 'Sparkling mango soda served cold with clear ice in a takeaway cup',
+    'frostee-series-lychee-frostee': 'Icy lychee Frostee with a smooth fruit-flavored slush texture in a takeaway cup',
+    'frostee-series-strawberry-frostee': 'Icy strawberry Frostee with a smooth fruit-flavored slush texture in a takeaway cup',
+    'frostee-series-blueberry-frostee': 'Icy blueberry Frostee with a smooth fruit-flavored slush texture in a takeaway cup',
+    'frostee-series-green-apple-frostee': 'Icy green apple Frostee with a smooth fruit-flavored slush texture in a takeaway cup',
+    'frostee-series-mango-frostee': 'Icy mango Frostee with a smooth fruit-flavored slush texture in a takeaway cup'
   };
 
   var riceAddons = [
@@ -292,7 +448,6 @@
     'frappe': 'A rich, ice-blended drink with a smooth and creamy texture.',
     'matcha-series': 'A creamy matcha drink with earthy green-tea flavor and a sweet finish.',
     'shaken-tea': 'A refreshing fruit-flavored tea shaken and served over ice.',
-    'fruity-milk': 'A creamy milk drink brightened with sweet fruit flavor.',
     'fruity-soda': 'A sparkling fruit-flavored soda served cold over ice.',
     'frostee-series': 'An icy fruit drink with a cool, slushy texture.'
   };
@@ -328,7 +483,18 @@
     'silog-combo-chixsilog-combo': 'Crispy fried chicken with garlic fried rice and a sunny-side-up egg, served with one 12-ounce fruity soda and one graham bar.',
     'pasta-combo-pancit-bihon-canton-combo': 'Choose Pancit Bihon or Pancit Canton, served with your choice of a creamy Mango Graham or Avocado Graham Shake.',
     'pasta-combo-palabok-combo': 'Savory Filipino palabok topped with shrimp, crushed chicharon, sliced egg, and spring onions, served with your choice of a Mango Graham or Avocado Graham Shake.',
-    'pasta-combo-spaghetti-combo': 'Filipino-style sweet spaghetti with rich meat sauce, sliced red hotdogs, and grated cheese, served with your choice of a Mango Graham or Avocado Graham Shake.'
+    'pasta-combo-spaghetti-combo': 'Filipino-style sweet spaghetti with rich meat sauce, sliced red hotdogs, and grated cheese, served with your choice of a Mango Graham or Avocado Graham Shake.',
+    'milk-tea-taro': 'Creamy and fragrant taro milk tea featuring a velvety lavender-purple blend with white cream marbling swirls and chewy black tapioca pearls.',
+    'milk-tea-okinawa': 'Authentic roasted brown sugar milk tea accented with rich caramel tiger stripes dripping down the cup and chewy black tapioca pearls.',
+    'milk-tea-wintermelon': 'A classic Taiwanese favorite infused with sweet caramelized wintermelon syrup, rich creamy tea, and chewy black tapioca pearls.',
+    'milk-tea-cookies-n-cream': 'An indulgent sweet cream milk tea loaded with crushed dark Oreo cookie crumbles, chocolate drizzle streaks, and chewy black tapioca pearls.',
+    'milk-tea-choco-kisses': 'A decadent milk chocolate tea blend laced with Hershey’s-style chocolate syrup swirls, creamy milk, and chewy black tapioca pearls.',
+    'milk-tea-matcha-milk-tea': 'A visually stunning layered beverage with vibrant ceremonial green matcha floating over velvety fresh whole milk with chewy black tapioca pearls.',
+    'yakult-series-strawberry-yakult': 'Sweet and tangy crushed strawberry fruit tea topped with an iconic mini Yakult bottle discharging creamy probiotic yogurt swirls into the drink.',
+    'yakult-series-green-apple-yakult': 'Crisp and tart green apple tea swirled with smooth Yakult probiotic milk and translucent jelly for an invigorating, fruity refreshment.',
+    'yakult-series-mango-yakult-splash': 'Rich tropical mango nectar combined with tangy Yakult probiotic milk swirls for a bright, creamy, and uplifting splash.',
+    'yakult-series-blueberry-yakult': 'Plump blueberries and dark violet fruit tea infused with creamy Yakult probiotic yogurt swirls and clear ice.',
+    'yakult-series-lychee-yakult': 'Fragrant and floral lychee fruit tea complemented by chewy nata de coco cubes and creamy Yakult probiotic swirls.'
   };
 
   var definitions = [
@@ -343,7 +509,6 @@
     ['Frappe', 'frappe', [['Choco Lava', 89], ['Oreo Cream', 89], ['Matcha Craze', 89], ['Ube Craze', 89], ['Strawberry Dunk', 89], ['Mango Graham', 89], ['Avocado Graham', 89]]],
     ['Matcha Series', 'matcha-series', [['Matcha Espresso', 79], ['Matcha Strawberry', 79], ['Matcha Ube', 79]]],
     ['Iced Shaken Tea', 'shaken-tea', [['Mango Tea', 49], ['Blueberry Tea', 49], ['Lychee Tea', 49], ['Mixed Berries Tea', 49]]],
-    ['Fruity Milk', 'fruity-milk', [['Blueberry Milk', 69], ['Strawberry Milk', 69]]],
     ['Fruity Soda', 'fruity-soda', [['Lychee Soda', 49], ['Strawberry Soda', 49], ['Blueberry Soda', 49], ['Green Apple Soda', 49], ['Mango Soda', 49]]],
     ['Frostee Series', 'frostee-series', [['Lychee Frostee', 49], ['Strawberry Frostee', 49], ['Blueberry Frostee', 49], ['Green Apple Frostee', 49], ['Mango Frostee', 49]]]
   ];
@@ -361,7 +526,7 @@
       source = coffeeAddons;
     } else if (category === 'milk-tea') {
       source = milkTeaAddons;
-    } else if (category === 'frappe' || category === 'fruity-milk') {
+    } else if (category === 'frappe') {
       source = frappeAddons;
     } else if (category === 'matcha-series') {
       source = matchaAddons;

@@ -400,11 +400,13 @@ body {
     position: fixed;
     top: var(--header-height);
     left: 0;
+    right: 0;
+    bottom: 0;
     width: 100%;
     height: calc(100vh - var(--header-height));
-    background: rgba(250, 246, 242, 0.98);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
+    background: #faf6f2 !important;
+    backdrop-filter: none !important;
+    -webkit-backdrop-filter: none !important;
     padding: 28px var(--site-gutter);
     overflow-y: auto;
     border-top: 1px solid var(--landing-cream-border);
@@ -412,11 +414,11 @@ body {
     opacity: 0;
     pointer-events: none;
     transition: opacity 0.25s ease, transform 0.25s ease;
-    z-index: 99;
+    z-index: 9999;
   }
 
   .mobile-menu.is-open {
-    opacity: 1;
+    opacity: 1 !important;
     pointer-events: auto;
     transform: translateY(0);
   }
@@ -616,19 +618,32 @@ body {
 @media (max-width: 960px) {
   .hero__grid {
     grid-template-columns: 1fr;
-    gap: 44px;
+    gap: 36px;
   }
 
   .hero__content {
     max-width: 100%;
   }
 
+  .hero__media {
+    width: 100%;
+    max-width: 100%;
+    overflow: hidden;
+  }
+
+  .hero__image {
+    max-width: min(340px, 82vw);
+    margin: 0 auto;
+  }
+
   .hero__badge {
     position: relative;
     bottom: 0;
     left: 0;
-    margin-top: 16px;
+    margin: 16px auto 0;
     max-width: 100%;
+    width: 100%;
+    box-sizing: border-box;
   }
 }
 
@@ -728,29 +743,6 @@ body {
 
 .menu-preview__header .eyebrow::before {
   display: none;
-}
-
-/* Section-level honest notice */
-.menu-notice {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 10px;
-  background-color: #ffffff;
-  border: 1px solid var(--landing-cream-border);
-  border-radius: var(--radius-pill);
-  padding: 10px 22px;
-  font-size: 13px;
-  color: var(--landing-cocoa-light);
-  margin: 0 auto 44px;
-  box-shadow: var(--shadow-subtle);
-  max-width: 740px;
-  width: 100%;
-}
-
-.menu-notice svg {
-  color: var(--landing-orange);
-  flex-shrink: 0;
 }
 
 .menu-category-grid {
@@ -1706,13 +1698,6 @@ body {
   .visit-card,
   .review-card {
     min-width: 0;
-  }
-
-  .menu-notice {
-    align-items: flex-start;
-    border-radius: 16px;
-    padding: 12px 14px;
-    text-align: left;
   }
 
   .order-steps {

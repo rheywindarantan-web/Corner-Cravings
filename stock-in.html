@@ -3,15 +3,15 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Stock In · Corner Cravings Admin</title>
+  <title>Manage Inventory · Corner Cravings Admin</title>
   <link rel="icon" type="image/png" href="Logo.png" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700&display=swap" rel="stylesheet" />
-  <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="dashboard.css" />
-  <link rel="stylesheet" href="inventory.css" />
+  <link rel="stylesheet" href="tokens.css?v=20260924_5" />
+  <link rel="stylesheet" href="dashboard.css?v=20260925-2" />
+  <link rel="stylesheet" href="inventory.css?v=20260924_8" />
 </head>
-<body>
+<body class="inventory-admin-page">
   <div class="app-shell">
     <aside class="sidebar">
       <div class="sidebar__brand">
@@ -19,12 +19,13 @@
         <div><p class="sidebar__brand-name">Corner<br />Cravings</p><p class="sidebar__brand-sub">Admin Panel</p></div>
       </div>
       <nav class="sidebar__nav" aria-label="Primary">
-        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
+        <a class="nav-item" href="dashboard.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg><span>Dashboard</span></a>
         <a class="nav-item" href="orders.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16l-1.5 9h-13z"/><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/></svg><span>Orders</span></a>
+        <a class="nav-item" href="products.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16.5 9.4 7.55 4.24a1.78 1.78 0 0 0-2.5 1.55v12.42a1.78 1.78 0 0 0 2.5 1.55L16.5 14.6a1.78 1.78 0 0 0 0-3.2z"/><path d="m21 12-4-3v6z"/></svg><span>Products</span></a>
         <a class="nav-item is-active nav-item--inventory-parent" href="stock-in.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5 12 3l9 6.5V21H3z"/><path d="M9 21v-8h6v8"/></svg><span>Manage Inventory</span></a>
-        <a class="nav-item nav-item--sub is-active" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In</span></a>
+        <a class="nav-item nav-item--sub is-active" href="stock-in.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg><span>Stock In / Catalog</span></a>
         <a class="nav-item nav-item--sub" href="stock-out.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg><span>Stock Out</span></a>
-        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile</span></a>
+        <a class="nav-item" href="profile.html"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4 4-6 8-6s8 2 8 6"/></svg><span>Profile / Settings</span></a>
       </nav>
       <div class="sidebar__footer"><button class="btn-logout" type="button" data-logout-target="login.html"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/><path d="m16 17 5-5-5-5M21 12H9"/></svg><span>Logout</span></button></div>
     </aside>
@@ -32,43 +33,356 @@
     <div class="main">
       <header class="topbar">
         <h2 class="topbar__title">Corner Cravings Admin</h2>
-        <div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input type="search" placeholder="Search inventory..." aria-label="Search inventory" /></div>
+        <div class="topbar__search"><svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg><input id="topbar-search-input" type="search" placeholder="Search ingredients, SKUs, suppliers..." aria-label="Search inventory" /></div>
         <div class="topbar__actions"><button class="icon-btn" type="button" aria-label="Notifications"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21h-3.4"/></svg></button></div>
       </header>
 
       <main class="page-content inventory-page">
-        <header class="page-header">
-          <div><h1 class="page-header__title">Stock In</h1><p class="page-header__subtitle">Record incoming deliveries and review recently received inventory.</p></div>
+        <!-- Inventory Section Switcher (Accessible 1-tap navigation between Stock In and Stock Out) -->
+        <nav class="inventory-mode-nav" aria-label="Inventory Sections">
+          <a href="stock-in.html" class="inventory-mode-btn is-active">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+            <span class="mode-text-full">Stock In & Catalog</span>
+            <span class="mode-text-short">Stock In</span>
+          </a>
+          <a href="stock-out.html" class="inventory-mode-btn">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14"/><path d="m18 13-6 6-6-6"/></svg>
+            <span>Stock Out</span>
+          </a>
+        </nav>
+
+        <header class="page-header inventory-header-banner">
+          <div class="inventory-header-copy">
+            <h1 class="page-header__title">Central Restaurant Inventory</h1>
+            <p class="page-header__subtitle">Real-time ingredient tracking, inbound stock deliveries, physical stock adjustments, and live stock valuation.</p>
+          </div>
+          <div class="inventory-header-actions">
+            <button class="btn-solid-sm" id="btn-quick-new-item" type="button">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 5v14M5 12h14"/></svg>
+              Add Ingredient
+            </button>
+          </div>
         </header>
 
-        <div class="inventory-layout">
-          <div class="inventory-form-column">
-            <form class="inventory-form-card" id="stock-in-form" novalidate>
-              <h2 class="inventory-section-title"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3"/></svg>Log New Delivery</h2>
-              <div class="inventory-field"><label for="stock-item">Item name</label><select id="stock-item" required><option value="">Choose an item</option></select></div>
-              <div class="inventory-field"><label for="stock-category">Category</label><input id="stock-category" type="text" placeholder="Selected automatically" readonly required /></div>
-              <div class="inventory-field"><label for="stock-quantity">Quantity</label><input id="stock-quantity" type="number" min="1" step="1" placeholder="0" required /></div>
-              <div class="inventory-field"><label for="stock-date">Date received</label><input id="stock-date" type="date" required /></div>
-              <button class="btn-solid-sm inventory-submit" type="submit">Log Entry</button>
-            </form>
-            <aside class="delivery-summary" aria-label="Today's delivery total"><div><span class="delivery-summary__label">Today's delivery</span><span class="delivery-summary__value"><span id="delivery-count">0</span> deliveries</span></div><span class="delivery-summary__icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span></aside>
+        <!-- Executive Inventory KPI Cards -->
+        <section class="inventory-kpi-grid" aria-label="Executive Inventory Summary">
+          <div class="inventory-kpi-card inventory-kpi-card--valuation">
+            <div class="inventory-kpi-card__icon inventory-kpi-card__icon--valuation">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M16 8h-6a2 2 0 1 0 0 4h4a2 2 0 1 1 0 4H8"/><path d="M12 18V6"/></svg>
+            </div>
+            <div class="inventory-kpi-card__info">
+              <span class="inventory-kpi-card__label">Total Stock Valuation</span>
+              <span class="inventory-kpi-card__value" id="kpi-total-valuation">₱0.00</span>
+              <span class="inventory-kpi-card__meta">Live value of on-hand inventory</span>
+            </div>
           </div>
 
-          <section class="inventory-panel" aria-labelledby="receipts-title">
-            <div class="inventory-panel__header"><div><h2 class="inventory-panel__title" id="receipts-title">Recent Receipts</h2><p class="inventory-panel__subtitle">Last 30 days of inbound stock logs</p></div></div>
+          <div class="inventory-kpi-card">
+            <div class="inventory-kpi-card__icon inventory-kpi-card__icon--items">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/><polyline points="3.27 6.96 12 12.01 20.73 6.96"/><line x1="12" y1="22.08" x2="12" y2="12"/></svg>
+            </div>
+            <div class="inventory-kpi-card__info">
+              <span class="inventory-kpi-card__label">Tracked Ingredients</span>
+              <span class="inventory-kpi-card__value" id="kpi-total-items">0</span>
+              <span class="inventory-kpi-card__meta">Canonical items linked to recipes</span>
+            </div>
+          </div>
+
+          <div class="inventory-kpi-card inventory-kpi-card--warning" id="kpi-card-low-stock" role="button" tabindex="0" title="Click to filter low stock items">
+            <div class="inventory-kpi-card__icon inventory-kpi-card__icon--warning">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+            </div>
+            <div class="inventory-kpi-card__info">
+              <span class="inventory-kpi-card__label">Low Stock Alerts</span>
+              <span class="inventory-kpi-card__value" id="kpi-low-stock">0</span>
+              <span class="inventory-kpi-card__meta">At or below reorder threshold</span>
+            </div>
+          </div>
+
+          <div class="inventory-kpi-card inventory-kpi-card--danger" id="kpi-card-out-stock" role="button" tabindex="0" title="Click to filter out of stock items">
+            <div class="inventory-kpi-card__icon inventory-kpi-card__icon--danger">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/></svg>
+            </div>
+            <div class="inventory-kpi-card__info">
+              <span class="inventory-kpi-card__label">Out of Stock</span>
+              <span class="inventory-kpi-card__value" id="kpi-out-stock">0</span>
+              <span class="inventory-kpi-card__meta">Kitchen prep paused for these items</span>
+            </div>
+          </div>
+        </section>
+
+        <!-- Subtabs Navigation -->
+        <nav class="inventory-subtabs" role="tablist" aria-label="Inventory Sections">
+          <button type="button" role="tab" class="inventory-tab is-active" id="tab-btn-status" data-tab="status" aria-selected="true" aria-controls="view-status">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+            <span>Inventory Status & Catalog</span>
+          </button>
+          <button type="button" role="tab" class="inventory-tab" id="tab-btn-receive" data-tab="receive" aria-selected="false" aria-controls="view-receive">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 19V5"/><path d="m6 11 6-6 6 6"/></svg>
+            <span>Log Deliveries (Stock In)</span>
+          </button>
+          <button type="button" role="tab" class="inventory-tab" id="tab-btn-ledger" data-tab="ledger" aria-selected="false" aria-controls="view-ledger">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg>
+            <span>Stock Movement Ledger</span>
+          </button>
+        </nav>
+
+        <!-- VIEW 1: Inventory Status & Catalog (Default View) -->
+        <section class="inventory-view-container" id="view-status" role="tabpanel" aria-labelledby="tab-btn-status">
+          <div class="inventory-panel">
+            <div class="inventory-panel__header">
+              <div>
+                <h2 class="inventory-panel__title">Master Inventory Catalog & Live Status</h2>
+                <p class="inventory-panel__subtitle">View current stock balances, reorder points, Philippine Peso unit valuations, and edit items directly.</p>
+              </div>
+              <div class="inventory-tools">
+                <div class="inventory-search">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg>
+                  <input id="catalog-search" type="search" placeholder="Search item, SKU, supplier..." aria-label="Search catalog" />
+                </div>
+                <select id="catalog-category-filter" class="inventory-filter" aria-label="Filter by category">
+                  <option value="">All Categories</option>
+                </select>
+                <select id="catalog-status-filter" class="inventory-filter" aria-label="Filter by stock health">
+                  <option value="">All Statuses</option>
+                  <option value="OK">In Stock (Healthy)</option>
+                  <option value="LOW">Low Stock</option>
+                  <option value="OUT">Out of Stock</option>
+                </select>
+              </div>
+            </div>
+
             <div class="inventory-table-wrap">
-              <table class="inventory-table">
-                <thead><tr><th>Item details</th><th>Category</th><th>Qty received</th><th>Date</th><th>Status</th></tr></thead>
-                <tbody id="receipt-body"></tbody>
+              <table class="inventory-table inventory-table--catalog" id="catalog-table">
+                <thead>
+                  <tr>
+                    <th>Item details</th>
+                    <th>Category</th>
+                    <th>Physical Stock</th>
+                    <th>Status</th>
+                    <th>Reorder Level</th>
+                    <th>Unit Cost</th>
+                    <th>Total Value</th>
+                    <th>Primary Supplier</th>
+                    <th class="inventory-action-heading">Quick Actions</th>
+                  </tr>
+                </thead>
+                <tbody id="catalog-table-body">
+                  <!-- Rendered dynamically by inventory.js -->
+                </tbody>
               </table>
             </div>
-            <div class="inventory-panel__footer"><span id="receipt-results-count">Showing 0 entries</span><span>Recently received inventory</span></div>
-          </section>
-        </div>
+
+            <div class="inventory-panel__footer">
+              <span id="catalog-results-count">Showing 0 items</span>
+              <span class="inventory-legend">
+                <span class="legend-dot legend-dot--ok"></span> In Stock &nbsp;
+                <span class="legend-dot legend-dot--low"></span> Low Stock &nbsp;
+                <span class="legend-dot legend-dot--out"></span> Depleted
+              </span>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 2: Receive Deliveries (Stock In Form + Receipts) -->
+        <section class="inventory-view-container is-hidden" id="view-receive" role="tabpanel" aria-labelledby="tab-btn-receive">
+          <div class="inventory-layout">
+            <div class="inventory-form-column">
+              <form class="inventory-form-card" id="stock-in-form" novalidate>
+                <h2 class="inventory-section-title"><svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 7h16v13H4z"/><path d="M8 7V4h8v3"/></svg>Log Inbound Delivery</h2>
+                <div class="inventory-field">
+                  <div class="inventory-field__label-row">
+                    <label for="stock-item">Item name</label>
+                    <button id="new-inventory-item" class="inventory-inline-action" type="button">+ New ingredient</button>
+                  </div>
+                  <select id="stock-item" required><option value="">Choose an item</option></select>
+                </div>
+                <div class="inventory-field"><label for="stock-category">Category</label><input id="stock-category" type="text" placeholder="Selected automatically" readonly required /></div>
+                <div class="inventory-field"><label for="stock-quantity">Quantity received <span id="stock-unit-label"></span></label><input id="stock-quantity" type="number" min="0.001" step="0.001" placeholder="0" required /></div>
+                <div class="inventory-field"><label for="stock-supplier">Supplier</label><input id="stock-supplier" type="text" maxlength="80" placeholder="e.g. Bounty Fresh Farms" required /></div>
+                <div class="inventory-field"><label for="stock-batch">Delivery Receipt (DR) / Batch No.</label><input id="stock-batch" type="text" maxlength="50" placeholder="e.g. DR-2026-0925" required /></div>
+                <div class="inventory-field"><label for="stock-unit-cost">Unit cost (₱, optional)</label><input id="stock-unit-cost" type="number" min="0" step="0.01" placeholder="0.00" /></div>
+                <div class="inventory-field"><label for="stock-expiry">Expiry date (optional)</label><input id="stock-expiry" type="date" /></div>
+                <div class="inventory-field"><label for="stock-date">Date received</label><input id="stock-date" type="date" required /></div>
+                <button class="btn-solid-sm inventory-submit" type="submit">Record Stock In Delivery</button>
+              </form>
+              <aside class="delivery-summary" aria-label="Today's delivery total">
+                <div><span class="delivery-summary__label">Today's deliveries</span><span class="delivery-summary__value"><span id="delivery-count">0</span> deliveries</span></div>
+                <span class="delivery-summary__icon"><svg width="21" height="21" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 7h11v10H3zM14 10h4l3 3v4h-7z"/><circle cx="7" cy="18" r="2"/><circle cx="18" cy="18" r="2"/></svg></span>
+              </aside>
+            </div>
+
+            <div class="inventory-panel" aria-labelledby="receipts-title">
+              <div class="inventory-panel__header">
+                <div>
+                  <h2 class="inventory-panel__title" id="receipts-title">Recent Delivery Receipts</h2>
+                  <p class="inventory-panel__subtitle">Historical log of inbound deliveries, including voided entries and their audit details</p>
+                </div>
+              </div>
+              <div class="inventory-table-wrap">
+                <table class="inventory-table">
+                  <thead>
+                    <tr><th>Item details</th><th>Category</th><th>Qty received</th><th>Date</th><th>Status</th><th class="inventory-action-heading">Action</th></tr>
+                  </thead>
+                  <tbody id="receipt-body"></tbody>
+                </table>
+              </div>
+              <div class="inventory-panel__footer"><span id="receipt-results-count">Showing 0 entries</span><span>Verified delivery audit records</span></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- VIEW 3: Stock Movement Ledger (Auditable History) -->
+        <section class="inventory-view-container is-hidden" id="view-ledger" role="tabpanel" aria-labelledby="tab-btn-ledger">
+          <div class="inventory-panel">
+            <div class="inventory-panel__header">
+              <div>
+                <h2 class="inventory-panel__title">Comprehensive Stock Movement Audit Ledger</h2>
+                <p class="inventory-panel__subtitle">Chronological ledger connecting every current opening balance, delivery, kitchen deduction, restock, void, and physical adjustment.</p>
+              </div>
+              <div class="inventory-tools">
+                <div class="inventory-search">
+                  <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"/><path d="m21 21-5-5"/></svg>
+                  <input id="ledger-search" type="search" placeholder="Search item, batch, order #..." aria-label="Search movement ledger" />
+                </div>
+                <select id="ledger-type-filter" class="inventory-filter" aria-label="Filter movement type">
+                  <option value="">All Movement Types</option>
+                  <option value="IN">Inbound Deliveries (IN)</option>
+                  <option value="OUT">Kitchen Usage & Orders (OUT)</option>
+                  <option value="ADJUSTMENT">Physical Adjustments</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="inventory-table-wrap">
+              <table class="inventory-table inventory-table--ledger">
+                <thead>
+                  <tr>
+                    <th>Timestamp</th>
+                    <th>Ingredient</th>
+                    <th>Type</th>
+                    <th>Change Qty</th>
+                    <th>Stock After</th>
+                    <th>Reason / Reference</th>
+                    <th>Source / Actor</th>
+                  </tr>
+                </thead>
+                <tbody id="ledger-table-body">
+                  <!-- Rendered dynamically by inventory.js -->
+                </tbody>
+              </table>
+            </div>
+
+            <div class="inventory-panel__footer">
+              <span id="ledger-results-count">Showing 0 movement records</span>
+              <span>Auditable immutable log</span>
+            </div>
+          </div>
+        </section>
       </main>
     </div>
   </div>
+
+  <!-- EDIT INVENTORY ITEM MODAL DIALOG -->
+  <dialog id="edit-item-dialog" class="inventory-dialog">
+    <form id="edit-item-form">
+      <header>
+        <div>
+          <h2 id="edit-dialog-title">Edit Inventory Item</h2>
+          <p id="edit-dialog-subtitle">Update stock balance, threshold, cost, or supplier.</p>
+        </div>
+        <button type="button" class="inventory-dialog__close" aria-label="Close dialog">×</button>
+      </header>
+      <input type="hidden" name="itemId" id="edit-item-id" />
+      <div class="inventory-dialog__grid">
+        <label>Ingredient Name
+          <input name="name" id="edit-item-name" type="text" maxlength="80" required />
+        </label>
+        <label>SKU (Stock Keeping Unit)
+          <input name="sku" id="edit-item-sku" type="text" maxlength="32" readonly />
+        </label>
+        <label>Category
+          <input name="category" id="edit-item-category" type="text" maxlength="50" required />
+        </label>
+        <label>Unit of Measure
+          <select name="unit" id="edit-item-unit" required>
+            <option value="pcs">pieces (pcs)</option>
+            <option value="kg">kilograms (kg)</option>
+            <option value="L">liters (L)</option>
+            <option value="packs">packs</option>
+            <option value="cans">cans</option>
+            <option value="bottles">bottles</option>
+          </select>
+        </label>
+        <label>Current Physical Stock
+          <input name="stock" id="edit-item-stock" type="number" min="0" step="0.001" required />
+        </label>
+        <label>Reorder Level (Alert Threshold)
+          <input name="reorderLevel" id="edit-item-reorder" type="number" min="0" step="0.001" required />
+        </label>
+        <label>Unit Cost (₱ PHP)
+          <input name="unitCost" id="edit-item-unit-cost" type="number" min="0" step="0.01" required />
+        </label>
+        <label>Primary Supplier
+          <input name="supplier" id="edit-item-supplier" type="text" maxlength="80" required />
+        </label>
+        <label class="inventory-dialog__wide" id="edit-item-reason-row">
+          Adjustment Reason (Required if stock changed)
+          <input name="adjustmentReason" id="edit-item-reason" type="text" maxlength="120" placeholder="e.g. Physical inventory count audit / spoilage reconciliation" />
+        </label>
+      </div>
+      <p class="inventory-dialog__stock" id="edit-item-help"></p>
+      <footer>
+        <button type="button" class="btn-outline inventory-dialog__cancel">Cancel</button>
+        <button type="submit" class="btn-solid-sm" id="btn-save-item-edit">Save Changes</button>
+      </footer>
+    </form>
+  </dialog>
+
+  <!-- QUICK ONE-CLICK STOCK-IN MODAL DIALOG -->
+  <dialog id="quick-stockin-dialog" class="inventory-dialog">
+    <form id="quick-stockin-form">
+      <header>
+        <div>
+          <h2 id="quick-stockin-title">Quick Stock In Delivery</h2>
+          <p id="quick-stockin-subtitle">Record incoming delivery for this ingredient.</p>
+        </div>
+        <button type="button" class="inventory-dialog__close" aria-label="Close dialog">×</button>
+      </header>
+      <input type="hidden" name="itemId" id="quick-item-id" />
+      <div class="inventory-dialog__grid">
+        <label class="inventory-dialog__wide">Selected Ingredient
+          <input id="quick-item-display" type="text" readonly />
+        </label>
+        <label>Quantity Received
+          <input name="quantity" id="quick-item-qty" type="number" min="0.001" step="0.001" placeholder="0" required />
+        </label>
+        <label>Unit Cost (₱ PHP)
+          <input name="unitCost" id="quick-item-cost" type="number" min="0" step="0.01" placeholder="0.00" required />
+        </label>
+        <label>Supplier
+          <input name="supplier" id="quick-item-supplier" type="text" maxlength="80" required />
+        </label>
+        <label>Batch / Reference No.
+          <input name="batch" id="quick-item-batch" type="text" maxlength="50" placeholder="e.g. DR-2026-0926" required />
+        </label>
+        <label>Date Received
+          <input name="occurredAt" id="quick-item-date" type="date" required />
+        </label>
+        <label>Expiry Date (Optional)
+          <input name="expiryDate" id="quick-item-expiry" type="date" />
+        </label>
+      </div>
+      <p class="inventory-dialog__stock" id="quick-item-help"></p>
+      <footer>
+        <button type="button" class="btn-outline inventory-dialog__cancel">Cancel</button>
+        <button type="submit" class="btn-solid-sm" id="btn-submit-quick-stockin">Log Delivery</button>
+      </footer>
+    </form>
+  </dialog>
+
   <script src="auth.js"></script>
-  <script src="inventory.js"></script>
+  <script src="inventory-data.js?v=20260924_10"></script>
+  <script src="inventory.js?v=20260924_9"></script>
 </body>
 </html>

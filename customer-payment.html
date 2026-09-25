@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
   <link rel="stylesheet" href="customer.css" />
-  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
+  <script src="menu-data.js" defer></script><script src="inventory-data.js" defer></script><script src="customer.js" defer></script>
 </head>
 <body class="pm-page-wrapper">
 
@@ -29,7 +29,7 @@
         <ul class="pm-nav-links">
           <li><a href="customer-home.html">Home</a></li>
           <li><a href="customer-menu.html">Menu</a></li>
-          <li><a href="#" data-action="rewards">Rewards</a></li>
+          <li><a href="#" data-action="promo">Promo</a></li>
         </ul>
 
         <div class="pm-nav-icons">
@@ -73,16 +73,16 @@
       <!-- Left Column: Payment Options List -->
       <div class="pm-options-stack" id="payment-options-list">
 
-        <!-- Option 1: Cash on Delivery -->
-        <div class="pm-option-card" data-method="Cash on Delivery" tabindex="0" role="radio" aria-checked="false">
+        <!-- Option 1: Cash on Delivery / Cash on Pickup (Default) -->
+        <div class="pm-option-card is-selected" data-method="Cash" id="option-cash" tabindex="0" role="radio" aria-checked="true">
           <div class="pm-option-head">
             <div class="pm-option-left">
               <div class="pm-radio-circle">
                 <div class="pm-radio-dot"></div>
               </div>
               <div>
-                <div class="pm-option-title">Cash on Delivery</div>
-                <div class="pm-option-sub">Pay with cash when your order arrives.</div>
+                <div class="pm-option-title" id="cash-option-title">Cash on Delivery</div>
+                <div class="pm-option-sub" id="cash-option-sub">Pay with cash when your food arrives.</div>
               </div>
             </div>
 
@@ -97,106 +97,55 @@
           </div>
         </div>
 
-        <!-- Option 2: E-Wallet -->
-        <div class="pm-option-card" data-method="E-Wallet" tabindex="0" role="radio" aria-checked="false">
+        <!-- Option 2: Manual GCash Payment -->
+        <div class="pm-option-card" data-method="GCash" id="option-gcash" tabindex="0" role="radio" aria-checked="false">
           <div class="pm-option-head">
             <div class="pm-option-left">
               <div class="pm-radio-circle">
                 <div class="pm-radio-dot"></div>
               </div>
               <div>
-                <div class="pm-option-title">E-Wallet</div>
-                <div class="pm-option-sub">Pay using your preferred digital wallet.</div>
+                <div class="pm-option-title">GCash</div>
+                <div class="pm-option-sub">Send the exact amount, then submit your payment details.</div>
               </div>
             </div>
 
             <div class="pm-option-icon">
-              <!-- Wallet Icon -->
+              <!-- Phone / E-Wallet Icon -->
               <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M20 12V8H6a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h14v4"></path>
-                <path d="M4 6v14a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-4"></path>
-                <rect x="14" y="10" width="8" height="6" rx="1"></rect>
+                <rect x="5" y="2" width="14" height="20" rx="2" ry="2"></rect>
+                <line x1="12" y1="18" x2="12.01" y2="18"></line>
               </svg>
             </div>
           </div>
-        </div>
 
-        <!-- Option 3: Credit / Debit Card (Selected in Mockup) -->
-        <div class="pm-option-card is-selected" data-method="Credit / Debit Card" id="card-option-card" tabindex="0" role="radio" aria-checked="true">
-          <div class="pm-option-head">
-            <div class="pm-option-left">
-              <div class="pm-radio-circle">
-                <div class="pm-radio-dot"></div>
-              </div>
+          <div class="pm-card-fields" id="gcash-fields-container" style="display:none; margin-top:14px; padding-top:14px; border-top:1px solid #f1e7e4;">
+            <div class="pm-gcash-instructions" aria-label="GCash payment instructions">
               <div>
-                <div class="pm-option-title">Credit / Debit Card</div>
+                <span class="pm-gcash-eyebrow">Send payment to</span>
+                <strong class="pm-gcash-number" id="gcash-number">0961 462 5860</strong>
               </div>
+              <button type="button" class="pm-copy-btn" id="btn-copy-gcash">Copy number</button>
+              <ol class="pm-gcash-steps">
+                <li>Open GCash and choose <strong>Send Money</strong>.</li>
+                <li>Enter the number above and confirm the recipient in the GCash app.</li>
+                <li>Send exactly <strong id="gcash-exact-amount">&#8369;0.00</strong>.</li>
+                <li>Return here and enter the details from your successful receipt.</li>
+              </ol>
             </div>
-
-            <div class="pm-option-icon">
-              <!-- Credit Card Icon -->
-              <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                <line x1="2" y1="10" x2="22" y2="10"></line>
-              </svg>
-            </div>
-          </div>
-
-          <!-- Nested Form Fields for Card -->
-          <div class="pm-card-fields" id="card-fields-container">
             <div class="pm-field-group">
-              <label class="pm-field-label" for="card-name">Name on Card</label>
-              <input
-                type="text"
-                class="pm-field-input"
-                id="card-name"
-                name="card_name"
-                placeholder="John Doe"
-              />
+              <label class="pm-field-label" for="gcash-sender">GCash Sender Name (Required)</label>
+              <input type="text" class="pm-field-input" id="gcash-sender" placeholder="Name shown on the GCash receipt" maxlength="80" autocomplete="name" />
             </div>
-
             <div class="pm-field-group">
-              <label class="pm-field-label" for="card-number">Card Number</label>
-              <div class="pm-field-input-wrap">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                  <rect x="2" y="5" width="20" height="14" rx="2"></rect>
-                  <line x1="2" y1="10" x2="22" y2="10"></line>
-                </svg>
-                <input
-                  type="text"
-                  class="pm-field-input"
-                  id="card-number"
-                  name="card_number"
-                  placeholder="0000 0000 0000 0000"
-                  maxlength="19"
-                />
-              </div>
+              <label class="pm-field-label" for="gcash-ref">13-digit Transaction Reference ID (Required)</label>
+              <input type="text" inputmode="numeric" pattern="[0-9]{13}" class="pm-field-input" id="gcash-ref" placeholder="e.g. 1234567890123" maxlength="17" autocomplete="off" />
+              <span class="pm-field-help">Use the 13-digit reference from your successful GCash receipt. Spaces are allowed.</span>
             </div>
-
-            <div class="pm-field-row">
-              <div class="pm-field-group">
-                <label class="pm-field-label" for="card-expiry">Expiry Date</label>
-                <input
-                  type="text"
-                  class="pm-field-input"
-                  id="card-expiry"
-                  name="card_expiry"
-                  placeholder="MM/YY"
-                  maxlength="5"
-                />
-              </div>
-
-              <div class="pm-field-group">
-                <label class="pm-field-label" for="card-cvv">CVV</label>
-                <input
-                  type="password"
-                  class="pm-field-input"
-                  id="card-cvv"
-                  name="card_cvv"
-                  placeholder="123"
-                  maxlength="4"
-                />
-              </div>
+            <div class="pm-field-group">
+              <label class="pm-field-label" for="gcash-receipt">Receipt Screenshot (Optional)</label>
+              <input type="file" class="pm-file-input" id="gcash-receipt" accept="image/png,image/jpeg,image/webp" />
+              <span class="pm-field-help" id="gcash-receipt-help">PNG, JPG, or WebP; maximum 5 MB. The image is optimized and stored only in this browser prototype.</span>
             </div>
           </div>
         </div>
@@ -210,7 +159,7 @@
 
           <div class="pm-summary-row">
             <span class="pm-summary-label">Total Amount</span>
-            <span class="pm-summary-total" id="pm-total-amount">₱1,465.00</span>
+            <span class="pm-summary-total" id="pm-total-amount">₱0.00</span>
           </div>
 
           <button type="button" class="pm-btn-place-order" id="btn-place-order">
@@ -230,48 +179,127 @@
     document.addEventListener('DOMContentLoaded', function () {
       if (!window.CornerCravings) return;
 
-      var selectedMethod = 'Credit / Debit Card';
-      var optionCards = document.querySelectorAll('.pm-option-card');
-      var cardFields = document.getElementById('card-fields-container');
-      var totalDisplay = document.getElementById('pm-total-amount');
-      var placeOrderBtn = document.getElementById('btn-place-order');
+      var cart = window.CornerCravings.getCart();
+      if (!cart || cart.length === 0) {
+        window.location.href = 'customer-menu.html';
+        return;
+      }
 
-      // Card inputs
-      var cardNameInp = document.getElementById('card-name');
-      var cardNumInp = document.getElementById('card-number');
-      var cardExpInp = document.getElementById('card-expiry');
-      var cardCvvInp = document.getElementById('card-cvv');
-
-      // Calculate totals from existing cart and delivery
-      var delivery = window.CornerCravings.getDeliveryDetails();
-      var totals = window.CornerCravings.calculateCartTotals(delivery.method);
-
-      if (totalDisplay) {
-        if (totals.total > 0) {
-          totalDisplay.textContent = window.CornerCravings.formatPeso(totals.total);
-        } else {
-          totalDisplay.textContent = '₱1,465.00';
+      if (window.CornerCravings.validateCart) {
+        var v = window.CornerCravings.validateCart();
+        if (!v.valid) {
+          window.CornerCravings.showToast(v.issues && v.issues.length ? v.issues[0] : 'Some cart items are unavailable.');
+          setTimeout(function () {
+            window.location.href = 'customer-cart.html';
+          }, 600);
+          return;
         }
       }
 
-      // Format card number with spaces as user types
-      if (cardNumInp) {
-        cardNumInp.addEventListener('input', function (e) {
-          var val = this.value.replace(/\D/g, '').substring(0, 16);
-          var formatted = val.match(/.{1,4}/g);
-          this.value = formatted ? formatted.join(' ') : val;
+      var delivery = window.CornerCravings.getDeliveryDetails();
+      var isPickup = delivery && delivery.method === 'pickup';
+
+      // Adapt cash label based on fulfillment method
+      var cashTitle = document.getElementById('cash-option-title');
+      var cashSub = document.getElementById('cash-option-sub');
+      var cashCard = document.getElementById('option-cash');
+      var defaultCashMethod = isPickup ? 'Cash on Pickup' : 'Cash on Delivery';
+
+      if (cashTitle) cashTitle.textContent = defaultCashMethod;
+      if (cashSub) {
+        cashSub.textContent = isPickup ? 'Pay with cash at the store counter upon pickup.' : 'Pay with cash when your food is delivered.';
+      }
+      if (cashCard) cashCard.setAttribute('data-method', defaultCashMethod);
+
+      var selectedMethod = defaultCashMethod;
+      var optionCards = document.querySelectorAll('.pm-option-card');
+      var gcashFields = document.getElementById('gcash-fields-container');
+      var totalDisplay = document.getElementById('pm-total-amount');
+      var placeOrderBtn = document.getElementById('btn-place-order');
+      var gcashConfig = window.CornerCravings.GCASH_PAYMENT_CONFIG || {};
+      var gcashReceiptData = '';
+      var gcashReceiptName = '';
+
+      // Calculate totals from existing cart and delivery
+      var totals = window.CornerCravings.calculateCartTotals(delivery.method);
+      if (totalDisplay) {
+        totalDisplay.textContent = window.CornerCravings.formatPeso(totals.total);
+      }
+
+      var gcashNumber = document.getElementById('gcash-number');
+      var gcashAmount = document.getElementById('gcash-exact-amount');
+      var copyGcashBtn = document.getElementById('btn-copy-gcash');
+      var gcashReceipt = document.getElementById('gcash-receipt');
+      var gcashReceiptHelp = document.getElementById('gcash-receipt-help');
+      if (gcashNumber && gcashConfig.mobileNumber) {
+        gcashNumber.textContent = gcashConfig.mobileNumber.replace(/(\d{4})(\d{3})(\d{4})/, '$1 $2 $3');
+      }
+      if (gcashAmount) gcashAmount.textContent = window.CornerCravings.formatPeso(totals.total);
+
+      if (copyGcashBtn) {
+        copyGcashBtn.addEventListener('click', function (event) {
+          event.stopPropagation();
+          var number = gcashConfig.mobileNumber || '';
+          if (navigator.clipboard && navigator.clipboard.writeText) {
+            navigator.clipboard.writeText(number).then(function () {
+              window.CornerCravings.showToast('GCash number copied.');
+            }).catch(function () {
+              window.CornerCravings.showToast('GCash number: ' + number);
+            });
+          } else {
+            window.CornerCravings.showToast('GCash number: ' + number);
+          }
         });
       }
 
-      // Format expiry date with slash (MM/YY)
-      if (cardExpInp) {
-        cardExpInp.addEventListener('input', function (e) {
-          var val = this.value.replace(/\D/g, '').substring(0, 4);
-          if (val.length >= 2) {
-            this.value = val.substring(0, 2) + '/' + val.substring(2, 4);
-          } else {
-            this.value = val;
+      if (gcashReceipt) {
+        gcashReceipt.addEventListener('click', function (event) { event.stopPropagation(); });
+        gcashReceipt.addEventListener('change', function () {
+          gcashReceiptData = '';
+          gcashReceiptName = '';
+          var file = gcashReceipt.files && gcashReceipt.files[0];
+          if (!file) return;
+          var allowedTypes = ['image/png', 'image/jpeg', 'image/webp'];
+          if (allowedTypes.indexOf(file.type) === -1) {
+            gcashReceipt.value = '';
+            window.CornerCravings.showToast('Upload a PNG, JPG, or WebP receipt image.');
+            return;
           }
+          if (file.size > (gcashConfig.maxReceiptBytes || 1572864)) {
+            gcashReceipt.value = '';
+            window.CornerCravings.showToast('Receipt image must be 5 MB or smaller.');
+            return;
+          }
+          var reader = new FileReader();
+          reader.onload = function () {
+            var image = new Image();
+            image.onload = function () {
+              var maxWidth = gcashConfig.maxReceiptWidth || 1000;
+              var scale = Math.min(1, maxWidth / image.width);
+              var canvas = document.createElement('canvas');
+              canvas.width = Math.max(1, Math.round(image.width * scale));
+              canvas.height = Math.max(1, Math.round(image.height * scale));
+              var context = canvas.getContext('2d');
+              if (!context) {
+                window.CornerCravings.showToast('The receipt image could not be processed.');
+                return;
+              }
+              context.drawImage(image, 0, 0, canvas.width, canvas.height);
+              gcashReceiptData = canvas.toDataURL('image/jpeg', gcashConfig.receiptQuality || 0.72);
+              gcashReceiptName = file.name.replace(/\.[^.]+$/, '') + '-optimized.jpg';
+              if (gcashReceiptHelp) gcashReceiptHelp.textContent = file.name + ' is ready for admin review.';
+            };
+            image.onerror = function () {
+              gcashReceipt.value = '';
+              window.CornerCravings.showToast('The selected file is not a readable receipt image.');
+            };
+            image.src = String(reader.result || '');
+          };
+          reader.onerror = function () {
+            gcashReceipt.value = '';
+            window.CornerCravings.showToast('The receipt image could not be read.');
+          };
+          reader.readAsDataURL(file);
         });
       }
 
@@ -287,11 +315,7 @@
           card.setAttribute('aria-checked', 'true');
           selectedMethod = card.getAttribute('data-method');
 
-          if (selectedMethod === 'Credit / Debit Card') {
-            if (cardFields) cardFields.style.display = 'flex';
-          } else {
-            if (cardFields) cardFields.style.display = 'none';
-          }
+          if (gcashFields) gcashFields.style.display = selectedMethod === 'GCash' ? 'block' : 'none';
         }
 
         card.addEventListener('click', selectCard);
@@ -306,45 +330,69 @@
       // Place Order Button Handler
       if (placeOrderBtn) {
         placeOrderBtn.addEventListener('click', function () {
-          // If Credit / Debit Card is selected, validate inputs
-          if (selectedMethod === 'Credit / Debit Card') {
-            var name = cardNameInp ? cardNameInp.value.trim() : '';
-            var num = cardNumInp ? cardNumInp.value.replace(/\s+/g, '') : '';
-            var exp = cardExpInp ? cardExpInp.value.trim() : '';
-            var cvv = cardCvvInp ? cardCvvInp.value.trim() : '';
-
-            if (!name) {
-              window.CornerCravings.showToast('Please enter the name on your card.');
-              if (cardNameInp) cardNameInp.focus();
-              return;
-            }
-            if (num.length < 15) {
-              window.CornerCravings.showToast('Please enter a valid 16-digit card number.');
-              if (cardNumInp) cardNumInp.focus();
-              return;
-            }
-            if (exp.length < 5) {
-              window.CornerCravings.showToast('Please enter a valid expiry date (MM/YY).');
-              if (cardExpInp) cardExpInp.focus();
-              return;
-            }
-            if (cvv.length < 3) {
-              window.CornerCravings.showToast('Please enter your 3-digit CVV.');
-              if (cardCvvInp) cardCvvInp.focus();
-              return;
-            }
+          var liveValidation = window.CornerCravings.validateCart ? window.CornerCravings.validateCart() : { valid: true };
+          if (!liveValidation.valid) {
+            window.CornerCravings.showToast(liveValidation.issues && liveValidation.issues.length ? liveValidation.issues[0] : 'Your cart needs attention before checkout.');
+            return;
           }
 
-          // Create demo order and persist
-          var order = window.CornerCravings.createDemoOrder(selectedMethod);
+          var storeStatus = window.CornerCravings.getStoreStatus ? window.CornerCravings.getStoreStatus() : { isOpen: true };
+          if (storeStatus.isOverride && !storeStatus.isOpen) {
+            window.CornerCravings.showToast('Online ordering is temporarily paused by the store.');
+            return;
+          }
+
+          var paymentDetails = {};
+          if (selectedMethod === 'GCash') {
+            var gref = document.getElementById('gcash-ref');
+            var gsender = document.getElementById('gcash-sender');
+            paymentDetails.referenceNumber = gref ? gref.value.replace(/\D/g, '') : '';
+            paymentDetails.senderName = gsender ? gsender.value.trim() : '';
+            paymentDetails.recipientNumber = gcashConfig.mobileNumber || '';
+            paymentDetails.amountSubmitted = totals.total;
+            paymentDetails.receiptImage = gcashReceiptData;
+            paymentDetails.receiptFileName = gcashReceiptName;
+          }
+
+          if (selectedMethod === 'GCash' && !paymentDetails.senderName) {
+            window.CornerCravings.showToast('Enter the sender name shown on your GCash receipt.');
+            return;
+          }
+
+          if (selectedMethod === 'GCash' && paymentDetails.referenceNumber.length !== (gcashConfig.referenceLength || 13)) {
+            window.CornerCravings.showToast('Enter the complete 13-digit GCash Transaction Reference ID.');
+            return;
+          }
+
+          if (selectedMethod === 'GCash') {
+            try {
+              var existingOrders = JSON.parse(localStorage.getItem('cornerCravingsAdminOrders') || '[]');
+              var duplicateReference = Array.isArray(existingOrders) && existingOrders.some(function (existingOrder) {
+                var existingReference = existingOrder && existingOrder.paymentDetails && existingOrder.paymentDetails.referenceNumber;
+                return existingReference === paymentDetails.referenceNumber && String(existingOrder.status || '').toLowerCase() !== 'cancelled';
+              });
+              if (duplicateReference) {
+                window.CornerCravings.showToast('This GCash reference is already attached to an existing order.');
+                return;
+              }
+            } catch (error) {}
+          }
+
+          placeOrderBtn.disabled = true;
+          placeOrderBtn.textContent = 'Processing Order...';
+
+          var order = window.CornerCravings.createDemoOrder(selectedMethod, paymentDetails);
           if (order) {
-            window.CornerCravings.showToast('Order placed successfully via ' + selectedMethod + '!');
+            var confirmationMessage = 'Order placed via ' + selectedMethod + '.';
+            if (selectedMethod === 'GCash') {
+              confirmationMessage += ' Payment is pending admin verification.';
+            }
+            window.CornerCravings.showToast(confirmationMessage);
             setTimeout(function () {
               window.location.href = 'customer-confirmation.html';
             }, 350);
           } else {
-            // If cart was already cleared or empty, redirect to menu
-            window.location.href = 'customer-confirmation.html';
+            window.location.href = 'customer-menu.html';
           }
         });
       }

@@ -9,8 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Poppins:wght@500;600;700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="tokens.css" />
-  <link rel="stylesheet" href="customer.css" />
-  <script src="menu-data.js" defer></script><script src="customer.js" defer></script>
+  <link rel="stylesheet" href="customer.css?v=20260924_2" />
+  <script src="menu-data.js?v=20260925_5" defer></script><script src="inventory-data.js" defer></script><script src="customer.js?v=20260924_2" defer></script>
 </head>
 <body>
 
@@ -32,7 +32,7 @@
         <ul class="customer-nav__links">
           <li><a href="customer-home.html" class="customer-nav__link">Home</a></li>
           <li><a href="customer-menu.html" class="customer-nav__link is-active">Menu</a></li>
-          <li><a href="#" class="customer-nav__link" data-action="rewards">Rewards</a></li>
+          <li><a href="#" class="customer-nav__link" data-action="promo">Promo</a></li>
         </ul>
       </nav>
 
@@ -68,7 +68,7 @@
       <ul class="customer-mobile-menu__links">
         <li><a href="customer-home.html" class="customer-mobile-menu__link">Home</a></li>
         <li><a href="customer-menu.html" class="customer-mobile-menu__link is-active">Menu</a></li>
-        <li><a href="#" class="customer-mobile-menu__link" data-action="rewards">Rewards (Coming Soon)</a></li>
+        <li><a href="#" class="customer-mobile-menu__link" data-action="promo">Promo (Coming Soon)</a></li>
         <li><a href="customer-cart.html" class="customer-mobile-menu__link">Cart</a></li>
         <li><a href="customer-login.html" class="customer-mobile-menu__link">Account / Login</a></li>
         <li><a href="index.html" class="customer-mobile-menu__link">Public Landing Page</a></li>
@@ -210,7 +210,25 @@
 
         var total = calculateTotal();
 
-        var productImageHtml = product.imageJpg ? '<picture><source srcset="' + (product.imageWebp || product.imageJpg) + '" type="image/webp" /><img src="' + product.imageJpg + '" alt="' + product.imageAlt + '" width="600" height="450" fetchpriority="high" data-product-name="' + product.name + '" /></picture>' : '<div class="product-image-placeholder product-image-placeholder--detail"><span>Image coming soon</span><small>' + product.name + '</small></div>';
+        var isSoldOut = false;
+        var missingText = '';
+        if (window.CornerCravingsInventory && typeof window.CornerCravingsInventory.getMissingIngredientsForProduct === 'function') {
+          var missingList = window.CornerCravingsInventory.getMissingIngredientsForProduct(product.id);
+          if (missingList.length > 0) {
+            isSoldOut = true;
+            missingText = 'Sold Out (' + missingList.map(function (m) { return m.name; }).join(', ') + ' depleted)';
+          }
+        }
+
+        var actionBtnHtml = isSoldOut
+          ? '<button type="button" class="btn btn-secondary" disabled style="flex:1; opacity:0.65; cursor:not-allowed;">' + missingText + '</button>'
+          : '<button type="button" class="btn btn-primary" id="btn-add-to-cart" style="flex: 1;">Add to Cart &middot; ' + window.CornerCravings.formatPeso(total) + '</button>';
+
+        var productImagePath = product.imageJpg || product.imageWebp;
+        var productImageSource = product.imageWebp ? '<source srcset="' + product.imageWebp + '" type="image/webp" />' : '';
+        var productImageHtml = productImagePath ? '<picture>' + productImageSource + '<img src="' + productImagePath + '" alt="' + product.imageAlt + '" width="600" height="450" fetchpriority="high" data-product-name="' + product.name + '" /></picture>' : '<div class="product-image-placeholder product-image-placeholder--detail"><span>Image coming soon</span><small>' + product.name + '</small></div>';
+
+        var isFavorite = typeof window.CornerCravings.isFavoriteProduct === 'function' && window.CornerCravings.isFavoriteProduct(product.id);
 
         container.innerHTML = '<article class="product-detail-card">' +
           '<div class="product-detail__media">' +
@@ -222,7 +240,7 @@
               '<div><h1 class="product-detail__title">' + product.name + '</h1>' +
               '<div class="product-detail__price">' + window.CornerCravings.formatPeso(product.price) + '</div>' +
               '<div class="product-detail__tags"><span>' + (product.popular ? 'Best Seller' : 'Freshly Made') + '</span><span>' + product.categoryLabel + '</span><span>Signature</span></div></div>' +
-              '<button type="button" class="product-favorite" aria-label="Add to favorites" aria-pressed="false">&#9825;</button>' +
+              '<button type="button" class="product-favorite" aria-label="' + (isFavorite ? 'View favorite on home page' : 'Add to favorites and return home') + '" aria-pressed="' + String(isFavorite) + '" title="Add to favorites and return home">' + (isFavorite ? '&#9829;' : '&#9825;') + '</button>' +
             '</div>' +
 
             '<p class="product-detail__desc">' + product.description + '</p>' +
@@ -232,14 +250,11 @@
 
             '<div class="product-action-row">' +
               '<div class="qty-stepper">' +
-                '<button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity">&minus;</button>' +
+                '<button type="button" class="qty-btn" id="qty-minus" aria-label="Decrease quantity"' + (isSoldOut ? ' disabled' : '') + '>&minus;</button>' +
                 '<span class="qty-value" id="qty-display">' + currentQty + '</span>' +
-                '<button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity">&plus;</button>' +
+                '<button type="button" class="qty-btn" id="qty-plus" aria-label="Increase quantity"' + (isSoldOut ? ' disabled' : '') + '>&plus;</button>' +
               '</div>' +
-
-              '<button type="button" class="btn btn-primary" id="btn-add-to-cart" style="flex: 1;">' +
-                'Add to Cart &middot; ' + window.CornerCravings.formatPeso(total) +
-              '</button>' +
+              actionBtnHtml +
             '</div>' +
           '</div>' +
         '</article>';
@@ -316,9 +331,12 @@
 
         if (favoriteBtn) {
           favoriteBtn.addEventListener('click', function () {
-            var active = this.getAttribute('aria-pressed') === 'true';
-            this.setAttribute('aria-pressed', String(!active));
-            this.innerHTML = active ? '&#9825;' : '&#9829;';
+            if (typeof window.CornerCravings.addFavoriteProduct === 'function') {
+              window.CornerCravings.addFavoriteProduct(product.id);
+            }
+            this.setAttribute('aria-pressed', 'true');
+            this.innerHTML = '&#9829;';
+            window.location.href = 'customer-home.html?favorite=' + encodeURIComponent(product.id);
           });
         }
       }
